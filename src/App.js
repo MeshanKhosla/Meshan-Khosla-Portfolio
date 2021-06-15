@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { Layout } from 'antd';
+import Navbar from './Navbar/Navbar';
+import Header from './Header/Header';
+import ContentContainer from "./Content/ContentContainer";
 import './App.css';
+import 'antd/dist/antd.css';
 
-function App() {
+const { Content } = Layout;
+const CATEGORIES = [
+    'Home',
+    'Projects',
+    'Experience',
+    'Contact'
+]
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [index, setIndex] = useState(0);
+
+  const handlePageChange = (page, idx) => {
+    setCurrentPage(page);
+    setIndex(idx);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+        <Navbar handlePageChange={handlePageChange}/>
+        <Layout>
+          <Content className='main-content'>
+            <Header name={CATEGORIES[index % CATEGORIES.length]}/>
+            <Layout>
+
+              <ContentContainer currentPage={currentPage} />
+
+            </Layout>
+          </Content>
+        </Layout>
+      </Layout>
     </div>
   );
 }
