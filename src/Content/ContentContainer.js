@@ -5,13 +5,13 @@ import Projects from "./Projects/Projects";
 
 const ContentContainer = ({ currentPage }) => {
   switch(currentPage) {
-    case 'home':
+    case 'Home':
       return <Home />
-    case 'projects':
+    case 'Projects':
       return <Projects />
-    case 'experience':
+    case 'Experience':
       return <Experience />
-    case 'contact':
+    case 'Contact':
       return <Contact />
     default:
       return <Home />

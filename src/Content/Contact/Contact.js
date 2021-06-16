@@ -1,7 +1,7 @@
 import '../../App.css'
 const Contact = () => {
   return (
-    <div className='content-header-section'>
+    <div className='content-section'>
       <h1>Contact</h1>
     </div>
 );
