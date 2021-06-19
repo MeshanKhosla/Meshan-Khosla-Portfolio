@@ -1,36 +1,39 @@
-import { useState } from 'react';
-import { Layout } from 'antd';
-import Navbar from './Navbar/Navbar';
-import Header from './Header/Header';
+import { useEffect } from 'react';
 import ContentContainer from "./Content/ContentContainer";
-import {CATEGORIES,  getCurPageIdx, getCurPageName} from './Constants/HeaderItems';
 import './App.css';
 import 'antd/dist/antd.css';
-
-const { Content } = Layout;
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(getCurPageName());
-  const [textIndex, setTextIndex] = useState(getCurPageIdx());
 
-  const handlePageChange = (page, idx) => {
-    localStorage.setItem('prevPage', getCurPageName().toString())
-    localStorage.setItem('curPage', [page, idx].toString())
-    setCurrentPage(page);
-    setTextIndex(idx);
-  }
+  useEffect(() => {
+    localStorage.removeItem('curPage');
+  }, [])
+
   return (
-    <div className="App">
-      <Layout>
-        <Navbar handlePageChange={handlePageChange}/>
-        <Layout>
-          <Header name={CATEGORIES[textIndex % CATEGORIES.length]} />
-          <Content className='main-content'>
-            <ContentContainer currentPage={currentPage} />
-          </Content>
-        </Layout>
-      </Layout>
-    </div>
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <ContentContainer currentPage='Home' />
+          </Route>
+          <Route path='/projects'>
+            <ContentContainer currentPage='Projects' />
+          </Route>
+          <Route path='/experience'>
+            <ContentContainer currentPage='Experience' />
+          </Route>
+          <Route path='/contact'>
+            <ContentContainer currentPage='Contact' />
+          </Route>
+          <Route path='/'>
+            <ContentContainer currentPage='Invalid' />
+          </Route>
+        </Switch>
+      </Router>
   );
 }
 

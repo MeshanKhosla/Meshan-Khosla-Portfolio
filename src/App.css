@@ -5,7 +5,9 @@
 }
 
 .content-section {
-  width: calc(100vw - 230px);
+  background-color: white;
+  margin-top: 150px;
+  width: calc(100vw - 200px);
   padding: 30px 0;
   margin-left: 200px
 }

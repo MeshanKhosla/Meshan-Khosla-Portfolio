@@ -1,11 +1,26 @@
-import '../Header/Header.css';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import TextTransition, { presets } from "react-text-transition";
-import { CATEGORIES, getPrevPageName } from "../Constants/HeaderItems";
+import { CATEGORIES, getCurPageName, PATH_TO_NAME } from "../Constants/HeaderItems";
+import '../Header/Header.css';
 
-const Header = ({ name }) => {
+const Header = () => {
+  const location = useLocation();
+  /* curPageName is the previous page for a second page before it changes */
+  const [prevPage] = useState(getCurPageName());
+  /* Initially set curPage to prevPage to give scroll effect */
+  const [curPage, setCurPage] = useState(prevPage);
+
+  useEffect(() => {
+    document.title = `Meshan Khosla | ${PATH_TO_NAME[location.pathname]}`;
+    /* Timeout is so header text doesn't immediately change */
+    setTimeout(() => {
+      setCurPage(PATH_TO_NAME[location.pathname]);
+    }, 50)
+  }, [])
 
   const findDirection = () => {
-    if (CATEGORIES.indexOf(name) > CATEGORIES.indexOf(getPrevPageName())) {
+    if (CATEGORIES.indexOf(curPage) > CATEGORIES.indexOf(prevPage)) {
       return 'up';
     }
     return 'down';
@@ -15,8 +30,8 @@ const Header = ({ name }) => {
       <div className="content-header-section">
         <div className='changing-text'>
           <TextTransition
-              text={name}
-              springConfig={ presets.wobbly }
+              text={curPage}
+              springConfig={presets.wobbly}
               direction={findDirection()}
           />
         </div>
