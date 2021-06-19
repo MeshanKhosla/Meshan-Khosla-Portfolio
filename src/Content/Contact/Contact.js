@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { setCurPage } from "../../Constants/HeaderItems";
 
 const Contact = () => {
-
   useEffect(() => {
     setCurPage('Contact');
   }, [])
@@ -14,9 +13,9 @@ const Contact = () => {
   return (
       <div>
         <Layout>
-          <Navbar />
+          <Navbar/>
           <Layout>
-            <Header />
+            <Header/>
             <div className='content-section'>
               <h1>Contact</h1>
             </div>

@@ -6,7 +6,6 @@ import Header from "../../Header/Header";
 import { setCurPage } from '../../Constants/HeaderItems';
 
 const Home = () => {
-
   useEffect(() => {
     setCurPage('Home');
   }, [])
@@ -14,9 +13,9 @@ const Home = () => {
   return (
       <div>
         <Layout>
-          <Navbar />
+          <Navbar/>
           <Layout>
-            <Header />
+            <Header/>
             <div className='content-section'>
               <h1>Home</h1>
             </div>

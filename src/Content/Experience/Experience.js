@@ -3,10 +3,9 @@ import { Layout } from "antd";
 import Navbar from "../../Navbar/Navbar";
 import Header from "../../Header/Header";
 import { useEffect } from "react";
-import { setCurPage } from "../../Constants/HeaderItems";
+import {setCurPage} from "../../Constants/HeaderItems";
 
 const Experience = () => {
-
   useEffect(() => {
     setCurPage('Experience');
   }, [])
@@ -14,9 +13,9 @@ const Experience = () => {
   return (
       <div>
         <Layout>
-          <Navbar />
+          <Navbar/>
           <Layout>
-            <Header />
+            <Header/>
             <div className='content-section'>
               <h1>Experience</h1>
             </div>

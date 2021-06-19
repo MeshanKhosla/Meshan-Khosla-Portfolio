@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import TextTransition, { presets } from "react-text-transition";
+import TextTransition, {presets} from "react-text-transition";
 import { CATEGORIES, getCurPageName, PATH_TO_NAME } from "../Constants/HeaderItems";
 import '../Header/Header.css';
 

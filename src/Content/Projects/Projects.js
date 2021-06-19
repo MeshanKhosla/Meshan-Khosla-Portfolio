@@ -1,11 +1,11 @@
 import '../../App.css'
-import { Layout } from "antd";
+import {Layout} from "antd";
 import Navbar from "../../Navbar/Navbar";
 import Header from "../../Header/Header";
 import { useEffect } from "react";
 import { setCurPage } from "../../Constants/HeaderItems";
-const Projects = () => {
 
+const Projects = () => {
   useEffect(() => {
     setCurPage('Projects');
   }, [])
@@ -13,9 +13,9 @@ const Projects = () => {
   return (
       <div>
         <Layout>
-          <Navbar />
+          <Navbar/>
           <Layout>
-            <Header />
+            <Header/>
             <div className='content-section'>
               <h1>Projects</h1>
             </div>
