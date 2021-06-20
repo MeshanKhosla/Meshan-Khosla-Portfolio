@@ -1,0 +1,25 @@
+.home-container {
+  text-align: center;
+  display: flex;
+  overflow-x: hidden;
+  color: #001529;
+}
+
+.home-right-column {
+  width: 50%;
+}
+
+.home-left-column {
+  width: 50%;
+}
+
+.home-profile-img {
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 25%;
+}
+
+/* Media query to change into vertical alignment:
+.home-container {
+  flex-direction: column;
+}
+*/
