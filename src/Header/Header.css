@@ -1,13 +1,30 @@
+:root {
+  --header-height: 150px;
+  --header-text-size: 4em;
+  --header-font-width: 160px;
+  --header-font-margin-bottom: 0 auto;
+}
+
 .content-header-section {
-  width: calc(100vw - 200px);
+  width: calc(100vw - var(--navbar-width));
+  height: var(--header-height);
   padding: 30px 0;
-  margin-left: 200px;
+  margin-left: var(--navbar-width);
   position: fixed;
+  background-color: #cdcdcd;
+  transition: all 0.3s;
 }
 
 .changing-text {
-  width: 130px;
-  margin: 0 auto;
-  font-family: 'Calibri', monospace;
-  font-size: 3em;
+  width: var(--header-font-width);
+  margin: var(--header-font-margin-bottom);
+  font-size: var(--header-text-size);
+  transition: all 0.3s;
+}
+
+.minimized-header {
+  --header-height: 100px;
+  --header-text-size: 3em;
+  --header-font-width: 120px;
+  --header-font-margin-bottom: -15px auto;
 }

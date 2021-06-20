@@ -1,0 +1,15 @@
+:root {
+  --navbar-width: 200px;
+}
+
+.side-navbar {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.collapsed-navbar {
+  --navbar-width: 80px;
+}

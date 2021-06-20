@@ -7,7 +7,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 const { Sider } = Layout;
 
-const Navbar = () => {
+const Navbar = ({ isNavCollapsed }) => {
   const history = useHistory();
   const location = useLocation();
 
@@ -17,12 +17,8 @@ const Navbar = () => {
 
   return (
       <Sider
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-          }}
+        className='side-navbar'
+        collapsed={isNavCollapsed}
       >
         <Menu theme="dark" mode="inline" defaultSelectedKeys={PATH_TO_INDEX[location.pathname]}>
           <Menu.Item key="0" onClick={() => handlePageChange('')}>

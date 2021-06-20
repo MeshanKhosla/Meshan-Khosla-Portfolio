@@ -2,10 +2,12 @@ import '../../App.css'
 import { Layout } from "antd";
 import Navbar from "../../Navbar/Navbar";
 import Header from "../../Header/Header";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import {setCurPage} from "../../Constants/HeaderItems";
 
 const Experience = () => {
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+
   useEffect(() => {
     setCurPage('Experience');
   }, [])
@@ -13,10 +15,10 @@ const Experience = () => {
   return (
       <div>
         <Layout>
-          <Navbar/>
+          <Navbar isNavCollapsed={isNavCollapsed} />
           <Layout>
-            <Header/>
-            <div className='content-section'>
+            <Header setIsNavCollapsed={setIsNavCollapsed} />
+            <div className='content-section' id='content-section'>
               <h1>Experience</h1>
             </div>
           </Layout>

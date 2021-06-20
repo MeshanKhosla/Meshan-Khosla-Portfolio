@@ -1,13 +1,15 @@
-.main-content {
-  padding: 15px;
-  background-color: white;
-  margin-top: 130px;
+* {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
 }
 
 .content-section {
-  background-color: white;
-  margin-top: 150px;
-  width: calc(100vw - 200px);
-  padding: 30px 0;
-  margin-left: 200px
+  padding: 50px;
+  position: absolute;
+  margin-top: var(--header-height);
+  width: calc(100vw - 230px);
+  left: var(--navbar-width);
+  height: 2000px;
+  z-index: -1;
+  transition: all 0.3s;
 }
