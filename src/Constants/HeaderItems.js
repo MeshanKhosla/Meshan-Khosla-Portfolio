@@ -19,6 +19,13 @@ export const PATH_TO_NAME = {
   '/contact': 'Contact',
 }
 
+export const PATH_TO_CSS_CLASS = {
+  '/': 'home-text-width',
+  '/projects': 'projects-text-width',
+  '/experience': 'experience-text-width',
+  '/contact': 'contact-text-width',
+}
+
 export const setCurPage = page => {
   localStorage.setItem('curPage', page);
 }

@@ -13,6 +13,7 @@
   position: fixed;
   background-color: #cdcdcd;
   transition: all 0.3s;
+  z-index: 1;
 }
 
 .changing-text {
@@ -27,4 +28,20 @@
   --header-text-size: 3em;
   --header-font-width: 120px;
   --header-font-margin-bottom: -15px auto;
+}
+
+.home-text-width {
+  --header-font-width: 160px;
+}
+
+.projects-text-width {
+  --header-font-width: 215px;
+}
+
+.experience-text-width {
+  --header-font-width: 300px;
+}
+
+.contact-text-width {
+  --header-font-width: 205px;
 }
