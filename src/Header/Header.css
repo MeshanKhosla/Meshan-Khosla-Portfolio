@@ -3,6 +3,7 @@
   --header-text-size: 4em;
   --header-font-width: 160px;
   --header-font-margin-bottom: 0 auto;
+  --header-color: #ababab;
 }
 
 .content-header-section {
@@ -11,10 +12,11 @@
   padding: 30px 0;
   margin-left: var(--navbar-width);
   position: fixed;
-  background-color: #cdcdcd;
+  background-color: var(--header-color);
   transition: all 0.3s;
   z-index: 1;
-  color: #001529;
+  color: var(--berkeley-blue);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .changing-text {

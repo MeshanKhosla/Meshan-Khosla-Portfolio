@@ -1,8 +1,3 @@
-* {
-  font-family: 'Roboto Slab', serif;
-  font-weight: 400;
-}
-
 .content-section {
   padding: 50px;
   position: absolute;
@@ -10,4 +5,5 @@
   width: calc(100vw - var(--navbar-width));
   left: var(--navbar-width);
   transition: all 0.3s;
+  overflow-x: hidden;
 }

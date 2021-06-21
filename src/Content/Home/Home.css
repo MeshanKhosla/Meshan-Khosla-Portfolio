@@ -2,7 +2,6 @@
   text-align: center;
   display: flex;
   overflow-x: hidden;
-  color: #001529;
 }
 
 .home-right-column {
@@ -11,11 +10,32 @@
 
 .home-left-column {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-profile-img {
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 25%;
+}
+
+.home-skills-title {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.home-skills {
+  width: 100%;
+}
+
+.home-left-column-skills {
+  width: 50%;
+}
+
+.home-right-column-skills {
+  width: 50%;
 }
 
 /* Media query to change into vertical alignment:

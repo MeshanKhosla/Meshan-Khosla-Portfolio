@@ -1,5 +1,15 @@
 :root {
   --navbar-width: 200px;
+  --berkeley-blue: #003262;
+  --california-gold: #FDB515;
+}
+
+.ant-menu {
+  background-color: var(--berkeley-blue) !important;
+}
+
+.ant-menu-item-selected {
+  background-color: var(--california-gold) !important;
 }
 
 .side-navbar {
@@ -9,6 +19,7 @@
   left: 0;
   transition: all 0.3s;
   z-index: 999;
+  background-color: var(--berkeley-blue);
 }
 
 .collapsed-navbar {
