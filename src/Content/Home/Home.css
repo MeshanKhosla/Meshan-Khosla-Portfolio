@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   overflow-x: hidden;
+  padding-bottom: 100px;
 }
 
 .home-right-column {
@@ -21,7 +22,42 @@
   border-radius: 25%;
 }
 
-.home-skills-title {
+.home-skill-cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  padding: 10px;
+}
+
+@media (min-width: 600px) {
+  .home-skill-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .home-skill-cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.home-skill-card {
+  background-color: transparent;
+  border: 1px solid var(--berkeley-blue);
+  color: var(--berkeley-blue);
+  padding: 1rem;
+  height: 4rem;
+  transition: all 0.3s;
+}
+
+.home-skill-card:hover {
+  background-color: var(--berkeley-blue);
+  color: var(--california-gold);
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.home-title {
   margin-top: 30px;
   width: 100%;
 }
@@ -38,8 +74,81 @@
   width: 50%;
 }
 
-/* Media query to change into vertical alignment:
-.home-container {
-  flex-direction: column;
+/*@media (max-width: 600px) {*/
+/*  .home-container {*/
+/*    flex-direction: column;*/
+/*  }*/
+/*}*/
+
+
+.Python-card:hover {
+  cursor: url(SkillsImages/Python.png), auto;
 }
-*/
+
+.React-card:hover {
+  cursor: url(SkillsImages/React.png), auto;
+}
+
+.Jest-card:hover {
+  cursor: url(SkillsImages/Jest.png), auto;
+}
+
+.Redux-card:hover {
+  cursor: url(SkillsImages/Redux.png), auto;
+}
+
+.Javascript-card:hover {
+  cursor: url(SkillsImages/Javascript.png), auto;
+}
+
+.Typescript-card:hover {
+  cursor: url(SkillsImages/Typescript.png), auto;
+}
+
+.Java-card:hover {
+  cursor: url(SkillsImages/Java.png), auto;
+}
+
+.JUnit-card:hover {
+  cursor: url(SkillsImages/Junit.png), auto;
+}
+
+.PHP-card:hover {
+  cursor: url(SkillsImages/PHP.png), auto;
+}
+
+.PHPUnit-card:hover {
+  cursor: url(SkillsImages/PHPUnit.png), auto;
+}
+
+.Laravel-card:hover {
+  cursor: url(SkillsImages/Laravel.png), auto;
+}
+
+.SQL-card:hover {
+  cursor: url(SkillsImages/SQL.png), auto;
+}
+
+.Scheme-card:hover {
+  cursor: url(SkillsImages/Scheme.png), auto;
+}
+
+.HTML-card:hover {
+  cursor: url(SkillsImages/HTML.png), auto;
+}
+
+.CSS-card:hover {
+  cursor: url(SkillsImages/CSS.png), auto;
+}
+
+.Sass-card:hover {
+  cursor: url(SkillsImages/Sass.png), auto;
+}
+
+.LESS-card:hover {
+  cursor: url(SkillsImages/Less.png), auto;
+}
+
+.Arduino-card:hover {
+  cursor: url(SkillsImages/Arduino.png), auto;
+}

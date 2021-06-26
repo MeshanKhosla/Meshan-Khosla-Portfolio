@@ -3,7 +3,7 @@
   --header-text-size: 4em;
   --header-font-width: 160px;
   --header-font-margin-bottom: 0 auto;
-  --header-color: #ababab;
+  --header-color: white;
 }
 
 .content-header-section {
@@ -43,6 +43,22 @@
 
 .experience-text-width {
   --header-font-width: 300px;
+}
+
+.learntowin-text-width {
+  --header-font-width: 365px;
+}
+
+.sixtyoneBAI-text-width {
+  --header-font-width: 170px;
+ }
+
+.core-research-text-width {
+  --header-font-width: 380px;
+}
+
+.high-school-text-width {
+  --header-font-width: 320px;
 }
 
 .contact-text-width {

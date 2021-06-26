@@ -2,7 +2,7 @@
   padding: 50px;
   position: absolute;
   margin-top: var(--header-height);
-  width: calc(100vw - var(--navbar-width));
+  width: calc(100vw - var(--navbar-width) - 17px);
   left: var(--navbar-width);
   transition: all 0.3s;
   overflow-x: hidden;

@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import ExperienceContainer from "./Content/Experience/ExperienceContainer";
 
 const App = () => {
 
@@ -22,6 +23,18 @@ const App = () => {
           </Route>
           <Route path='/projects'>
             <ContentContainer currentPage='Projects' />
+          </Route>
+          <Route path='/experience/LearnToWin'>
+            <ExperienceContainer page='LearnToWin' />
+          </Route>
+          <Route path='/experience/61bAI'>
+            <ExperienceContainer page='61bAI' />
+          </Route>
+          <Route path='/experience/CoreResearch'>
+            <ExperienceContainer page='CoreResearch' />
+          </Route>
+          <Route path='/experience/HighSchool'>
+            <ExperienceContainer page='HighSchool' />
           </Route>
           <Route path='/experience'>
             <ContentContainer currentPage='Experience' />
