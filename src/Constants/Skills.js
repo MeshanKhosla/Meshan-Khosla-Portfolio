@@ -6,6 +6,6 @@ export const SOFTWARE_SKILLS = [
 ]
 
 export const CONCEPT_SKILLS = [
-  'Git', 'OOP', 'Data Structures', 'Algorithms',
+  'Git', 'OOP', 'Data-Structures', 'Algorithms',
   'Jira', 'LaTeX', 'Figma', 'Photoshop', 'Premiere',
 ]

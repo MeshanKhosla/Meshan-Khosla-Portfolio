@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 const HighSchool = () => {
   return (
       <PortfolioContainer>
-        High school info
+        In progress
       </PortfolioContainer>
   );
 }

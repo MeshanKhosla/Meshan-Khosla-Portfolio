@@ -152,3 +152,39 @@
 .Arduino-card:hover {
   cursor: url(SkillsImages/Arduino.png), auto;
 }
+
+.Git-card:hover {
+  cursor: url(SkillsImages/git.png), auto;
+}
+
+.OOP-card:hover {
+  cursor: url(SkillsImages/oop.png), auto;
+}
+
+.Data-Structures-card:hover {
+  cursor: url(SkillsImages/data.png), auto;
+}
+
+.Algorithms-card:hover {
+  cursor: url(SkillsImages/Alg.png), auto;
+}
+
+.Jira-card:hover {
+  cursor: url(SkillsImages/jira.png), auto;
+}
+
+.LaTeX-card:hover {
+  cursor: url(SkillsImages/latex.png), auto;
+}
+
+.Figma-card:hover {
+  cursor: url(SkillsImages/figma.png), auto;
+}
+
+.Photoshop-card:hover {
+  cursor: url(SkillsImages/photoshop.png), auto;
+}
+
+.Premiere-card:hover {
+  cursor: url(SkillsImages/premiere.png), auto;
+}

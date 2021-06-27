@@ -8,7 +8,9 @@ import {Link} from "react-router-dom";
 const CoreResearch = () => {
   return (
       <PortfolioContainer>
-        Research info
+        <Text>
+          In progress
+        </Text>
       </PortfolioContainer>
   );
 }
