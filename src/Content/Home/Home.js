@@ -20,8 +20,8 @@ const Home = () => {
                 I'm a student at UC Berkeley studying Computer Science.
                 I've been programming since 9th grade and I've loved it since. I'm
                 interested in frontend, backend, theory, education, robotics, or any field where
-                software can be used. Feel free to scroll down to see my skills
-                and things I enjoy doing outside of programming. You can also check out my&nbsp;
+                software can be used. Feel free to scroll down to see my skills.
+                You can also check out my&nbsp;
                 <Link to='/projects'>projects</Link>, <Link to='/experience'>experiences</Link>,
                 and how to <Link to='/contact'>contact</Link> me!
               </Text>
@@ -60,12 +60,12 @@ const Home = () => {
         </Row>
 
 
-        <div className='home-title'>
-          <Title>Outside Of Programming</Title>
-        </div>
-        <Row className='home-outside-of-programming'>
-          I do other stuff
-        </Row>
+        {/*<div className='home-title'>*/}
+        {/*  <Title>Outside Of Programming</Title>*/}
+        {/*</div>*/}
+        {/*<Row className='home-outside-of-programming'>*/}
+        {/*  I do other stuff*/}
+        {/*</Row>*/}
 
       </Row>
     </PortfolioContainer>
