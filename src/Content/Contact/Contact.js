@@ -1,18 +1,42 @@
+import { useState } from "react";
 import PortfolioContainer from "../../PortfolioContainer";
 import Draggable from 'react-draggable';
 import {Resizable} from "re-resizable";
 import './Contact.css';
 import linkedinImage from '../../Assets/linkedinImg.png';
 import emailImage from '../../Assets/emailImg.png';
-import Title from "antd/es/typography/Title";
-import {Link} from "react-router-dom";
-import {Image} from "antd";
+import {Button, notification, } from "antd";
+import 'antd/dist/antd.css';
+
 
 const Contact = () => {
+  const [isContentEditable, setIsContentEditable] = useState(false);
+
+  const openNotificationWithIcon = type => {
+    const msg = `Everything is ${isContentEditable ? 'no longer' : 'now'} editable.
+      ${isContentEditable ? 'But you can still edit the icons!' : ''}`
+
+    notification[type]({
+      message: 'Success!',
+      description: msg,
+    });
+  };
+
+  const handleContentEditable = () => {
+    // Need to this this b/c setIsContentEditable is async
+    const opp = !isContentEditable;
+    document.body.setAttribute('contentEditable', opp.toString());
+    openNotificationWithIcon('success')
+    setIsContentEditable(!isContentEditable);
+  }
   return (
       <PortfolioContainer>
         <div className='contact-title'>
-          <Title level={3}>Drag/Resize to make your own layout!</Title>
+          <p>I couldn't figure out a good way to make this page look good.</p>
+          <p>So drag/resize to make it look nice!</p>
+          <Button onClick={handleContentEditable}>
+            {`Click here to make text ${isContentEditable ? 'non-' : ''}editable`}
+          </Button>
         </div>
 
         <div className='contact-container' style={{ height: '1000px' }}>
