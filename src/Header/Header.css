@@ -1,7 +1,6 @@
 :root {
   --header-height: 150px;
   --header-text-size: 4em;
-  --header-font-width: 160px;
   --header-font-margin-bottom: 0 auto;
   --header-color: white;
 }
@@ -19,8 +18,12 @@
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
 }
 
+.text-transition_inner {
+  display: flex !important;
+  justify-content: center !important;
+}
+
 .changing-text {
-  width: var(--header-font-width);
   margin: var(--header-font-margin-bottom);
   font-size: var(--header-text-size);
   transition: all 0.3s;
@@ -29,38 +32,5 @@
 .minimized-header {
   --header-height: 100px;
   --header-text-size: 3em;
-  --header-font-width: 120px;
   --header-font-margin-bottom: -15px auto;
-}
-
-.home-text-width {
-  --header-font-width: 160px;
-}
-
-.projects-text-width {
-  --header-font-width: 215px;
-}
-
-.experience-text-width {
-  --header-font-width: 300px;
-}
-
-.learntowin-text-width {
-  --header-font-width: 365px;
-}
-
-.sixtyoneBAI-text-width {
-  --header-font-width: 170px;
- }
-
-.core-research-text-width {
-  --header-font-width: 380px;
-}
-
-.high-school-text-width {
-  --header-font-width: 320px;
-}
-
-.contact-text-width {
-  --header-font-width: 205px;
 }

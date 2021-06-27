@@ -34,8 +34,6 @@ const Header = ({ setIsNavCollapsed }) => {
   useEffect(() => {
     document.title = `Meshan Khosla | ${PATH_TO_NAME[location.pathname]}`;
     window.addEventListener('scroll', handleScroll)
-    const changingTextElem = document.getElementById('changing-text');
-    changingTextElem.classList.add(PATH_TO_CSS_CLASS[location.pathname]);
 
     /* Timeout is so header text doesn't immediately change */
     setTimeout(() => {
@@ -54,9 +52,9 @@ const Header = ({ setIsNavCollapsed }) => {
       <div id='main-header' className="content-header-section">
         <div className='changing-text' id='changing-text'>
           <TextTransition
-              text={curPage}
-              springConfig={presets.wobbly}
-              direction={findDirection()}
+            text={curPage}
+            springConfig={presets.wobbly}
+            direction={findDirection()}
           />
         </div>
       </div>

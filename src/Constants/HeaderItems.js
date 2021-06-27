@@ -27,17 +27,6 @@ export const PATH_TO_NAME = {
   '/contact': 'Contact',
 }
 
-export const PATH_TO_CSS_CLASS = {
-  '/': 'home-text-width',
-  '/projects': 'projects-text-width',
-  '/experience': 'experience-text-width',
-  '/experience/LearnToWin': 'learntowin-text-width',
-  '/experience/61bAI': 'sixtyoneBAI-text-width',
-  '/experience/CoreResearch': 'core-research-text-width',
-  '/experience/HighSchool': 'high-school-text-width',
-  '/contact': 'contact-text-width',
-}
-
 export const setCurPage = page => {
   localStorage.setItem('curPage', page);
 }
