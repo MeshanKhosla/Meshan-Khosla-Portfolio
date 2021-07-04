@@ -1,11 +1,10 @@
-import {useState} from "react";
 import PortfolioContainer from "../../PortfolioContainer";
-import {Row, Timeline} from "antd";
+import {Timeline} from "antd";
 import {Link} from "react-router-dom";
 import './Experience.css';
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
-import {EXPERIENCE_TO_INFO} from "../../Constants/Experiences";
+import EXPERIENCES from "../../Constants/Experiences";
 import {Slide} from "react-awesome-reveal";
 
 const Experience = () => {
@@ -19,13 +18,13 @@ const Experience = () => {
         </div>
         <div className='experience-timeline'>
           <Timeline mode='alternate'>
-            {Object.keys(EXPERIENCE_TO_INFO).map(exp => (
-              <Timeline.Item color={EXPERIENCE_TO_INFO[exp][2]}>
-                <Link to={EXPERIENCE_TO_INFO[exp][3]}>
-                  <Text className='experience-position'>{exp}</Text>
+            {EXPERIENCES.map(exp => (
+              <Timeline.Item color={exp.color}>
+                <Link to={exp.link}>
+                  <Text className='experience-position'>{exp.position}</Text>
                   <br />
                   <Text>
-                    {EXPERIENCE_TO_INFO[exp][0]} | {EXPERIENCE_TO_INFO[exp][1]}
+                    {exp.company} | {exp.date}
                   </Text>
                 </Link>
               </Timeline.Item>

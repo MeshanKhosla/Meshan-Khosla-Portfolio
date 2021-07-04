@@ -35,6 +35,12 @@ const HighSchool = () => {
             miles and eventually having a 2 mile PR of 11:17. Although I don't think titles mean much, it is always nice to go from below average to
             Most Improved to Most Valuable Runner in a few years.
           </Text>
+          <Title level={4}>Academic Tutor</Title>
+          <div className='experience-role-container'></div>
+          <Text>
+            I organized tutoring sessions twice a week before school for students where I assisted students in Math, English, and Computer Science
+            concepts. I helped students understand concepts from algebra to calculus during my time as a tutor.
+          </Text>
           <Title level={4}>California Scholarship Federation (CSF)</Title>
           <div className='experience-role-container'>
             <Text className='experience-role'>Many</Text>

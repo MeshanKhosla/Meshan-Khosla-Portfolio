@@ -8,6 +8,10 @@ export const CATEGORIES = [
 export const PATH_TO_INDEX = {
   '/': '0',
   '/projects': '1',
+  '/projects/Gitlet': 1,
+  '/projects/PathVisualizer': '1',
+  '/projects/SpacedRepetition': '1',
+  '/projects/StockDigest': '1',
   '/experience': '2',
   '/experience/LearnToWin': '2',
   '/experience/61bAI': '2',
@@ -19,6 +23,10 @@ export const PATH_TO_INDEX = {
 export const PATH_TO_NAME = {
   '/': 'Home',
   '/projects': 'Projects',
+  '/projects/Gitlet': 'Gitlet',
+  '/projects/PathVisualizer': 'Path Visualizer',
+  '/projects/SpacedRepetition': 'Spaced Repetition',
+  '/projects/StockDigest': 'Stock Digest',
   '/experience': 'Experience',
   '/experience/LearnToWin': 'Learn To Win',
   '/experience/61bAI': '61B AI',
