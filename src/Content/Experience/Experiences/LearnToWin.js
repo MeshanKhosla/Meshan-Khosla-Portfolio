@@ -11,7 +11,7 @@ const LearnToWin = () => {
           <Button className='back-to-exp-btn'>&#11164;</Button>
         </Link>
         <div>
-          <Text>In progress, Hi Morgan</Text>
+          <Text>In progress</Text>
         </div>
       </PortfolioContainer>
   );

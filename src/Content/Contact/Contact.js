@@ -7,6 +7,7 @@ import linkedinImage from '../../Assets/linkedinImg.png';
 import emailImage from '../../Assets/emailImg.png';
 import {Button, notification, } from "antd";
 import 'antd/dist/antd.css';
+import {Slide} from "react-awesome-reveal";
 
 
 const Contact = () => {
@@ -31,6 +32,7 @@ const Contact = () => {
   }
   return (
       <PortfolioContainer>
+        <Slide duration={500}>
         <div className='contact-title'>
           <p>I couldn't figure out a good way to make this page look good.</p>
           <p>So drag/resize to make it look nice!</p>
@@ -84,6 +86,7 @@ const Contact = () => {
             </Resizable>
           </Draggable>
         </div>
+        </Slide>
       </PortfolioContainer>
   );
 }

@@ -6,11 +6,13 @@ import './Experience.css';
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
 import {EXPERIENCE_TO_INFO} from "../../Constants/Experiences";
+import {Slide} from "react-awesome-reveal";
 
 const Experience = () => {
 
   return (
       <PortfolioContainer>
+        <Slide duration={500} direction='right' triggerOnce>
         <div className='experience-title'>
           <Title>What I've done so far</Title>
           <Text>Click on any item for more details!</Text>
@@ -30,6 +32,7 @@ const Experience = () => {
             ))}
           </Timeline>
         </div>
+        </Slide>
       </PortfolioContainer>
   );
 }
