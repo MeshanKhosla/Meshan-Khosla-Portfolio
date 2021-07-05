@@ -19,6 +19,16 @@ const PROJECTS = [
     description: 'A script notifying you of your stock prices implemented in Python',
     link: '/projects/StockDigest'
   },
+  {
+    name: 'Portfolio',
+    description: 'The site you\'re on right now!',
+    link: '/projects/Portfolio'
+  },
+  {
+    name: 'Arduino',
+    description: 'Various Arduino projects I\'ve built',
+    link: '/projects/Arduino'
+  },
 ]
 
 export default PROJECTS;

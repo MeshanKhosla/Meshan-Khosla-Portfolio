@@ -1,13 +1,12 @@
-import PortfolioContainer from "../../../PortfolioContainer";
 import {Link} from "react-router-dom";
 import {Button} from "antd";
 import Text from "antd/es/typography/Text";
-import '../Experience.css';
+import PortfolioContainer from "../../../PortfolioContainer";
 
-const SixtyOneBAI = () => {
+const Arduino = () => {
   return (
       <PortfolioContainer>
-        <Link to='/experience'>
+        <Link to='/projects'>
           <Button className='back-to-exp-btn'>&#x25c0;</Button>
         </Link>
         <div>
@@ -15,6 +14,6 @@ const SixtyOneBAI = () => {
         </div>
       </PortfolioContainer>
   );
-}
+};
 
-export default SixtyOneBAI;
+export default Arduino;

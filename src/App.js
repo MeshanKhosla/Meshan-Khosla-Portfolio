@@ -8,6 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import ExperienceContainer from "./Content/Experience/ExperienceContainer";
+import ProjectsContainer from "./Content/Projects/ProjectsContainer";
 
 const App = () => {
 
@@ -20,6 +21,24 @@ const App = () => {
         <Switch>
           <Route exact path='/'>
             <ContentContainer currentPage='Home' />
+          </Route>
+          <Route path='/projects/Gitlet'>
+            <ProjectsContainer page='Gitlet' />
+          </Route>
+          <Route path='/projects/PathVisualizer'>
+            <ProjectsContainer page='PathVisualizer' />
+          </Route>
+          <Route path='/projects/SpacedRepetition'>
+            <ProjectsContainer page='SpacedRepetition' />
+          </Route>
+          <Route path='/projects/StockDigest'>
+            <ProjectsContainer page='StockDigest' />
+          </Route>
+          <Route path='/projects/Portfolio'>
+            <ProjectsContainer page='Portfolio' />
+          </Route>
+          <Route path='/projects/Arduino'>
+            <ProjectsContainer page='Arduino' />
           </Route>
           <Route path='/projects'>
             <ContentContainer currentPage='Projects' />

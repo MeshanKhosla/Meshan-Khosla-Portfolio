@@ -10,13 +10,14 @@ const Projects = () => {
   return (
     <PortfolioContainer>
       <div className='experience-title'>
-        <Title level={3}>Click on any item for more details! (Coming soon)</Title>
+        <Title level={3}>Click on any project for more details!</Title>
       </div>
       <Row className='projects-container'>
         <Col className='projects'>
           <Slide duration={500} triggerOnce>
             {PROJECTS.map(proj => (
               <ProjectCard
+                  key={proj.link}
                   name={proj.name}
                   description={proj.description}
                   link={proj.link}

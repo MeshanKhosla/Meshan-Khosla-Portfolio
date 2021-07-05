@@ -10,7 +10,7 @@ const HighSchool = () => {
   return (
       <PortfolioContainer>
         <Link to='/experience'>
-          <Button className='back-to-exp-btn'>&#11164;</Button>
+          <Button className='back-to-exp-btn'>&#x25c0;</Button>
         </Link>
         <div className='individual-experience-container'>
           <Title level={4}>FIRST Robotics</Title>

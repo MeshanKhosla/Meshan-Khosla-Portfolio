@@ -10,7 +10,7 @@ const CoreResearch = () => {
   return (
       <PortfolioContainer>
         <Link to='/experience'>
-          <Button className='back-to-exp-btn'>&#11164;</Button>
+          <Button className='back-to-exp-btn'>&#x25c0;</Button>
         </Link>
         <div>
           <Text>In progress</Text>
