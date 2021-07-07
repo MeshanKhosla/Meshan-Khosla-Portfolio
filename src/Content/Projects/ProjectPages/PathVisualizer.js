@@ -10,7 +10,9 @@ const PathVisualizer = () => {
           <Button className='back-to-exp-btn'>&#x25c0;</Button>
         </Link>
         <div>
-          <Text>In progress</Text>
+          <Text className='project-desc-text'>
+            In progress
+          </Text>
         </div>
       </PortfolioContainer>
   );
