@@ -18,7 +18,7 @@ const Portfolio = () => {
             click the button below!
           </Text>
           <div className='project-buttons'>
-            <Button onClick={() => alert('You\'re already on the site!')} href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank' type='primary'>
+            <Button onClick={() => alert('You\'re already on the site!')} href='https://tinyurl.com/PortfolioRedirect' target='_blank' type='primary'>
               Hosted Site
             </Button>
             <Button href='https://github.com/MeshanKhosla/Meshan-Khosla-Portfolio' target='_blank' type='primary'>
