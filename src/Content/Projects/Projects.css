@@ -43,6 +43,19 @@
   }
 }
 
+.project-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.project-buttons a {
+  margin: 10px;
+  width: 120px;
+}
+
 @media (min-width: 900px) {
   .projects {
     grid-template-columns: repeat(3, 1fr);

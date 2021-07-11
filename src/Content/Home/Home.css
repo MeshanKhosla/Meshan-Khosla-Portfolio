@@ -15,6 +15,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.3vw;
+}
+
+@media (min-width: 1200px) {
+  .home-left-column {
+    /*font-size: 2em;*/
+  }
 }
 
 .home-profile-img {
