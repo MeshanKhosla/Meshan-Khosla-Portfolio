@@ -56,6 +56,32 @@
   width: 120px;
 }
 
+.alg-tabs {
+  padding: 50px 0;
+  width: 100%;
+  justify-content: center;
+}
+.react-tabs__tab-list {
+  text-align: center;
+  border-bottom: 1px solid var(--berkeley-blue);
+}
+
+.react-tabs__tab-list li {
+  color: var(--berkeley-blue);
+  font-size: 1.3rem;
+}
+
+.react-tabs__tab--selected {
+  background-color: var(--berkeley-blue);
+  color: black;
+  font-weight: bolder;
+}
+
+.react-tabs__tab-panel h2 {
+  color: black;
+  font-weight: lighter;
+}
+
 @media (min-width: 900px) {
   .projects {
     grid-template-columns: repeat(3, 1fr);

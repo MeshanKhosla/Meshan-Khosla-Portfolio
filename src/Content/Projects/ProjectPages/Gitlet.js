@@ -22,6 +22,11 @@ const Gitlet = () => {
             as a software engineer. Since this is a class project, I cannot post the code publicly nor explain the
             techniques I used, but can do so to an employer if needed.
           </Text>
+          <div className='project-buttons'>
+            <Button disabled style={{ backgroundColor: '#1990FD', color: 'white' }}>
+              Code (Available upon request)
+            </Button>
+          </div>
         </div>
       </PortfolioContainer>
   );

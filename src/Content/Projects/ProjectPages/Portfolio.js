@@ -11,11 +11,11 @@ const Portfolio = () => {
         </Link>
         <div>
           <Text className='project-desc-text'>
-            I decided to make a portfolio to display the projects that I've created and my experience so far. Could all
-            of this have just been on Linkedin? Sure, but what's the fun in that. I wanted to try out some different
-            React libraries and just experiment with building a project from scratch. It's always fun to write 'hacky' code
-            that won't go through code review and no one will read. But if you want to read the code for whatever reason,
-            click the button below!
+            I decided to make a portfolio to display the projects that I've created and my experience so far. Sure,
+            this all could've been on Linkedin but I wanted to try out some different React libraries and just
+            experiment with building a project from scratch. It's always fun to write 'hacky' code
+            that won't go through code review and no one will read. But if you want to read the code for whatever
+            reason, click the button below!
           </Text>
           <div className='project-buttons'>
             <Button onClick={() => alert('You\'re already on the site!')} href='https://tinyurl.com/PortfolioRedirect' target='_blank' type='primary'>

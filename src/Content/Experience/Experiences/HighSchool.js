@@ -17,7 +17,7 @@ const HighSchool = () => {
           <div className='experience-role-container'>
             <Text className='experience-role'>Team Captain</Text>
           </div>
-          <Text>
+          <Text className='experience-info-text'>
             Robotics was the activity in High School that made me want to pursue computer science in college. Although I was initially a
             programmer on the team, I quickly had to learn other aspects of robotics such as CAD, mechanical, and electrical since our team
             was fairly new. We would regularly spend our time after school and on weekends (often until 8-9pm) working on ensuring our robot would
@@ -29,7 +29,7 @@ const HighSchool = () => {
           <div className='experience-role-container'>
             <Text className='experience-role'>Team Captain</Text>
           </div>
-          <Text>
+          <Text className='experience-info-text'>
             I was a long distance runner in our school's Cross Country and Track team for 3 years, the last two as a team captain. In my first race I
             ran 2 miles in an incredible 16 minutes. In all seriousness, I'm very proud of the improvement I made over the years, running well over 1,000
             miles and eventually having a 2 mile PR of 11:17. Although I don't think titles mean much, it is always nice to go from below average to
@@ -37,7 +37,7 @@ const HighSchool = () => {
           </Text>
           <Title level={4}>Academic Tutor</Title>
           <div className='experience-role-container'></div>
-          <Text>
+          <Text className='experience-info-text'>
             I organized tutoring sessions twice a week before school for students where I assisted students in Math, English, and Computer Science
             concepts. I helped students understand concepts from algebra to calculus during my time as a tutor.
           </Text>
@@ -45,7 +45,7 @@ const HighSchool = () => {
           <div className='experience-role-container'>
             <Text className='experience-role'>Many</Text>
           </div>
-          <Text>
+          <Text className='experience-info-text'>
             I was the Secretary, Treasurer, Vice President of CSF which is an organization aimed to recognize and encourage academic achievement
             for high schoolers. I led meetings, handled finances, handled the agenda, and did other miscellaneous tasks to ensure the club was
             successful.
