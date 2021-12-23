@@ -34,8 +34,7 @@ const Contact = () => {
       <PortfolioContainer>
         <Slide duration={500}>
         <div className='contact-title'>
-          <p>I couldn't figure out a good way to make this page look good.</p>
-          <p>So drag/resize to make it look nice!</p>
+          <p>Drag/resize to make it look nice!</p>
           <Button onClick={handleContentEditable} type='primary'>
             {`Click here to make text ${isContentEditable ? 'non-' : ''}editable`}
           </Button>

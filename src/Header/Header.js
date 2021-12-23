@@ -11,12 +11,11 @@ const Header = ({ setIsNavCollapsed }) => {
   /* Initially set curPage to prevPage to give scroll effect */
   const [curPage, setCurPage] = useState(prevPage);
 
-  const handleScroll = () => {
-    const distanceY = window.pageYOffset || document.documentElement.scrollTop
+  /* Expand or collapse the side navbar */
+  const handleNavbarCollapseOrExpand = (shouldCollapse) => {
     const headerElement = document.getElementById('main-header');
     const contentSection = document.getElementById('content-section');
-
-    if (distanceY > 0) {
+    if (shouldCollapse) {
       headerElement.classList.add('minimized-header');
       headerElement.classList.add('collapsed-navbar');
       contentSection.classList.add('collapsed-navbar');
@@ -30,10 +29,33 @@ const Header = ({ setIsNavCollapsed }) => {
       setIsNavCollapsed(false);
     }
   }
+  const handleScroll = () => {
+    const distanceY = window.pageYOffset || document.documentElement.scrollTop
+    // If the screen width is <= 768 px, don't resize navbar
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      return;
+    }
+    if (distanceY > 0) {
+      handleNavbarCollapseOrExpand(true);
+    } else {
+      handleNavbarCollapseOrExpand(false);
+    }
+  }
 
+  /* Changes navbar setting based on screen size */
+  const handleResize = () => {
+    // If the screen width is <= 768 px
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      handleNavbarCollapseOrExpand(true)
+    }
+  }
   useEffect(() => {
-    document.title = `Meshan Khosla | ${PATH_TO_NAME[location.pathname]}`;
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      handleNavbarCollapseOrExpand(true)
+    }
+    window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
+    document.title = `Meshan Khosla | ${PATH_TO_NAME[location.pathname]}`;
 
     /* Timeout is so header text doesn't immediately change */
     setTimeout(() => {

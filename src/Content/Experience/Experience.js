@@ -19,7 +19,7 @@ const Experience = () => {
         <div className='experience-timeline'>
           <Timeline mode='alternate'>
             {EXPERIENCES.map(exp => (
-              <Timeline.Item color={exp.color}>
+              <Timeline.Item color={exp.color} key={exp.position}>
                 <Link to={exp.link}>
                   <Text className='experience-position'>{exp.position}</Text>
                   <br />

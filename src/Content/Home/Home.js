@@ -18,8 +18,7 @@ const Home = () => {
             <Title level={3}>Hi, I'm Meshan Khosla</Title>
               <Text>
                 I'm a student at UC Berkeley studying Computer Science.
-                I've been programming since 9th grade and I've loved it since. I'm
-                interested in frontend, backend, theory, education, robotics, or any field where
+                I'm interested in frontend, backend, theory, education, robotics, or any field where
                 software can be used. Feel free to scroll down to see my skills.
                 You can also check out my&nbsp;
                 <Link to='/projects'>projects</Link>, <Link to='/experience'>experiences</Link>,

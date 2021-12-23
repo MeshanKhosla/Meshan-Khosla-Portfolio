@@ -1,16 +1,23 @@
 /* Alternate the colors */
 const EXPERIENCES = [
   {
+    company: 'UC Berkeley (CS61B)',
+    position: 'Academic Tutor',
+    date: 'Jan 2022 - Present',
+    color: '#FDB515',
+    link: '/experience/61bTutor'
+  },
+  {
     company: 'Learn to Win',
     position: 'Software Engineering Intern',
-    date: 'May 2021 - Present',
+    date: 'May 2021 - Aug 2021',
     color: '#003262',
     link: '/experience/LearnToWin'
   },
   {
     company: 'UC Berkeley (CS61B)',
     position: 'Academic Intern',
-    date: 'May 2021 - Present',
+    date: 'May 2021 - Aug 2021',
     color: '#FDB515',
     link: '/experience/61bAI'
   },

@@ -3,10 +3,13 @@ import LearnToWin from "./Experiences/LearnToWin";
 import SixtyOneBAI from "./Experiences/61bAI";
 import CoreResearch from "./Experiences/CoreResearch";
 import HighSchool from "./Experiences/HighSchool";
+import SixtyOneBTutor from "./Experiences/61bTutor";
 
 const ExperienceContainer = ({ page }) => {
   const history = useHistory();
   switch(page) {
+    case '61bTutor':
+      return <SixtyOneBTutor />
     case 'LearnToWin':
       return <LearnToWin />
     case '61bAI':
