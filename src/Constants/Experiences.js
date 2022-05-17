@@ -1,9 +1,16 @@
 /* Alternate the colors */
 const EXPERIENCES = [
   {
+    company: 'Amazon Web Services',
+    position: 'Software Development Engineer Intern',
+    date: 'May 2022 - Present',
+    color: '#003262',
+    link: '/experience/AmazonIntern'
+  },
+  {
     company: 'UC Berkeley (CS61B)',
     position: 'Academic Tutor',
-    date: 'Jan 2022 - Present',
+    date: 'Jan 2022 - May 2022',
     color: '#FDB515',
     link: '/experience/61bTutor'
   },

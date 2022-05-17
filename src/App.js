@@ -43,6 +43,9 @@ const App = () => {
           <Route path='/projects'>
             <ContentContainer currentPage='Projects' />
           </Route>
+          <Route path='/experience/AmazonIntern'>
+            <ExperienceContainer page='AmazonIntern' />
+          </Route>
           <Route path='/experience/61bTutor'>
             <ExperienceContainer page='61bTutor' />
           </Route>
