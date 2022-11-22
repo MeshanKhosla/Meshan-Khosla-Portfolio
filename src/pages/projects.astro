@@ -5,47 +5,73 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 
 <BaseLayout title = "Projects">
   <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5">Projects</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Simple Office Hours Queue"
+    img="/dark-sohq.png"
+    desc="Open source office hours queue built with Next.JS, Prisma, TRPC, and MySQL. I'm building this for CS61B at \
+	UC Berkeley, but it can be used for any class that needs a queue for instructors to handle their office hours."
+    url="https://github.com/Berkeley-CS61B/simple-office-hours-queue"
+    badge="In Progress"
   />
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
-  </div>
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="NP Complete Approximation Algorithm"
+    img="/graph-problem.bmp"
+    desc="Along with 2 other students, placed 2/250 in an upper division CS class competition. (CS 170). \
+	We experimented with greedy, DP, LP, parallelization, simulated annealing, and other techniques to approximate a problem resembling \
+	set cover. We used Rust, AWS, GCP, and Python to build our solution."
+    url="https://github.com/noahadhikari/penguin-optimization"
+  />
 
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Optimal 2x2 Rubik's Cube Solver"
+    img="/2x2-cube.bmp"
+    desc="I constructed a shortest path algorithm using A* to find the optimal solution for any 2x2 Rubik's cube state. \
+	It allows users to input a cube state through a Flask webapp and receive the shortest series of moves to solve the cube."
+    url="https://github.com/MeshanKhosla/Optimal-2x2-Cube-Solver"
   />
+
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Gitlet"
+    img="/git-logo.bmp"
+    desc="Designed and implemented a version control system mimicking Git. Includes support for 10+ commands including \
+	init, add, commit, checkout, branch, reset, merge, rm, log, and status. Code available upon request."
+    url="https://sp21.datastructur.es/materials/proj/proj2/proj2"
   />
+
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Spaced Repetition Quiz App"
+    img="/spaced-repetition.png"
+    desc="I created a spaced repetition webapp in React, enabling students to see harder questions more often. \
+	To do this, I implemented a Priority Queue system where questions are ordered by how confident they are with each \
+	question."
+    url="https://spaced-repetition-quiz.netlify.app"
+  />
+
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Path Visualizer"
+    img="/dijkstra.bmp"
+    desc="Using Pygame, I developed a path visualizer that allows users to see how different pathfinding algorithms \
+	work in real time. I implemented A*, Dijkstra's, and BFS, and DFS."
+    url="https://github.com/MeshanKhosla/PathVisualizer"
+  />
+
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Stock Digest"
+    img="/stocks.bmp"
+    desc="This is a Python project that I built to send daily emails to users with how their stocks \
+	have performed over the past day as well as all time. I created it using the Yahoo Finance API"
+    url="https://github.com/MeshanKhosla/StockDigest"
+  />
+  
+  <div class="divider my-0"></div>
 </BaseLayout>
