@@ -1,11 +1,26 @@
 ---
 ---
 <div>
-	<!-- <button class="bg-blue-500 hover:bg-blue-700 text-white rounded p-3 mb-3" id="clear-screen-btn">Clear Screen</button> -->
+	<!-- Add 4 buttons to control the snake: up, down, left, and right. These button should be positioned like a plus sign -->
+	<div class="flex flex-col w-[200px] mb-3">
+		<div class="self-center">
+			<button id="up-btn" class="btn bg-sky-700 w-[70px]">Up</button>
+		</div>
+		<div class="flex justify-between">
+			<button id="left-btn" class="btn bg-sky-700 w-[70px]">Left</button>
+			<button id="right-btn" class="btn bg-sky-700 w-[70px]">Right</button>
+		</div>
+		<div class="self-center">
+			<button id="down-btn" class="btn bg-sky-700 w-[70px]">Down</button>
+		</div>
+	</div>
+	<text>You can also use WASD or arrow keys</text>
+
 	<canvas class="w-full h-full bg-slate-900" id="canvas"></canvas>
 
 	<p id="score"></p>
 </div>
+
 <script>
 	
 	const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -13,8 +28,8 @@
 	const scale = 10;
 	const rows = canvas.height / scale;
 	const columns = canvas.width / scale;
-	var snake;
-	var fruit;
+	let snake;
+	let fruit;
 
 	(function setup() {
 		snake = new Snake();
@@ -37,9 +52,38 @@
 		}, 100);
 	}());
 
+	document.getElementById('up-btn').addEventListener('click', () => {
+		snake.changeDirection('Up');
+	});
+	document.getElementById('down-btn').addEventListener('click', () => {
+		snake.changeDirection('Down');
+	});
+	document.getElementById('left-btn').addEventListener('click', () => {
+		snake.changeDirection('Left');
+	});
+	document.getElementById('right-btn').addEventListener('click', () => {
+		snake.changeDirection('Right');
+	});
+
 	window.addEventListener('keydown', ((evt) => {
-		const direction = evt.key.replace('Arrow', '');
-		snake.changeDirection(direction);
+		switch (evt.key) {
+			case 'ArrowUp':
+			case 'w':
+				snake.changeDirection('Up');
+				break;
+			case 'ArrowDown':
+			case 's':
+				snake.changeDirection('Down');
+				break;
+			case 'ArrowLeft':
+			case 'a':
+				snake.changeDirection('Left');
+				break;
+			case 'ArrowRight':
+			case 'd':
+				snake.changeDirection('Right');
+				break;
+		}
 	}));
 
 	function Snake() {
