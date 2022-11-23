@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/experience/TimeLine.astro";
+---
+
+<BaseLayout title = "Experience">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Background</div>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="University of California, Berkeley"
+      subtitle="2020 to 2024. B.A in Computer Science"
+	  desc="Relevant coursework: Data Structures (TA), Algorithms, Computer Architecture, Databases, Quantum Computing, Discrete Math, Linear algebra and Circuits, Calculus 1/2. Soon: Operating Systems, Computer Security"
+    />
+    <TimeLineElement
+      title="Livingston High School"
+      subtitle="2016-2020. High School Diploma"
+	  desc="Valedictorian"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Undergraduate Student Instructor (20 Hour TA)"
+      subtitle="UC Berkeley Data Structures - CS61B. Aug 2022-Present"
+      desc="I lead the Infrastructure team with the development of SOHQ, an open source office hours \
+	  	queue (see projects). I also teach weekly discussions, labs, and office hours which cover concepts such as \
+		Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more"
+    />
+    <TimeLineElement
+      title="Software Development Engineer Intern"
+      subtitle="Amazon Web Serivces - EC2. May 2022 - Aug 2022"
+      desc="As an SDE intern at AWS, I developed a refund automation feature using Lambda and Step Functions. \
+	  It allowed AWS to issue refunds for canceled EC2 Savings Plans. I also used CDK to chain lambdas in a step function. \
+	  To come to the resoloution of using a step function, I used SQL to analyze customer data and determine how to minimize latency."
+    />
+    <TimeLineElement
+      title="Undergraduate Researcher"
+      subtitle="Computational Representations in Education lab. Feb 2021 - Present"
+      desc="As an undergraduate researcher, I work on a storied computing game to support identity development by allowing students to hack source code of the game."
+    />
+    <TimeLineElement
+      title="Software Engineer Intern"
+      subtitle="Learn To Win. May 2021 - Aug 2021"
+      desc="As an intern at L2W, I develped a rapid grading and custom feedback system, which is used by 100+ NFL, NCAA, and DoD coaches, \
+	  resulting in 65% faster grading per quiz. I also integrated a 3rd party REST API to design and implement a certification system for players and instructors."
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+	 <li>Python</li>
+	 <li>Rust</li>
+	 <li>Java</li>
+	 <li>NextJS</li>
+	 <li>React</li>
+	 <li>JavaScript</li>
+	 <li>Typescript</li>
+	 <li>HTML/CSS</li>
+	 <li>C</li>
+	 <li>OpenMP</li>
+	 <li>RISC-V</li>
+	 <li>PHP</li>
+	 <li>Laravel</li>
+	 <li>HTML/CSS</li>
+	 <li>SQL</li>
+	 <li>Jest</li>
+	 <li>Redux</li>
+	 <li>Node.js</li>
+	 <li>Flask</li>
+	 <li>Scheme</li>
+  </ul>
+</BaseLayout>
