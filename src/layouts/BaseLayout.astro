@@ -6,6 +6,8 @@ import SideBar from "../components/SideBar.astro";
 
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
+import {ViewTransitions} from 'astro:transitions';
+
 const { image, title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 ---
 
@@ -13,6 +15,7 @@ const { image, title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.prop
 <html lang="en" data-theme="dark">
   <head>
     <BaseHead title={title} description={description} image={image} />
+		<ViewTransitions />
   </head>
   <body>
     <div class="bg-base-100 drawer drawer-mobile">
