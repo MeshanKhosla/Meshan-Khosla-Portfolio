@@ -211,6 +211,22 @@ return curNode;
 ```
 ## Conclusion
 
-This project was just a random idea I had and I thought it would be fun to implement. It was! There are certainly some more possible optimizations and perhaps better design decisions, but I enjoyed it nevertheless. 
+This project was just a random idea I had and I thought it would be fun to implement. It was! There are certainly some more possible optimizations and perhaps better design decisions, but I enjoyed it nonetheless. 
 
 See the full code on <a href="https://github.com/MeshanKhosla/redis-union-find" target="_blank">GitHub</a>
+
+I also decided to publish to npm, in case anyone has a practical use case for this data structure!
+
+```bash
+npm install redis-union-find
+```
+
+```typescript
+const uf = new UnionFind({
+  redisToken: process.env.REDIS_TOKEN!,
+  redisUrl: process.env.REDIS_URL!,
+})
+
+await uf.connect("Alice", "Bob")
+```
+
