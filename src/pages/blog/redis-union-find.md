@@ -113,6 +113,15 @@ We'll get back to the implementation of `findRoot` and note that `Promise.all` i
 The `getRedisKey` method is used to partition a Redis DB, so you can use the same DB for multiple projects. In our case, it adds a prefix of `"!!unionfind!!--"` to each key.
 
 ```typescript
+const [nodeOneRoot, nodeTwoRoot] = await Promise.all([
+  this.findRoot(nodeOne),
+  this.findRoot(nodeTwo),
+]);
+
+if (nodeOneRoot === nodeTwoRoot) {
+  return;
+}
+
 const [setOneSize, setTwoSize] = await Promise.all([
   this.redis.hget<number>(this.getRedisKey(nodeOneRoot), "size"),
   this.redis.hget<number>(this.getRedisKey(nodeTwoRoot), "size"),
