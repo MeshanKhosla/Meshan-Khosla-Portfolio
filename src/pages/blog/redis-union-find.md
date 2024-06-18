@@ -31,7 +31,7 @@ Let's say we have 4 nodes: Alice, Bob, Charlie, and Dave.
 
 Each node starts off alone in its own set, aka 4 disjoint sets.
 
-![4 disjoint sets](../../assets/redis-union-find-blog/four-sets.png)
+![4 disjoint sets](/redis-union-find-blog/four-sets.png)
 
 Now, let's `union("Alice", "Bob")`. This means they are part now connected and we now have 3 disjoint sets.
 
@@ -59,7 +59,7 @@ But we can do faster with Path Compression, as we'll see in a bit.
 
 A typical implementation of Union Find will be represented using a 1D array and a fixed capacity. This array can represent this tree in the following way:
 
-![Array representation](../../assets/redis-union-find-blog/array-representation.png)
+![Array representation](/redis-union-find-blog/array-representation.png)
 
 The index of the array is the element, and `data[index]` is the parent. We know we're at the root of the tree when we traverse up and the parent is a negative number. This negative number represents the negated size of the set, which is necessary for WQU.
 
@@ -69,7 +69,7 @@ This implementation is great, but what if we want to connect arbitrary nodes, no
 
 Instead of using an array, each node can be a key in Redis, and we can map it to a hash containing that nodes parent and set size (relevant for the root).
 
-![Redis Hash Diagram](../../assets/redis-union-find-blog/redis-hash-diagram.png)
+![Redis Hash Diagram](/redis-union-find-blog/redis-hash-diagram.png)
 
 In this implementation, the `parent` of the root will be itself.
 
