@@ -31,28 +31,25 @@ Let's say we have 4 nodes: Alice, Bob, Charlie, and Dave.
 
 Each node starts off alone in its own set, aka 4 disjoint sets.
 
-![4 disjoint sets](../../../public/redis-union-find-blog/four-sets.png)
+![4 disjoint sets](../../assets/redis-union-find-blog/four-sets.png)
 
 Now, let's `union("Alice", "Bob")`. This means they are part now connected and we now have 3 disjoint sets.
 
-
 The way we represent this in WeightedQuickUnion is by setting the **bigger root** as the parent of the **smaller root**. In this case, Alice and Bob both have a size of 1, so we can arbitrarily make Alice the parent.  
+<video controls src="/redis-union-find-blog/four-to-three-sets.mp4" title="union('Alice', 'Bob')"></video>
 
-<!-- <DIAGRAM !Alice Bob! !Charlie! !Dave!> -->
 
 Now let's `union("Charlie", "Dave")`
-
-<!-- <DIAGRAM !Alice Bob! !Charlie Dave!> -->
+<video controls src="/redis-union-find-blog/three-to-two-sets.mp4" title="union('Charlie', 'Dave')"></video>
 
 And finally `union("Bob", "Charlie")`
 
 Here we can arbitrarily make Alice the parent since both sets have a size of 2.
+<video controls src="/redis-union-find-blog/two-to-one-set.mp4" title="union('Bob', 'Charlie')"></video>
 
-<!-- <DIAGRAM !Alice Bob Charlie Dave!> -->
+To demonstrate WQU, let's also `union("Bob", "Eve")`. Eve becomes Alice's child since Alice is the root and has a weight of 4. Note that we could have union's Eve with any other node, since they all belong to the same set.
 
-To demonstrate WQU, let's also `union("Bob", "Eve")`. Eve becomes Alice's child since Alice is the root and has a weight of 4.
-
-<!-- <DIAGRAM OF !Alice Bob Charlie Dave Eve!> -->
+<video controls src="/redis-union-find-blog/add-eve.mp4" title="union('Bob', 'Eve')"></video>
 
 Now we're left with 1 set and if we follow WQU, our `connect` and `areConnected` will run in logarithmic time with respect to the number of nodes!
 
@@ -62,7 +59,7 @@ But we can do faster with Path Compression, as we'll see in a bit.
 
 A typical implementation of Union Find will be represented using a 1D array and a fixed capacity. This array can represent this tree in the following way:
 
-![Array representation](../../../public/redis-union-find-blog/array-representation.png)
+![Array representation](../../assets/redis-union-find-blog/array-representation.png)
 
 The index of the array is the element, and `data[index]` is the parent. We know we're at the root of the tree when we traverse up and the parent is a negative number. This negative number represents the negated size of the set, which is necessary for WQU.
 
@@ -72,7 +69,7 @@ This implementation is great, but what if we want to connect arbitrary nodes, no
 
 Instead of using an array, each node can be a key in Redis, and we can map it to a hash containing that nodes parent and set size (relevant for the root).
 
-![Redis Hash Diagram](../../../public/redis-union-find-blog/redis-hash-diagram.png)
+![Redis Hash Diagram](../../assets/redis-union-find-blog/redis-hash-diagram.png)
 
 In this implementation, the `parent` of the root will be itself.
 
