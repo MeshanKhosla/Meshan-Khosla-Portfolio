@@ -2,8 +2,8 @@
 layout: "../../layouts/PostLayout.astro"
 title: "Union Find Implementation in Redis"
 description: "Implementing a Disjoint Set (Union Find) in Redis"
-pubDate: "June 16 2024"
-heroImage: "/post_img.webp"
+pubDate: "June 17, 2024"
+heroImage: "/redis-union-find-blog/cover.png"
 ---
 
 ## An Introduction
@@ -14,7 +14,7 @@ I decided to use Redis, specifically <a href="https://upstash.com" target="_blan
 
 ## Disjoint Sets / Union Find
 
-First we need to understand what a disjoint set aka a Union Find data structure is. The two are synonymous, so I'll refer to it as `Union Find` for the rest of this post.
+First, we need to understand what a disjoint set, also known as a Union Find data structure, is. The two are synonymous, so I'll refer to it as `Union Find` for the rest of this post.
 
 The interface for Union Find is very simple:
 
@@ -23,7 +23,7 @@ union(nodeOne, nodeTwo)
 areConnected(nodeOne, nodeTwo)
 ```
 
-There are of course variations to this (`connect`, `isConnected`, `find`, etc) but I'm a fan of `union` to union two nodes together, and `areConnected` to check if the two nodes are connected.
+There are, of course, variations to this (`connect`, `isConnected`, `find`, etc) but I'm a fan of `union` to union two nodes together, and `areConnected` to check if the two nodes are connected.
 
 I won't go into too much detail about the variations of Union Find, but you can read more about Quick Find and Quick Union <a href="https://cs61b-2.gitbook.io/cs61b-textbook/14.-disjoint-sets" target="_blank">in the CS61B textbook</a> . In this project, we are going to implement Weighted Quick Union (WQU) with Path Compression. Here's how it works.
 
@@ -33,21 +33,24 @@ Each node starts off alone in its own set, aka 4 disjoint sets.
 
 ![4 disjoint sets](/redis-union-find-blog/four-sets.png)
 
-Now, let's `union("Alice", "Bob")`. This means they are part now connected and we now have 3 disjoint sets.
+Now, let's `union("Alice", "Bob")`. This means Alice and Bob are now connected, and we now have 3 disjoint sets.
 
-The way we represent this in WeightedQuickUnion is by setting the **bigger root** as the parent of the **smaller root**. In this case, Alice and Bob both have a size of 1, so we can arbitrarily make Alice the parent.  
+The way we represent this in Weighted Quick Union is by setting the **larger root** as the parent of the **smaller root**. In this case, Alice and Bob both have a size of 1, so we can arbitrarily make Alice the parent.
+
 <video controls src="/redis-union-find-blog/four-to-three-sets.mp4" title="union('Alice', 'Bob')"></video>
 
 
 Now let's `union("Charlie", "Dave")`
+
 <video controls src="/redis-union-find-blog/three-to-two-sets.mp4" title="union('Charlie', 'Dave')"></video>
 
 And finally `union("Bob", "Charlie")`
 
 Here we can arbitrarily make Alice the parent since both sets have a size of 2.
+
 <video controls src="/redis-union-find-blog/two-to-one-set.mp4" title="union('Bob', 'Charlie')"></video>
 
-To demonstrate WQU, let's also `union("Bob", "Eve")`. Eve becomes Alice's child since Alice is the root and has a weight of 4. Note that we could have union's Eve with any other node, since they all belong to the same set.
+To demonstrate WQU, let's also `union("Bob", "Eve")`. Eve becomes Alice's child since Alice is the root and has a weight of 4, which is greater than Eve's 1. Note that we could have union'd Eve with any other node, since they all belong to the same set.
 
 <video controls src="/redis-union-find-blog/add-eve.mp4" title="union('Bob', 'Eve')"></video>
 
@@ -105,7 +108,7 @@ I opted to use a script so the nodes can be created in one network trip.
 
 We can then find the root of each set, and set the smaller set to be the child of the bigger set. This is what the "Weighted" in WeightedQuickUnion refers to.
 
-Note: We'll get back to the implementation of `findRoot`, and `Promise.all` is used to send the requests concurrently.
+We'll get back to the implementation of `findRoot` and note that `Promise.all` is used to send the requests concurrently.
 
 The `getRedisKey` method is used to partition a Redis DB, so you can use the same DB for multiple projects. In our case, it adds a prefix of `"!!unionfind!!--"` to each key.
 
