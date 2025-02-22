@@ -2,7 +2,7 @@
 layout: "../../layouts/PostLayout.astro"
 title: "Coffee Codex - Causality and happens-before"
 description: "Learning about causality in Distributed Systems"
-pubDate: "February 8th, 2025"
+pubDate: "February 8, 2025"
 heroImage: "/coffee-codex/causality/cover.png"
 ---
 

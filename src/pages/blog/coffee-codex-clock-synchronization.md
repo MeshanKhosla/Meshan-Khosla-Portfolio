@@ -2,7 +2,7 @@
 layout: "../../layouts/PostLayout.astro"
 title: "Coffee Codex - Clock Synchronization"
 description: "Learning about synchronizing clocks in Distributed Systems"
-pubDate: "February 1st, 2025"
+pubDate: "February 1, 2025"
 heroImage: "/coffee-codex/clock-synchronization/cover.png"
 ---
 
