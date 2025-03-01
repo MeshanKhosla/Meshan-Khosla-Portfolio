@@ -41,6 +41,8 @@
     lastTime: number;
     accumulator: number;
     timestep: number;
+    isRunning: boolean;
+    boundKeyHandler: (e: KeyboardEvent) => void;
 
     constructor() {
       this.canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
@@ -60,32 +62,42 @@
       this.lastTime = 0;
       this.accumulator = 0;
       this.timestep = 1000 / 10; // Update game logic 10 times per second
+      this.isRunning = true;
 
+      // Bind the keydown handler to the instance
+      this.boundKeyHandler = this.handleKeyDown.bind(this);
       this.bindControls();
       this.start();
     }
 
+    handleKeyDown(e: KeyboardEvent) {
+      if (e.key.startsWith("Arrow")) {
+        e.preventDefault();
+      }
+      const direction = e.key.replace("Arrow", "");
+      this.snake.changeDirection(direction);
+    }
+
     bindControls() {
-      window.addEventListener("keydown", (e) => {
-        if (e.key.startsWith("Arrow")) {
-          e.preventDefault();
-        }
-        const direction = e.key.replace("Arrow", "");
-        this.snake.changeDirection(direction);
-      });
+      window.addEventListener("keydown", this.boundKeyHandler);
 
       document
         .getElementById("left-btn")
-        .addEventListener("click", () => this.snake.changeDirection("Left"));
+        ?.addEventListener("click", () => this.snake.changeDirection("Left"));
       document
         .getElementById("up-btn")
-        .addEventListener("click", () => this.snake.changeDirection("Up"));
+        ?.addEventListener("click", () => this.snake.changeDirection("Up"));
       document
         .getElementById("right-btn")
-        .addEventListener("click", () => this.snake.changeDirection("Right"));
+        ?.addEventListener("click", () => this.snake.changeDirection("Right"));
       document
         .getElementById("down-btn")
-        .addEventListener("click", () => this.snake.changeDirection("Down"));
+        ?.addEventListener("click", () => this.snake.changeDirection("Down"));
+    }
+
+    cleanup() {
+      this.isRunning = false;
+      window.removeEventListener("keydown", this.boundKeyHandler);
     }
 
     start() {
@@ -94,7 +106,10 @@
     }
 
     gameLoop(currentTime) {
-      if (!document.getElementById("gameCanvas")) return;
+      if (!this.isRunning || !document.getElementById("gameCanvas")) {
+        this.cleanup();
+        return;
+      }
 
       if (this.lastTime) {
         const deltaTime = currentTime - this.lastTime;
@@ -264,6 +279,29 @@
     }
   }
 
-  // Start the game
-  new Game();
+  // Initialize game when the component mounts
+  let game: Game | null = null;
+
+  function initGame() {
+    if (game) {
+      game.cleanup();
+    }
+    game = new Game();
+  }
+
+  // Initialize the game when the script runs
+  initGame();
+
+  // Cleanup when navigating away
+  document.addEventListener("astro:before-preparation", () => {
+    if (game) {
+      game.cleanup();
+      game = null;
+    }
+  });
+
+  // Reinitialize when returning to the page
+  document.addEventListener("astro:after-swap", () => {
+    initGame();
+  });
 </script>
