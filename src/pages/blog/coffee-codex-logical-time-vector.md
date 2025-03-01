@@ -2,7 +2,7 @@
 layout: "../../layouts/PostLayout.astro"
 title: "Coffee Codex - Vector Clocks"
 description: "Learning about Vector Clocks in Distributed Systems"
-pubDate: "February 22, 2025"
+pubDate: "March 1, 2025"
 heroImage: "/coffee-codex/logical-time-vector/cover.png"
 ---
 

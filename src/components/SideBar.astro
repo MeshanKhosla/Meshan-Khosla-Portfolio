@@ -1,3 +1,8 @@
+---
+const pathname = Astro.url.pathname;
+const currentPath = pathname.replace(/\/$/, '');
+---
+
 <div class="drawer-side bg-base-200">
   <label for="my-drawer" class="drawer-overlay bg-base-200"></label>
   <div class="menu p-4 overflow-y-auto w-[19rem] bg-base-200 text-base-content">
@@ -12,11 +17,11 @@
     </div>
     <ul>
       <!-- Sidebar content here -->
-      <li><a href="/">Home</a></li>
-      <li><a href="/projects">Projects</a></li>
+      <li><a class={currentPath === "" ? "active" : ""} href="/">Home</a></li>
+      <li><a class={currentPath === "/projects" ? "active" : ""} href="/projects">Projects</a></li>
       <!-- <li><a href="/store/1">Store</a></li> -->
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/experience">Experience</a></li>
+      <li><a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a></li>
+      <li><a class={currentPath === "/experience" ? "active" : ""} href="/experience">Experience</a></li>
       <li><a href="mailto:mkhosla@berkeley.edu">Contact</a></li>
     </ul>
     <div class="grow"></div>
@@ -52,3 +57,10 @@
     </div>
   </div>
 </div>
+
+<style>
+  .active {
+    background-color: hsl(var(--p) / 0.2);
+    color: hsl(var(--pc));
+  }
+</style>

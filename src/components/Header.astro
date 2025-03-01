@@ -1,3 +1,17 @@
+---
+const pathname = Astro.url.pathname;
+const currentPath = pathname.replace(/\/$/, '');
+
+const titles = {
+  "": "Home",
+  "/projects": "Projects",
+  "/blog": "Blog",
+  "/experience": "Experience"
+};
+
+const currentTitle = titles[currentPath] || "Meshan Khosla";
+---
+
 <div
   class="sticky lg:hidden top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm"
 >
@@ -10,7 +24,7 @@
       </label>
     </div>
     <div class="navbar-center">
-      <a class="btn btn-ghost normal-case text-xl" href="/">️Meshan Khosla</a>
+      <a class="btn btn-ghost normal-case text-xl" href="/">️{currentTitle}</a>
     </div>
     <div class="navbar-end"></div>
   </div>
