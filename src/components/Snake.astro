@@ -1,193 +1,269 @@
 ---
+
 ---
+
 <div class="flex flex-col items-center min-h-screen text-white">
-  <canvas id="gameCanvas" class="bg-slate-800 w-full" width="400" height="200"></canvas>
+  <canvas id="gameCanvas" class="bg-slate-800 w-full" width="400" height="200"
+  ></canvas>
   <div class="score" id="score">Score: 0</div>
   <div class="controls grid grid-cols-3 gap-2 mt-4">
     <button id="left-btn" class="btn col-start-1 bg-blue-600 p-2">Left</button>
     <button id="up-btn" class="btn col-start-2 bg-blue-600 p-2">Up</button>
-    <button id="right-btn" class="btn col-start-3 bg-blue-600 p-2">Right</button>
+    <button id="right-btn" class="btn col-start-3 bg-blue-600 p-2">Right</button
+    >
     <button id="down-btn" class="btn col-start-2 bg-blue-600 p-2">Down</button>
   </div>
   <div class="text-xs text-gray-400">Use WASD or arrow keys</div>
 </div>
 
 <script>
-	
-	const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
-	if (!canvas) {
-		throw new Error('Canvas not found');
-	}
-
-  const ctx = canvas.getContext('2d');
-  const scale = 10;
-  const rows = canvas.height / scale;
-  const columns = canvas.width / scale;
-
-  let snake;
-  let food;
-  let gameInterval;
-
-  function setup() {
-    snake = new Snake();
-    food = new Food();
-    food.pickLocation();
-
-    if (gameInterval) clearInterval(gameInterval);
-
-    gameInterval = window.setInterval(() => {
-      if (!document.getElementById('gameCanvas')) {
-        clearInterval(gameInterval);
-        return;
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      food.draw();
-      snake.update();
-      snake.draw();
-
-      if (snake.eat(food)) {
-        food.pickLocation();
-      }
-
-      snake.checkCollision();
-      const score = document.getElementById('score');
-      if (score) score.innerText = 'Score: ' + snake.total;
-    }, 100);
+  interface GameInterface {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    scale: number;
+    rows: number;
+    columns: number;
   }
 
-  setup();
+  interface Position {
+    x: number;
+    y: number;
+  }
 
-  window.addEventListener('keydown', e => {
-		// Disable arrow keys scrolling
-		if (e.key.startsWith('Arrow')) {
-			e.preventDefault();
-		}
+  class Game implements GameInterface {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    scale: number;
+    rows: number;
+    columns: number;
+    snake: Snake;
+    food: Food;
+    lastTime: number;
+    accumulator: number;
+    timestep: number;
 
-    const direction = e.key.replace('Arrow', '');
-    snake.changeDirection(direction);
-  });
+    constructor() {
+      this.canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
+      if (!this.canvas) throw new Error("Canvas not found");
 
-  document.getElementById('left-btn').addEventListener('click', () => snake.changeDirection('Left'));
-  document.getElementById('up-btn').addEventListener('click', () => snake.changeDirection('Up'));
-  document.getElementById('right-btn').addEventListener('click', () => snake.changeDirection('Right'));
-  document.getElementById('down-btn').addEventListener('click', () => snake.changeDirection('Down'));
+      const ctx = this.canvas.getContext("2d");
+      if (!ctx) throw new Error("Could not get 2D context");
+      this.ctx = ctx;
 
+      this.scale = 10;
+      this.rows = this.canvas.height / this.scale;
+      this.columns = this.canvas.width / this.scale;
 
-function Snake() {
-  this.x = 0;
-  this.y = 0;
-  this.xSpeed = scale * 1;
-  this.ySpeed = 0;
-  this.total = 0;
-  this.tail = [];
+      this.snake = new Snake(this);
+      this.food = new Food(this);
 
-  this.draw = function() {
-    ctx.fillStyle = "#FFFFFF";
+      this.lastTime = 0;
+      this.accumulator = 0;
+      this.timestep = 1000 / 10; // Update game logic 10 times per second
 
-    for (let i = 0; i < this.tail.length; i++) {
-      ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
+      this.bindControls();
+      this.start();
     }
 
-    ctx.fillRect(this.x, this.y, scale, scale);
-  };
+    bindControls() {
+      window.addEventListener("keydown", (e) => {
+        if (e.key.startsWith("Arrow")) {
+          e.preventDefault();
+        }
+        const direction = e.key.replace("Arrow", "");
+        this.snake.changeDirection(direction);
+      });
 
-  this.update = function() {
-    for (let i = 0; i < this.tail.length - 1; i++) {
-      this.tail[i] = this.tail[i + 1];
+      document
+        .getElementById("left-btn")
+        .addEventListener("click", () => this.snake.changeDirection("Left"));
+      document
+        .getElementById("up-btn")
+        .addEventListener("click", () => this.snake.changeDirection("Up"));
+      document
+        .getElementById("right-btn")
+        .addEventListener("click", () => this.snake.changeDirection("Right"));
+      document
+        .getElementById("down-btn")
+        .addEventListener("click", () => this.snake.changeDirection("Down"));
     }
 
-    this.tail[this.total - 1] = { x: this.x, y: this.y };
+    start() {
+      this.food.pickLocation();
+      requestAnimationFrame((time) => this.gameLoop(time));
+    }
 
-    this.x += this.xSpeed;
-    this.y += this.ySpeed;
+    gameLoop(currentTime) {
+      if (!document.getElementById("gameCanvas")) return;
 
-    if (this.x >= canvas.width) {
+      if (this.lastTime) {
+        const deltaTime = currentTime - this.lastTime;
+        this.accumulator += deltaTime;
+
+        while (this.accumulator >= this.timestep) {
+          this.update();
+          this.accumulator -= this.timestep;
+        }
+      }
+
+      this.lastTime = currentTime;
+      this.draw();
+      requestAnimationFrame((time) => this.gameLoop(time));
+    }
+
+    update() {
+      this.snake.update();
+      if (this.snake.eat(this.food)) {
+        this.food.pickLocation();
+      }
+      this.snake.checkCollision();
+
+      const score = document.getElementById("score");
+      if (score) score.innerText = "Score: " + this.snake.total;
+    }
+
+    draw() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.food.draw();
+      this.snake.draw();
+    }
+  }
+
+  class Snake {
+    private game: GameInterface;
+    x: number;
+    y: number;
+    xSpeed: number;
+    ySpeed: number;
+    total: number;
+    tail: Position[];
+
+    constructor(game: GameInterface) {
+      this.game = game;
       this.x = 0;
+      this.y = 0;
+      this.xSpeed = game.scale;
+      this.ySpeed = 0;
+      this.total = 0;
+      this.tail = [];
     }
 
-    if (this.y >= canvas.height) {
+    draw() {
+      this.game.ctx.fillStyle = "#FFFFFF";
+      for (let i = 0; i < this.tail.length; i++) {
+        this.game.ctx.fillRect(
+          this.tail[i].x,
+          this.tail[i].y,
+          this.game.scale,
+          this.game.scale,
+        );
+      }
+      this.game.ctx.fillRect(this.x, this.y, this.game.scale, this.game.scale);
+    }
+
+    update() {
+      for (let i = 0; i < this.tail.length - 1; i++) {
+        this.tail[i] = this.tail[i + 1];
+      }
+
+      if (this.total > 0) {
+        this.tail[this.total - 1] = { x: this.x, y: this.y };
+      }
+
+      this.x += this.xSpeed;
+      this.y += this.ySpeed;
+
+      // Wrap around screen edges
+      if (this.x >= this.game.canvas.width) {
+        this.x = 0;
+      } else if (this.x < 0) {
+        this.x = this.game.canvas.width - this.game.scale;
+      }
+
+      if (this.y >= this.game.canvas.height) {
+        this.y = 0;
+      } else if (this.y < 0) {
+        this.y = this.game.canvas.height - this.game.scale;
+      }
+    }
+
+    changeDirection(direction) {
+      switch (direction.toLowerCase()) {
+        case "w":
+        case "up":
+          if (this.ySpeed === 0) {
+            this.xSpeed = 0;
+            this.ySpeed = -this.game.scale;
+          }
+          break;
+        case "s":
+        case "down":
+          if (this.ySpeed === 0) {
+            this.xSpeed = 0;
+            this.ySpeed = this.game.scale;
+          }
+          break;
+        case "a":
+        case "left":
+          if (this.xSpeed === 0) {
+            this.xSpeed = -this.game.scale;
+            this.ySpeed = 0;
+          }
+          break;
+        case "d":
+        case "right":
+          if (this.xSpeed === 0) {
+            this.xSpeed = this.game.scale;
+            this.ySpeed = 0;
+          }
+          break;
+      }
+    }
+
+    eat(food) {
+      if (this.x === food.x && this.y === food.y) {
+        this.total++;
+        return true;
+      }
+      return false;
+    }
+
+    checkCollision() {
+      for (let i = 0; i < this.tail.length; i++) {
+        if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
+          this.total = 0;
+          this.tail = [];
+        }
+      }
+    }
+  }
+
+  class Food {
+    private game: GameInterface;
+    x: number;
+    y: number;
+
+    constructor(game: GameInterface) {
+      this.game = game;
+      this.x = 0;
       this.y = 0;
     }
 
-    if (this.x < 0) {
-      this.x = canvas.width - scale;
+    pickLocation() {
+      this.x =
+        (Math.floor(Math.random() * (this.game.columns - 1)) + 1) *
+        this.game.scale;
+      this.y =
+        (Math.floor(Math.random() * (this.game.rows - 1)) + 1) *
+        this.game.scale;
     }
 
-    if (this.y < 0) {
-      this.y = canvas.height - scale;
+    draw() {
+      this.game.ctx.fillStyle = "#4CAF50";
+      this.game.ctx.fillRect(this.x, this.y, this.game.scale, this.game.scale);
     }
-  };
+  }
 
-  this.changeDirection = function(direction) {
-    switch(direction) {
-			case 'w':
-			case 'W':
-      case 'Up':
-        if (this.ySpeed === 0) {
-          this.xSpeed = 0;
-          this.ySpeed = -scale * 1;
-        }
-        break;
-			case 's':
-			case 'S':
-      case 'Down':
-        if (this.ySpeed === 0) {
-          this.xSpeed = 0;
-          this.ySpeed = scale * 1;
-        }
-        break;
-			case 'a':
-			case 'A':
-      case 'Left':
-        if (this.xSpeed === 0) {
-          this.xSpeed = -scale * 1;
-          this.ySpeed = 0;
-        }
-        break;
-			case 'd':
-			case 'D':
-      case 'Right':
-        if (this.xSpeed === 0) {
-          this.xSpeed = scale * 1;
-          this.ySpeed = 0;
-        }
-        break;
-    }
-  };
-
-  this.eat = function(food) {
-    if (this.x === food.x && this.y === food.y) {
-      this.total++;
-      return true;
-    }
-
-    return false;
-  };
-
-  this.checkCollision = function() {
-    for (let i = 0; i < this.tail.length; i++) {
-      if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
-        this.total = 0;
-        this.tail = [];
-      }
-    }
-  };
-}
-
-function Food() {
-  this.x;
-  this.y;
-
-  this.pickLocation = function() {
-    this.x = (Math.floor(Math.random() * columns - 1) + 1) * scale;
-    this.y = (Math.floor(Math.random() * rows - 1) + 1) * scale;
-  };
-
-  this.draw = function() {
-    ctx.fillStyle = "#4CAF50";
-    ctx.fillRect(this.x, this.y, scale, scale);
-  };
-}
+  // Start the game
+  new Game();
 </script>
-
