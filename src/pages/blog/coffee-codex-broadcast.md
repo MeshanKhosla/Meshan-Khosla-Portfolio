@@ -57,7 +57,7 @@ Notice how we're also sending a message to the current node (indicated by the lo
 
 With causal broadcasts, if `m1` is broadcasted before `m2` and `m2` depends on `m1`, then we guarantee that `m1` will be delivered before `m2`. This is the case even when `m1` and `m2` come from different nodes.
 
-In this diagram, assume that `m1 -> m2` and `m1 -> m3`, meaning `m1` depends on `m2` and `m3`. Because of this, a causal ordering guarantees that `m1` will be delivered before `m2` and `m3` to all nodes. However, assume there isn't a causal relationship between `m2` and `m3`, making them concurrent. With a causal broadcast, concurrent messages can be delivered in any order.
+In this diagram, assume that `m1 -> m2` and `m1 -> m3`, meaning `m2` depends on `m1` and `m3` depends on `m1`. Because of this, a causal ordering guarantees that `m1` will be delivered before `m2` and `m3` to all nodes. However, assume there isn't a causal relationship between `m2` and `m3`, making them concurrent. With a causal broadcast, concurrent messages can be delivered in any order.
 
 We can use vector clocks (from the last post) to determine which messages depend on others through a dependency graph.
 
