@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/PostLayout.astro"
 title: "Coffee Codex - How AWS Lambda Works (Part 1)"
-description: "Learning about Lambda/Firecracker"
+description: "Learning about Lambda"
 pubDate: "April 5, 2025"
 heroImage: "/coffee-codex/lambda/cover.png"
 ---
@@ -91,7 +91,7 @@ class AssignmentService {
 
   constructor() {
     this.placementService = new PlacementService();
-    // Initialize your workers array with Worker instances...
+    // Initialize workers array with Worker instances...
     this.workers = [new Worker(), new Worker()];
   }
 
@@ -108,7 +108,7 @@ class AssignmentService {
 
 class PlacementService {
   getNewWorker(): Worker {
-    // Implement your logic to get a new worker
+    // Implement logic to get a new worker
     return abstractedLogicForGettingAWorker();
   }
 }
