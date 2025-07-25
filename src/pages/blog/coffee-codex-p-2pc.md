@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/p-2pc/cover.png"
 
 ## Introduction
 I'm at Toasted in Bellevue, WA and I'm learning about the [P programming language](https://p-org.github.io/P/) by going through the examples on their site.
-In the <a href='/blog/coffee-codex-p.md'>last post</a>, I learned about the P language and modeled the client-server example. Since that example was pretty simple, today I'm going to look at model Two Phase Commit (2PC)!
+In the <a href='/blog/coffee-codex-p'>last post</a>, I learned about the P language and modeled the client-server example. Since that example was pretty simple, today I'm going to look at model Two Phase Commit (2PC)!
 
 ![Coffee](/coffee-codex/p-2pc/coffee.jpg)
 
@@ -29,7 +29,7 @@ Importantly, we are making some assumptions here to make the problem easier sinc
 We are also assuming reliable delivery of messages. While it's possible to model an unreliable network in P, we won't do it in this post.
 
 ## Correctness
-Now let's specify our safety and liveness guarantees. See the <a href='/blog/coffee-codex-p.md'>last post</a> for more information on what these mean.
+Now let's specify our safety and liveness guarantees. See the <a href='/blog/coffee-codex-p'>last post</a> for more information on what these mean.
 
 **Safety** (Nothing bad happens): Atomicity - A coordinator commit implies all participants have agreed on the transaction. A coordinator abort implies at least one participant has not agreed on the transaction.
 

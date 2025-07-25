@@ -8,12 +8,12 @@ heroImage: "/coffee-codex/p/cover.png"
 
 ## Introduction
 I'm at Royal Bakehouse in Bellevue, WA and I'm learning about the [P programming language](https://p-org.github.io/P/) by going through the examples on their site.
-In the <a href='/blog/coffee-codex-formal.md'>last post</a> I learned about general formal methods that AWS used and why P was a good choice for them. Today I'll dive a bit deeper and see the exact syntax and semantics that P uses.
+In the <a href='/blog/coffee-codex-formal'>last post</a> I learned about general formal methods that AWS used and why P was a good choice for them. Today I'll dive a bit deeper and see the exact syntax and semantics that P uses.
 
 ![Coffee](/coffee-codex/p/coffee.png)
 
 ## Semantics
-P is a language based on state machines and each machine can asynchronously send messages to other machines. Each bachine also has an unbounded FIFO buffer associated with it to keep track of the messages received. The machine then dequeues events from the input buffer and executes handlers based on the event. Sends to machines are reliable and directed as opposed to broadcast. The events are dequeued in causal order, I talked more about causal order <a href='/blog/coffee-codex-causality-and-happens-before.md'>here</a>.
+P is a language based on state machines and each machine can asynchronously send messages to other machines. Each bachine also has an unbounded FIFO buffer associated with it to keep track of the messages received. The machine then dequeues events from the input buffer and executes handlers based on the event. Sends to machines are reliable and directed as opposed to broadcast. The events are dequeued in causal order, I talked more about causal order <a href='/blog/coffee-codex-causality-and-happens-before'>here</a>.
 
 This also means events delivered by the same machine are guaranteed to be dequeued in order so message loss and reordering have to be explicitly modeled. While P doesn't interleave requests that come from one machines (they claim this doesn't lead to interesting behaviors), the magic of P is the interleaving of requests coming from different machines. The ability to explore all possibilities of message ordering enables developers to find bugs within their distributed systems.
 
