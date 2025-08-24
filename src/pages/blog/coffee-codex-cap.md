@@ -35,6 +35,7 @@ A more complete view looks something like this from Bernstein and Das:
 
 Consider this situation:
 ![Partition](/coffee-codex/cap/partition1.png)
+_Source: Marc's blog_
 
 The seventh client is making a request to a replica that has experienced a network partition. Even though N - 1 clients are experiencing no trouble, the definition of availability would mean that this system would be considered **unavailable**. 
 
@@ -42,6 +43,7 @@ The seventh client is making a request to a replica that has experienced a netwo
 Of course we want to make the 7th client happy too, so we can achieve a quorum of the replicas. This means Replica 2 and Replica 3 continue to operate together while Replica 1 recovers. In reality, all requests are routed through a load balancer which means the seventh client's request will be routed to one of the replicas in the quorum.
 
 ![Partition](/coffee-codex/cap/lb.png)
+_Source: Marc's blog_
 
 When all N replicas fail, then we must accept the lack of availability because there is no other option (all nodes are down) and we have bigger problems.
 
