@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/PostLayout.astro"
 title: "Coffee Codex - Durable Queues"
-description: "Learning about how DBOS solved Distributed Queues"
+description: "Learning about from DBOS about how Distributed Queues were solved"
 pubDate: "Sep 13, 2025"
 heroImage: "/coffee-codex/dist-queues/cover.png"
 ---
