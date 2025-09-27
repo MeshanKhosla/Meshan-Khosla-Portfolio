@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/proc-thread/cover.png"
 
 ## Introduction
 
-I'm at Royal Bakehouse in Bellevue WA and today I'm reading through [this](https://planetscale.com/blog/processes-and-threads#creating-new-processes) blog post from Ben Dicken at Planetscale.
+I'm at Royal Bakehouse in Bellevue WA and today I'm reading through [this](https://planetscale.com/blog/processes-and-threads) blog post from Ben Dicken at Planetscale.
 
 ![Coffee](/coffee-codex/proc-thread/coffee.jpeg)
 
@@ -59,4 +59,4 @@ I'd like to read more about how the choice between process-per-connection vs thr
 Really cool blog post by Ben!
 
 ## References
-- https://planetscale.com/blog/processes-and-threads#creating-new-processes
+- https://planetscale.com/blog/processes-and-threads
