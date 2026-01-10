@@ -1,9 +1,9 @@
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/600.css';
-@import '@fontsource/fraunces/400.css';
-@import '@fontsource/fraunces/500.css';
-@import '@fontsource/fraunces/600.css';
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
 
 @tailwind base;
 @tailwind components;
@@ -17,15 +17,15 @@
   body {
     @apply font-mono text-charcoal bg-cream-100 antialiased;
     @apply dark:text-sand dark:bg-ink;
-    @apply transition-colors duration-300;
     @apply overflow-x-hidden;
   }
 
-  /* Smooth theme transition - only after initial load */
-  html:not(.no-transitions) *,
-  html:not(.no-transitions) *::before,
-  html:not(.no-transitions) *::after {
-    @apply transition-colors duration-200;
+  /* Disable ALL transitions on initial load to prevent theme flash */
+  html.no-transitions,
+  html.no-transitions *,
+  html.no-transitions *::before,
+  html.no-transitions *::after {
+    transition: none !important;
   }
 
   /* Selection styling */
