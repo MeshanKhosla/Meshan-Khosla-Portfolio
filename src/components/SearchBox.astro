@@ -1,0 +1,187 @@
+---
+interface Post {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: string;
+}
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="search-box relative" data-posts={JSON.stringify(posts)}>
+  <div class="relative">
+    <svg
+      class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-muted dark:text-sand-muted pointer-events-none"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+    <input
+      type="text"
+      class="search-input w-full pl-10 pr-10 py-3 rounded-lg
+             bg-cream-50 dark:bg-ink-light
+             border border-cream-300 dark:border-ink-lighter
+             text-charcoal dark:text-sand
+             placeholder:text-charcoal-muted dark:placeholder:text-sand-muted
+             focus:outline-none focus:ring-2 focus:ring-accent/50 dark:focus:ring-accent-light/50
+             focus:border-accent dark:focus:border-accent-light
+             transition-colors"
+      placeholder="Filter posts..."
+      autocomplete="off"
+    />
+    <!-- Clear button -->
+    <button
+      type="button"
+      class="search-clear absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 
+             text-charcoal-muted dark:text-sand-muted hover:text-charcoal dark:hover:text-sand
+             hidden"
+      aria-label="Clear search"
+    >
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Results count -->
+  <div class="search-status mt-3 text-sm text-charcoal-muted dark:text-sand-muted hidden">
+    <span class="results-count"></span>
+  </div>
+</div>
+
+<script>
+  class SearchBoxComponent {
+    private container: HTMLElement;
+    private input: HTMLInputElement;
+    private clearBtn: HTMLElement;
+    private statusEl: HTMLElement;
+    private resultsCount: HTMLElement;
+    private posts: Array<{slug: string; title: string; description: string; pubDate: string}>;
+    private debounceTimer: number | null = null;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.input = container.querySelector('.search-input') as HTMLInputElement;
+      this.clearBtn = container.querySelector('.search-clear') as HTMLElement;
+      this.statusEl = container.querySelector('.search-status') as HTMLElement;
+      this.resultsCount = container.querySelector('.results-count') as HTMLElement;
+      
+      const postsData = container.getAttribute('data-posts');
+      this.posts = postsData ? JSON.parse(postsData) : [];
+      
+      this.init();
+    }
+
+    init() {
+      this.input.addEventListener('input', () => this.handleInput());
+      this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
+      this.clearBtn?.addEventListener('click', () => this.clearSearch());
+    }
+
+    handleInput() {
+      if (this.debounceTimer) {
+        clearTimeout(this.debounceTimer);
+      }
+
+      this.debounceTimer = window.setTimeout(() => {
+        const query = this.input.value.trim().toLowerCase();
+        
+        // Show/hide clear button
+        if (query.length > 0) {
+          this.clearBtn?.classList.remove('hidden');
+        } else {
+          this.clearBtn?.classList.add('hidden');
+        }
+
+        // Get all grid cards
+        const cards = document.querySelectorAll('[data-search-card]');
+        const pagination = document.querySelector('[data-pagination]');
+        
+        if (query.length === 0) {
+          // Show all cards
+          cards.forEach(card => {
+            (card as HTMLElement).style.display = '';
+          });
+          // Show pagination
+          if (pagination) (pagination as HTMLElement).style.display = '';
+          this.statusEl?.classList.add('hidden');
+          return;
+        }
+
+        // Hide pagination when filtering
+        if (pagination) (pagination as HTMLElement).style.display = 'none';
+
+        // Filter cards
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const cardEl = card as HTMLElement;
+          const title = cardEl.getAttribute('data-title')?.toLowerCase() || '';
+          const description = cardEl.getAttribute('data-description')?.toLowerCase() || '';
+          const slug = cardEl.getAttribute('data-slug') || '';
+          
+          const matchesTitle = title.includes(query);
+          const matchesDesc = description.includes(query);
+          
+          if (matchesTitle || matchesDesc) {
+            cardEl.style.display = '';
+            visibleCount++;
+          } else {
+            cardEl.style.display = 'none';
+          }
+        });
+
+        // Update status
+        this.statusEl?.classList.remove('hidden');
+        if (visibleCount === 0) {
+          this.resultsCount.textContent = `No posts found for "${this.input.value}"`;
+        } else {
+          this.resultsCount.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'post' : 'posts'}`;
+        }
+      }, 100);
+    }
+
+    handleKeydown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        this.clearSearch();
+        this.input.blur();
+      }
+    }
+
+    clearSearch() {
+      this.input.value = '';
+      this.clearBtn?.classList.add('hidden');
+      this.statusEl?.classList.add('hidden');
+      
+      // Show all cards
+      const cards = document.querySelectorAll('[data-search-card]');
+      cards.forEach(card => {
+        (card as HTMLElement).style.display = '';
+      });
+      
+      // Show pagination
+      const pagination = document.querySelector('[data-pagination]');
+      if (pagination) (pagination as HTMLElement).style.display = '';
+    }
+  }
+
+  // Initialize all search boxes
+  function initSearchBoxes() {
+    document.querySelectorAll('.search-box').forEach(container => {
+      new SearchBoxComponent(container as HTMLElement);
+    });
+  }
+
+  // Run on load
+  initSearchBoxes();
+
+  // Re-run after Astro page transitions
+  document.addEventListener('astro:after-swap', initSearchBoxes);
+</script>

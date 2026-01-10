@@ -1,31 +1,111 @@
 ---
-const pathname = Astro.url.pathname;
-const currentPath = pathname.replace(/\/$/, '');
+import ThemeToggle from './ThemeToggle.astro';
 
-const titles = {
-  "": "Home",
-  "/projects": "Projects",
-  "/blog": "Blog",
-  "/experience": "Experience"
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/experience', label: 'Experience' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
 };
-
-const currentTitle = titles[currentPath] || "Meshan Khosla";
 ---
 
-<div
-  class="sticky lg:hidden top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm"
->
-  <div class="navbar">
-    <div class="navbar-start">
-      <label for="my-drawer" class="btn btn-square btn-ghost">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"
-          ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </label>
+<header class="sticky top-0 z-50 backdrop-blur-md bg-cream-100/80 dark:bg-ink/80 border-b border-cream-300 dark:border-ink-lighter">
+  <nav class="container-wide py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo / Name -->
+      <a
+        href="/"
+        class="font-serif text-xl font-semibold text-charcoal dark:text-sand
+               hover:text-accent dark:hover:text-accent-light transition-colors"
+      >
+        Meshan Khosla
+      </a>
+
+      <!-- Navigation Links -->
+      <div class="flex items-center gap-1">
+        <ul class="hidden sm:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+                  isActive(link.href)
+                    ? 'text-accent dark:text-accent-light bg-cream-200 dark:bg-ink-lighter'
+                    : 'text-charcoal-muted dark:text-sand-muted hover:text-charcoal dark:hover:text-sand hover:bg-cream-200 dark:hover:bg-ink-lighter',
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="sm:hidden p-2 rounded-md hover:bg-cream-200 dark:hover:bg-ink-lighter"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <div class="w-px h-6 bg-cream-300 dark:bg-ink-lighter mx-2 hidden sm:block"></div>
+        
+        <ThemeToggle />
+      </div>
     </div>
-    <div class="navbar-center">
-      <a class="btn btn-ghost normal-case text-xl" href="/">️{currentTitle}</a>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden sm:hidden mt-4 pb-2">
+      <ul class="flex flex-col gap-1">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'block px-3 py-2 rounded-md text-sm font-medium transition-colors',
+                isActive(link.href)
+                  ? 'text-accent dark:text-accent-light bg-cream-200 dark:bg-ink-lighter'
+                  : 'text-charcoal-muted dark:text-sand-muted hover:text-charcoal dark:hover:text-sand hover:bg-cream-200 dark:hover:bg-ink-lighter',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-    <div class="navbar-end"></div>
-  </div>
-</div>
+  </nav>
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  setupMobileMenu();
+  document.addEventListener('astro:after-swap', setupMobileMenu);
+</script>

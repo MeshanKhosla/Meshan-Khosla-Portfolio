@@ -1,20 +1,13 @@
 ---
-import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import GridCard from '../../components/GridCard.astro';
 import SearchBox from '../../components/SearchBox.astro';
-import Pagination from '../../components/Pagination.astro';
 
-export const getStaticPaths = (async ({ paginate }) => {
-  const allPosts = (await getCollection('blog')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
-  
-  return paginate(allPosts, { pageSize: 9 }); // 3x3 grid
-}) satisfies GetStaticPaths;
-
-const { page } = Astro.props;
+// Get all blog posts sorted by date
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 // Format date helper
 const formatDate = (date: Date) => {
@@ -25,11 +18,7 @@ const formatDate = (date: Date) => {
   });
 };
 
-// Get all posts for search
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
+// Prepare posts for search (used by search component's data attribute)
 const searchPosts = allPosts.map((post) => ({
   slug: post.slug,
   title: post.data.title,
@@ -38,7 +27,7 @@ const searchPosts = allPosts.map((post) => ({
 }));
 ---
 
-<Layout title={`Blog - Page ${page.currentPage}`} description="Technical blog posts about distributed systems, software engineering, and more.">
+<Layout title="Blog" description="Technical blog posts about distributed systems, software engineering, and more.">
   <div class="p-6 lg:p-12">
     <!-- Header -->
     <header class="max-w-4xl mb-10">
@@ -48,14 +37,14 @@ const searchPosts = allPosts.map((post) => ({
       </p>
     </header>
 
-    <!-- Search -->
+    <!-- Search / Filter -->
     <div class="max-w-md mb-10">
       <SearchBox posts={searchPosts} />
     </div>
 
-    <!-- Posts Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-      {page.data.map((post) => (
+    <!-- Posts Grid - All posts rendered, filtered by search -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {allPosts.map((post) => (
         <GridCard
           title={post.data.title}
           description={post.data.description}
@@ -65,11 +54,6 @@ const searchPosts = allPosts.map((post) => ({
           slug={post.slug}
         />
       ))}
-    </div>
-
-    <!-- Pagination -->
-    <div data-pagination>
-      <Pagination currentPage={page.currentPage} totalPages={page.lastPage} baseUrl="/blog" />
     </div>
   </div>
 </Layout>

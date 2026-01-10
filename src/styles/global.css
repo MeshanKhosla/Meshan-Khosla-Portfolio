@@ -1,3 +1,131 @@
-.time-line-container>div:last-child .education__time>.education__line {
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-mono text-charcoal bg-cream-100 antialiased;
+    @apply dark:text-sand dark:bg-ink;
+    @apply transition-colors duration-300;
+  }
+
+  /* Smooth theme transition */
+  *,
+  *::before,
+  *::after {
+    @apply transition-colors duration-200;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent/20 text-charcoal;
+  }
+
+  .dark ::selection {
+    @apply bg-accent-light/20 text-sand;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  .dark :focus-visible {
+    @apply outline-accent-light;
+  }
+}
+
+@layer components {
+  /* Link styling */
+  .link {
+    @apply text-accent dark:text-accent-light underline underline-offset-2;
+    @apply hover:text-accent-dark dark:hover:text-accent transition-colors;
+  }
+
+  /* Button base */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-4 py-2 rounded-md font-medium;
+    @apply transition-all duration-200;
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-charcoal text-cream-100 hover:bg-charcoal-light;
+    @apply dark:bg-sand dark:text-ink dark:hover:bg-sand-muted;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-cream-200;
+    @apply dark:hover:bg-ink-lighter;
+  }
+
+  /* Card component */
+  .card {
+    @apply bg-cream-50 border border-cream-300 rounded-lg p-6;
+    @apply dark:bg-ink-light dark:border-ink-lighter;
+    @apply transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply hover:border-accent/30 hover:shadow-sm;
+    @apply dark:hover:border-accent-light/30;
+  }
+
+  /* Container */
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-6;
+  }
+
+  .container-wide {
+    @apply max-w-5xl mx-auto px-6;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Text pretty for paragraphs - prevents orphaned words */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Code block styling */
+pre {
+  @apply rounded-lg p-4 overflow-x-auto text-sm;
+  @apply border border-cream-300 dark:border-ink-lighter;
+}
+
+/* Prose dark mode code override */
+.dark .prose pre {
+  @apply bg-ink-light border-ink-lighter;
+}
+
+.dark .prose code {
+  @apply bg-ink-lighter;
 }

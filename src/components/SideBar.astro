@@ -1,66 +1,227 @@
 ---
-const pathname = Astro.url.pathname;
-const currentPath = pathname.replace(/\/$/, '');
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { href: '/blog', label: 'Blog', icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z' },
+  { href: '/projects', label: 'Projects', icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z' },
+  { href: '/experience', label: 'Experience', icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+];
+
+const socialLinks = [
+  { href: 'https://github.com/MeshanKhosla', label: 'GitHub', icon: 'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z' },
+  { href: 'https://www.linkedin.com/in/MeshanKhosla', label: 'LinkedIn', icon: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+};
 ---
 
-<div class="drawer-side bg-base-200">
-  <label for="my-drawer" class="drawer-overlay bg-base-200"></label>
-  <div class="menu p-4 overflow-y-auto w-[19rem] bg-base-200 text-base-content">
-    <div class="w-fit">
-      <a href="/">
-        <div class="avatar transition ease-in-out w-1/2 hover:scale-[102%] block m-auto mt-3 mb-6">
-          <div>
-            <img class="mask mask-circle" src="/profile.jpg" alt="profile image" />
-          </div>
-        </div>
-      </a>
-    </div>
-    <ul>
-      <!-- Sidebar content here -->
-      <li><a class={currentPath === "" ? "active" : ""} href="/">Home</a></li>
-      <li><a class={currentPath === "/projects" ? "active" : ""} href="/projects">Projects</a></li>
-      <!-- <li><a href="/store/1">Store</a></li> -->
-      <li><a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a></li>
-      <li><a class={currentPath === "/experience" ? "active" : ""} href="/experience">Experience</a></li>
-      <li><a href="mailto:mkhosla@berkeley.edu">Contact</a></li>
-    </ul>
-    <div class="grow"></div>
-	
-    <div class="social-icons px-4 my-2 flex self-center">
-      <a href="https://github.com/MeshanKhosla" target="_blank" class="mx-3" aria-label="Github">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          style="fill: currentColor;transform: ;msFilter:;"
-          ><path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"
-          ></path>
-        </svg>
-      </a>
+<!-- Mobile Header -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 h-14 px-4 flex items-center justify-between
+               bg-cream-100/95 dark:bg-ink/95 backdrop-blur-sm
+               border-b border-cream-300 dark:border-ink-lighter">
+  <a href="/" class="font-serif text-lg font-semibold">MK</a>
+  <div class="flex items-center gap-2">
+    <ThemeToggle />
+    <button
+      id="mobile-sidebar-toggle"
+      type="button"
+      class="p-2 rounded-md hover:bg-cream-200 dark:hover:bg-ink-lighter"
+      aria-label="Toggle menu"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</header>
 
-      <a href="https://www.linkedin.com/in/MeshanKhosla" target="_blank" class="mx-3" aria-label="Linkedin">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          style="fill: currentColor;transform: ;msFilter:;"
-          ><circle cx="4.983" cy="5.009" r="2.188"></circle><path
-            d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z"
-          ></path>
-        </svg>
+<!-- Sidebar -->
+<aside
+  id="sidebar"
+  class="fixed left-0 top-0 z-40 h-screen
+         bg-cream-50 dark:bg-ink
+         border-r border-cream-200 dark:border-ink-lighter/50
+         -translate-x-full lg:translate-x-0
+         w-64 lg:w-56"
+>
+  <div class="flex flex-col h-full p-4">
+    <!-- Logo & Toggle -->
+    <div class="flex items-center justify-between mb-8">
+      <a href="/" class="font-serif text-xl font-semibold text-charcoal dark:text-sand">
+        Meshan<span class="text-accent dark:text-accent-light">.</span>
       </a>
+      <button
+        id="sidebar-collapse"
+        type="button"
+        class="hidden lg:flex p-1.5 rounded-md hover:bg-cream-200 dark:hover:bg-ink-lighter"
+        aria-label="Collapse sidebar"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 space-y-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+            isActive(link.href)
+              ? 'bg-accent/10 text-accent dark:bg-accent-light/10 dark:text-accent-light'
+              : 'text-charcoal-muted dark:text-sand-muted hover:bg-cream-200 dark:hover:bg-ink-lighter hover:text-charcoal dark:hover:text-sand',
+          ]}
+        >
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d={link.icon} />
+          </svg>
+          <span class="sidebar-label">{link.label}</span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Bottom Section -->
+    <div class="pt-4 border-t border-cream-300 dark:border-ink-lighter">
+      <!-- Social Links + Theme Toggle -->
+      <div class="flex items-center gap-1 px-1">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-md text-charcoal-muted dark:text-sand-muted
+                   hover:bg-cream-200 dark:hover:bg-ink-lighter
+                   hover:text-accent dark:hover:text-accent-light transition-colors"
+            aria-label={link.label}
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d={link.icon} />
+            </svg>
+          </a>
+        ))}
+        <!-- Theme Toggle inline with social icons -->
+        <div class="hidden lg:block">
+          <ThemeToggle />
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</aside>
+
+<!-- Sidebar Overlay (Mobile) -->
+<div
+  id="sidebar-overlay"
+  class="fixed inset-0 z-30 bg-charcoal/50 dark:bg-ink/50 opacity-0 pointer-events-none
+         transition-opacity duration-300 lg:hidden"
+></div>
+
+<!-- Collapsed Sidebar Trigger (Desktop) -->
+<button
+  id="sidebar-expand"
+  type="button"
+  class="hidden fixed left-0 top-4 z-50 p-2 rounded-r-lg
+         bg-cream-50 dark:bg-ink
+         border border-l-0 border-cream-200 dark:border-ink-lighter/50
+         hover:bg-cream-200 dark:hover:bg-ink-lighter
+         transition-all duration-300"
+  aria-label="Expand sidebar"
+>
+  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+  </svg>
+</button>
+
+<script>
+  function initSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const mobileToggle = document.getElementById('mobile-sidebar-toggle');
+    const collapseBtn = document.getElementById('sidebar-collapse');
+    const expandBtn = document.getElementById('sidebar-expand');
+
+    if (!sidebar || !overlay) return;
+
+    // Check if sidebar is collapsed (from html class set in head)
+    const isCollapsed = document.documentElement.classList.contains('sidebar-collapsed');
+    
+    // Show/hide expand button based on state
+    if (expandBtn) {
+      if (isCollapsed && window.innerWidth >= 1024) {
+        expandBtn.classList.remove('hidden');
+      } else {
+        expandBtn.classList.add('hidden');
+      }
+    }
+
+    // Mobile toggle
+    mobileToggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('opacity-0');
+      overlay.classList.toggle('pointer-events-none');
+    });
+
+    // Close on overlay click
+    overlay.addEventListener('click', () => {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+    });
+
+    collapseBtn?.addEventListener('click', () => {
+      collapseSidebar();
+    });
+
+    expandBtn?.addEventListener('click', () => {
+      expandSidebar();
+    });
+
+    function collapseSidebar() {
+      localStorage.setItem('sidebar-collapsed', 'true');
+      document.documentElement.classList.add('sidebar-collapsed');
+      expandBtn?.classList.remove('hidden');
+    }
+
+    function expandSidebar() {
+      localStorage.setItem('sidebar-collapsed', 'false');
+      document.documentElement.classList.remove('sidebar-collapsed');
+      expandBtn?.classList.add('hidden');
+    }
+  }
+
+  initSidebar();
+  document.addEventListener('astro:after-swap', initSidebar);
+</script>
 
 <style>
-  .active {
-    background-color: hsl(var(--p) / 0.2);
-    color: hsl(var(--pc));
+  /* Sidebar transitions - only transform, not width to avoid jank */
+  #sidebar {
+    transition: transform 200ms ease-out;
+  }
+  
+  /* No transition on initial load or during navigation */
+  :global(html.sidebar-no-transition) #sidebar {
+    transition: none !important;
+  }
+  
+  /* When sidebar is collapsed on desktop - use transform only */
+  :global(html.sidebar-collapsed) .sidebar-label {
+    @apply lg:opacity-0;
+  }
+  
+  :global(html.sidebar-collapsed) #sidebar {
+    @apply lg:-translate-x-full;
   }
 </style>

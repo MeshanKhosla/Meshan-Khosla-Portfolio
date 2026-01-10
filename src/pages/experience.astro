@@ -1,117 +1,119 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/experience/TimeLine.astro";
+import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline.astro';
+
+const education = [
+  {
+    title: 'University of California, Berkeley',
+    subtitle: '2020 - 2024 · B.A. in Computer Science',
+    description: 'Relevant coursework: Data Structures (TA), Algorithms, Computer Architecture, Databases, Operating Systems, Computer Security, Computer Networking, UI/UX, Programming Languages and Compilers, Discrete Math, Linear Algebra and Circuits, Calculus 1/2.',
+  },
+  {
+    title: 'Livingston High School',
+    subtitle: '2016 - 2020 · High School Diploma',
+    description: 'Valedictorian',
+  },
+];
+
+const experience = [
+  {
+    title: 'Software Development Engineer',
+    subtitle: 'Amazon Web Services - Quicksight · August 2024 - Present',
+    description: 'Working on the Quicksight team, a data visualization tool. Working all over the stack.',
+  },
+  {
+    title: 'Software Engineer',
+    subtitle: 'Upstash · December 2023 - May 2024',
+    description: 'I worked on the core team on QStash, a serverless distributed messaging service. I also created the distributed lock SDK and improved QStash documentation.',
+  },
+  {
+    title: 'Undergraduate Student Instructor (20 Hour TA)',
+    subtitle: 'UC Berkeley Data Structures - CS61B · Dec 2022 - May 2024',
+    description: 'I lead the Infrastructure team with the development of SOHQ, an open source office hours queue. I also taught weekly discussions, labs, and office hours covering concepts such as Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more.',
+  },
+  {
+    title: 'Software Development Engineer Intern',
+    subtitle: 'Amazon Web Services - Quicksight · May 2023 - Aug 2023',
+    description: 'At AWS Quicksight, I created a data visualization map type that integrates customer uploaded data and custom polygons on a world map using Mapbox, React, and Typescript.',
+  },
+  {
+    title: 'Software Development Engineer Intern',
+    subtitle: 'Amazon Web Services - EC2 · May 2022 - Aug 2022',
+    description: 'As an SDE intern at AWS, I developed a refund automation feature using Lambda and Step Functions. The refund API was written in Java and allowed AWS to issue refunds for canceled EC2 Savings Plans. I also used CDK to chain lambdas in a step function.',
+  },
+  {
+    title: 'Undergraduate Student Instructor (8 Hour TA)',
+    subtitle: 'UC Berkeley Data Structures - CS61B · Aug 2022 - Dec 2022',
+    description: 'I taught weekly discussions, labs, and office hours covering concepts such as Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more.',
+  },
+  {
+    title: 'Undergraduate Researcher',
+    subtitle: '3D Printing Optimization Lab · Jan 2023 - May 2024',
+    description: 'As an Undergraduate Researcher, I designed and implemented a MySQL database that contains a comprehensive set of STL/Binvox models, along with associated ratings, to support the development of a neural network for predicting optimal orientations for 3D printing.',
+  },
+  {
+    title: 'Software Engineer Intern',
+    subtitle: 'Learn To Win · May 2021 - Aug 2021',
+    description: 'As an intern at L2W, I developed a rapid grading and custom feedback system, which is used by 100+ NFL, NCAA, and DoD coaches, resulting in 65% faster grading per quiz. I also integrated a 3rd party REST API to design and implement a certification system for players and instructors.',
+  },
+];
+
+const skills = [
+  'TypeScript', 'Python', 'JavaScript', 'Java', 'Go', 'C', 'React', 'SQL', 'HTML', 'CSS',
+];
 ---
 
-<BaseLayout title = "Experience">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Background</div>
+<Layout title="Experience" description="My background, education, and work experience.">
+  <div class="p-6 lg:p-12">
+    <!-- Header -->
+    <header class="mb-12">
+      <h1 class="font-serif text-4xl font-semibold mb-4">Experience</h1>
+      <p class="text-lg text-charcoal-muted dark:text-sand-muted">
+        I began programming in high school, where I made a few websites and games in JavaScript. 
+        Over time I began to learn new languages and technologies.
+      </p>
+    </header>
 
-	<text class="text-lg">
-		I began programming in high school, where I made a few websites and games in Javascript. 
-		Over time I began to learn new languauges and technologies. Below are some of the places 
-		I've worked.
-	</text>
+    <!-- Education -->
+    <section class="mb-16">
+      <h2 class="font-serif text-2xl font-semibold mb-8">Education</h2>
+      <div>
+        {education.map((item) => (
+          <Timeline
+            title={item.title}
+            subtitle={item.subtitle}
+            description={item.description}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="mb-16">
+      <h2 class="font-serif text-2xl font-semibold mb-8">Work Experience</h2>
+      <div>
+        {experience.map((item) => (
+          <Timeline
+            title={item.title}
+            subtitle={item.subtitle}
+            description={item.description}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold mb-8">Skills</h2>
+      <div class="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span class="px-3 py-1.5 rounded-md text-sm font-medium
+                       bg-cream-200 text-charcoal
+                       dark:bg-ink-lighter dark:text-sand">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
   </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
-
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="University of California, Berkeley"
-      subtitle="2020 to 2024. B.A in Computer Science"
-	  desc="Relevant coursework: Data Structures (TA), Algorithms, Computer Architecture, \
-	  Databases, Operating Systems, Computer Security, Computer Networking, UI/UX, \
-		Programming Languages and Compilers, Discrete Math, Linear algebra and Circuits, Calculus 1/2."
-    />
-    <TimeLineElement
-      title="Livingston High School"
-      subtitle="2016-2020. High School Diploma"
-	  desc="Valedictorian"
-    />
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Software Development Engineer"
-      subtitle="Amazon Web Serivces - Quicksight. August 2024 - Present"
-      desc="Working on the Quicksight team, a data visualization tool. Working all over the stack."
-    />
-    <TimeLineElement
-      title="Software Engineer"
-      subtitle="Upstash. December 2023 - May 2024"
-      desc="I worked on the core team on QStash, a serverless distributed messaging service. \
-			I Also created the distributed lock SDK: https://upstash.com/blog/lock and improved QStash documentation."
-    />
-    <TimeLineElement
-      title="Undergraduate Student Instructor (20 Hour TA)"
-      subtitle="UC Berkeley Data Structures - CS61B. Dec 2022 - May 2024"
-      desc="I lead the Infrastructure team with the development of SOHQ, an open source office hours \
-	  	queue (see projects). I also teach weekly discussions, labs, and office hours which cover concepts such as \
-		Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more."
-    />
-		<TimeLineElement 
-      title="Software Development Engineer Intern"
-      subtitle="Amazon Web Serivces - Quicksight. May 2023 - Aug 2023"
-			desc="At AWS Quicksight, I created a data visualization map type that integrates customer \
-			uploaded data and custom polygons on a world map using Mapbox, React, and Typescript."
-		/>
-    <TimeLineElement
-      title="Software Development Engineer Intern"
-      subtitle="Amazon Web Serivces - EC2. May 2022 - Aug 2022"
-      desc="As an SDE intern at AWS, I developed a refund automation feature using Lambda and Step Functions. \
-	  The refund API was written in Java and allowed AWS to issue refunds for canceled EC2 Savings Plans. I also \
-	  used CDK to chain lambdas in a step function. To come to the resolution of using a step function, I used SQL \
-	  to analyze customer data and determine how to minimize latency."
-    />
-    <TimeLineElement
-      title="Undergraduate Student Instructor (8 Hour TA)"
-      subtitle="UC Berkeley Data Structures - CS61B. Aug 2022 - Dec 2022"
-      desc="I teach weekly discussions, labs, and office hours which cover concepts such as \
-		Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more."
-    />
-    <TimeLineElement
-      title="Undergraduate Researcher"
-      subtitle="3D Printing Optimization Lab Jan 2023 - May 2024"
-      desc="As an Undergraduate Researcher, I'm designing and implementing a MySQL database that contains a comprehensive set of STL/Binvox models, along with \
-			associated ratings, to support the development of a neural network for predicting optimal orientations for 3D printing."
-    />
-    <TimeLineElement
-      title="Software Engineer Intern"
-      subtitle="Learn To Win. May 2021 - Aug 2021"
-      desc="As an intern at L2W, I developed a rapid grading and custom feedback system, which is used by 100+ NFL, NCAA, and DoD coaches, \
-	  resulting in 65% faster grading per quiz. I also integrated a 3rd party REST API to design and implement a certification system for players and instructors."
-    />
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
-  </div>
-
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-	 <li>Python</li>
-	 <li>Rust</li>
-	 <li>Java</li>
-	 <li>NextJS</li>
-	 <li>React</li>
-	 <li>JavaScript</li>
-	 <li>Typescript</li>
-	 <li>HTML</li>
-	 <li>CSS</li>
-	 <li>C</li>
-	 <li>RISC-V</li>
-	 <li>PHP</li>
-	 <li>SQL</li>
-	 <li>Jest</li>
-	 <li>Redux</li>
-	 <li>Node.js</li>
-	 <li>Flask</li>
-	 <li>OCaml</li>
-  </ul>
-</BaseLayout>
+</Layout>

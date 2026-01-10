@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<div class="relative pl-8 pb-8 border-l-2 border-cream-300 dark:border-ink-lighter last:pb-0">
+  <!-- Timeline dot -->
+  <div class="absolute left-0 top-0 w-4 h-4 -translate-x-[9px] rounded-full 
+              bg-accent dark:bg-accent-light border-4 border-cream-100 dark:border-ink">
+  </div>
+  
+  <div class="space-y-1">
+    <h3 class="font-serif text-lg font-semibold text-charcoal dark:text-sand">
+      {title}
+    </h3>
+    <p class="text-sm text-accent dark:text-accent-light font-medium">
+      {subtitle}
+    </p>
+    <p class="text-charcoal-muted dark:text-sand-muted pt-2">
+      {description}
+    </p>
+  </div>
+</div>

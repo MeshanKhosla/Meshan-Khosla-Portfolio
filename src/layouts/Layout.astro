@@ -1,0 +1,160 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Sidebar from '../components/Sidebar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Meshan Khosla',
+  description = 'Portfolio of Meshan Khosla - Software Development Engineer at AWS, UC Berkeley Computer Science graduate.',
+  image = '/profile.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://meshankhosla.com');
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title === 'Meshan Khosla' ? title : `${title} | Meshan Khosla`}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Meshan Khosla" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || 'https://meshankhosla.com')} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site || 'https://meshankhosla.com')} />
+
+    <!-- Theme and sidebar initialization (prevent flash) -->
+    <script is:inline>
+      (function() {
+        // Theme - default to dark mode
+        const theme = (() => {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'dark' || savedTheme === 'light') {
+            return savedTheme;
+          }
+          return 'dark'; // Default to dark mode
+        })();
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+        
+        // Sidebar collapsed state - apply to html immediately with no-transition
+        const sidebarCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+        if (sidebarCollapsed && window.innerWidth >= 1024) {
+          document.documentElement.classList.add('sidebar-collapsed', 'sidebar-no-transition');
+        }
+      })();
+    </script>
+    
+    <!-- Remove no-transition class after page load -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove('sidebar-no-transition');
+          });
+        });
+      });
+    </script>
+
+    <!-- View Transitions -->
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen">
+    <Sidebar currentPath={currentPath} transition:persist />
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content min-h-screen flex flex-col">
+      <!-- Mobile header spacer -->
+      <div class="h-14 lg:hidden"></div>
+      
+      <main class="flex-1" transition:animate="fade">
+        <slot />
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t border-cream-300 dark:border-ink-lighter">
+        <div class="px-6 py-8 text-center">
+          <p class="text-sm text-charcoal-muted dark:text-sand-muted">
+            © {new Date().getFullYear()} Meshan Khosla
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  /* Main content padding - based on sidebar state */
+  .main-content {
+    @apply lg:pl-56;
+    transition: padding-left 300ms ease-in-out;
+  }
+  
+  /* When sidebar is collapsed (on html element for immediate effect) */
+  html.sidebar-collapsed .main-content {
+    @apply lg:pl-0;
+  }
+  
+  /* No transition on initial load if collapsed */
+  html.sidebar-no-transition .main-content {
+    transition: none;
+  }
+</style>
+
+<script>
+  // Preserve state during view transitions
+  document.addEventListener('astro:before-swap', (event) => {
+    const theme = localStorage.getItem('theme');
+    // Default to dark mode if no preference saved
+    const isDark = theme === 'dark' || !theme;
+    
+    if (isDark) {
+      event.newDocument.documentElement.classList.add('dark');
+    } else {
+      event.newDocument.documentElement.classList.remove('dark');
+    }
+    
+    // Preserve sidebar collapsed state on html element
+    const sidebarCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+    if (sidebarCollapsed) {
+      event.newDocument.documentElement.classList.add('sidebar-collapsed');
+      event.newDocument.documentElement.classList.add('sidebar-no-transition');
+    }
+  });
+  
+  // Remove no-transition class after swap
+  document.addEventListener('astro:after-swap', () => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('sidebar-no-transition');
+    });
+  });
+</script>

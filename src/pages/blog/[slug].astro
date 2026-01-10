@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage}
+>
+  <article class="p-6 lg:p-12 max-w-3xl mx-auto">
+    <!-- Back link -->
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 text-sm text-charcoal-muted dark:text-sand-muted
+             hover:text-accent dark:hover:text-accent-light transition-colors mb-8"
+    >
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+      </svg>
+      Back to all posts
+    </a>
+
+    <!-- Header -->
+    <header class="mb-10">
+      {post.data.heroImage && (
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-64 md:h-80 object-cover rounded-lg mb-8"
+        />
+      )}
+
+      <div class="flex items-center gap-3 text-sm text-charcoal-muted dark:text-sand-muted mb-4">
+        <span>Meshan Khosla</span>
+        <span class="text-cream-400 dark:text-ink-lighter">·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+      </div>
+
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold text-balance leading-tight">
+        {post.data.title}
+      </h1>
+    </header>
+
+    <!-- Content -->
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <Content />
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-cream-300 dark:border-ink-lighter">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-accent dark:text-accent-light
+               hover:text-accent-dark dark:hover:text-accent transition-colors font-medium"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        Back to all posts
+      </a>
+    </footer>
+  </article>
+</Layout>

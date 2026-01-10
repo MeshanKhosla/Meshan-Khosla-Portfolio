@@ -1,103 +1,92 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
+import Layout from '../layouts/Layout.astro';
+import GridCard from '../components/GridCard.astro';
+
+const projects = [
+  {
+    title: 'convex-timeline',
+    description: 'Convex component for undo/redo state management with named checkpoints.',
+    url: 'https://github.com/MeshanKhosla/convex-timeline',
+    image: '/convex-timeline.png',
+  },
+  {
+    title: 'Simple Office Hours Queue',
+    description: 'SOHQ is an open source office hours queue built with Next.JS, Prisma, TRPC, and MySQL. I built this for CS61B at UC Berkeley.',
+    url: 'https://github.com/Berkeley-CS61B/simple-office-hours-queue',
+    image: '/dark-sohq.png',
+  },
+  {
+    title: 'NP Complete Approximation',
+    description: 'Placed 2/250 in CS 170. Experimented with greedy, DP, LP, parallelization, and simulated annealing using Rust, AWS, GCP, and Python.',
+    url: 'https://github.com/noahadhikari/penguin-optimization',
+    image: '/graph-problem.bmp',
+  },
+  {
+    title: 'PintOS Kernel',
+    description: 'Designed and implemented a kernel for the PintOS operating system with user programs, multithreading, scheduling, and file systems.',
+    url: 'https://cs162.org/static/proj/pintos-docs',
+    image: '/pintos.jpg',
+  },
+  {
+    title: '@upstash/lock',
+    description: 'NPM package for distributed lock implementation using Upstash Redis with atomic operations and lease management.',
+    url: 'https://github.com/upstash/lock/tree/main',
+    image: '/dist-lock.png',
+  },
+  {
+    title: 'redis-union-find',
+    description: 'Implemented the Union-Find data structure using Redis for durable, distributed disjoint sets.',
+    url: '/blog/redis-union-find',
+    image: '/redis-union-find-blog/cover.png',
+  },
+  {
+    title: '2x2 Rubik\'s Cube Solver',
+    description: 'A* algorithm to find the optimal solution for any 2x2 Rubik\'s cube state via Flask webapp.',
+    url: 'https://github.com/MeshanKhosla/Optimal-2x2-Cube-Solver',
+    image: '/2x2-cube.bmp',
+  },
+  {
+    title: 'Gitlet',
+    description: 'Version control system mimicking Git with 10+ commands including init, add, commit, checkout, branch, merge, and more.',
+    url: 'https://sp21.datastructur.es/materials/proj/proj2/proj2',
+    image: '/git-logo.bmp',
+  },
+  {
+    title: 'Spaced Repetition Quiz',
+    description: 'React webapp enabling students to see harder questions more often using a Priority Queue system.',
+    url: 'https://spaced-repetition-quiz.netlify.app',
+    image: '/spaced-repetition.png',
+  },
+  {
+    title: 'Path Visualizer',
+    description: 'Pygame path visualizer for A*, Dijkstra\'s, BFS, and DFS algorithms in real time.',
+    url: 'https://github.com/MeshanKhosla/PathVisualizer',
+    image: '/dijkstra.bmp',
+  },
+];
 ---
 
-<BaseLayout title = "Projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects</div>
+<Layout title="Projects" description="A collection of projects I've worked on.">
+  <div class="p-6 lg:p-12">
+    <!-- Header -->
+    <header class="max-w-4xl mb-10">
+      <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Projects</h1>
+      <p class="text-charcoal-muted dark:text-sand-muted text-balance">
+        A collection of things I've built, from distributed systems to visualization tools.
+      </p>
+    </header>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project) => (
+        <GridCard
+          title={project.title}
+          description={project.description}
+          url={project.url}
+          image={project.image}
+          isExternal={project.url.startsWith('http')}
+        />
+      ))}
+    </div>
   </div>
-
-  <HorizontalCard
-    title="Simple Office Hours Queue"
-    img="/dark-sohq.png"
-    desc="SOHQ is an open source office hours queue built with Next.JS, Prisma, TRPC, and MySQL. I built this for CS61B at \
-	UC Berkeley, but it can be used for any class that needs a queue for instructors to handle their office hours."
-    url="https://github.com/Berkeley-CS61B/simple-office-hours-queue"
-  />
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="NP Complete Approximation Algorithm"
-    img="/graph-problem.bmp"
-    desc="Along with 2 other students, placed 2/250 in an upper division CS class competition. (CS 170). \
-	We experimented with greedy, DP, LP, parallelization, simulated annealing, and other techniques to approximate a problem resembling \
-	set cover. We used Rust, AWS, GCP, and Python to build our solution."
-    url="https://github.com/noahadhikari/penguin-optimization"
-  />
-
-	<div class="divider my-0"></div>
-	<HorizontalCard
-		title="PintOS Kernel"
-		img="/pintos.jpg"
-		desc="In a group of 4, designed and implemented a kernel for the PintOS operating system. \
-		Implemented support for user programs, multithreading, scheduling, and file systems. \
-		We used C and x86 assembly to build our solution. Code/Design available upon request."
-		url="https://cs162.org/static/proj/pintos-docs"
-	/>
-
-	<div class="divider my-0"></div>
-	<HorizontalCard
-		title="@upstash/lock"
-		img="/dist-lock.png"
-		desc="Built an NPM package for a distributed lock implementation using Upstash Redis. \
-		Featured atomic operations, lease management, and UUID verification to address challenges in asynchronous replication scenarios."
-		url="https://github.com/upstash/lock/tree/main"
-	/>
-
-	<div class="divider my-0"></div>
-	<HorizontalCard
-		title="redis-union-find"
-		img="/redis-union-find-blog/cover.png"
-		desc="Implemented the Union-Find data structure using Redis."
-		url="/blog/redis-union-find"
-	/>
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Optimal 2x2 Rubik's Cube Solver"
-    img="/2x2-cube.bmp"
-    desc="I constructed a shortest path algorithm using A* to find the optimal solution for any 2x2 Rubik's cube state. \
-	It allows users to input a cube state through a Flask webapp and receive the shortest series of moves to solve the cube."
-    url="https://github.com/MeshanKhosla/Optimal-2x2-Cube-Solver"
-  />
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Gitlet"
-    img="/git-logo.bmp"
-    desc="Designed and implemented a version control system mimicking Git. Includes support for 10+ commands including \
-	init, add, commit, checkout, branch, reset, merge, rm, log, and status. Code available upon request."
-    url="https://sp21.datastructur.es/materials/proj/proj2/proj2"
-  />
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Spaced Repetition Quiz App"
-    img="/spaced-repetition.png"
-    desc="I created a spaced repetition webapp in React, enabling students to see harder questions more often. \
-	To do this, I implemented a Priority Queue system where questions are ordered by how confident they are with each \
-	question."
-    url="https://spaced-repetition-quiz.netlify.app"
-  />
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Path Visualizer"
-    img="/dijkstra.bmp"
-    desc="Using Pygame, I developed a path visualizer that allows users to see how different pathfinding algorithms \
-	work in real time. I implemented A*, Dijkstra's, and BFS, and DFS."
-    url="https://github.com/MeshanKhosla/PathVisualizer"
-  />
-
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Stock Digest"
-    img="/stocks.bmp"
-    desc="This is a Python project that I built to send daily emails to users with how their stocks \
-	have performed over the past day as well as all time. I created it using the Yahoo Finance API"
-    url="https://github.com/MeshanKhosla/StockDigest"
-  />
-  
-  <div class="divider my-0"></div>
-</BaseLayout>
+</Layout>

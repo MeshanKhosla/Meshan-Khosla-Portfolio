@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+}
+
+const { title, description, url, image } = Astro.props;
+
+const isExternal = url.startsWith('http');
+---
+
+<article class="group">
+  <a
+    href={url}
+    target={isExternal ? '_blank' : '_self'}
+    rel={isExternal ? 'noopener noreferrer' : undefined}
+    class="block"
+  >
+    <div class="card card-hover">
+      {image && (
+        <div class="mb-4 -mx-6 -mt-6 overflow-hidden rounded-t-lg">
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-48 object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
+      
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif text-xl font-semibold text-charcoal dark:text-sand
+                     group-hover:text-accent dark:group-hover:text-accent-light transition-colors">
+            {title}
+          </h3>
+          {isExternal && (
+            <svg class="w-4 h-4 text-charcoal-muted dark:text-sand-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          )}
+        </div>
+
+        <p class="text-charcoal-muted dark:text-sand-muted">
+          {description}
+        </p>
+      </div>
+    </div>
+  </a>
+</article>
