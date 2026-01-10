@@ -20,7 +20,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-transitions">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -74,12 +74,12 @@ const currentPath = Astro.url.pathname;
       })();
     </script>
     
-    <!-- Remove no-transition class after page load -->
+    <!-- Remove no-transition classes after page load -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            document.documentElement.classList.remove('sidebar-no-transition');
+            document.documentElement.classList.remove('sidebar-no-transition', 'no-transitions');
           });
         });
       });
@@ -149,12 +149,17 @@ const currentPath = Astro.url.pathname;
       event.newDocument.documentElement.classList.add('sidebar-collapsed');
       event.newDocument.documentElement.classList.add('sidebar-no-transition');
     }
+    
+    // Disable transitions during swap to prevent flash
+    event.newDocument.documentElement.classList.add('no-transitions');
   });
   
-  // Remove no-transition class after swap
+  // Remove no-transition classes after swap
   document.addEventListener('astro:after-swap', () => {
     requestAnimationFrame(() => {
-      document.documentElement.classList.remove('sidebar-no-transition');
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove('sidebar-no-transition', 'no-transitions');
+      });
     });
   });
 </script>

@@ -21,10 +21,10 @@
     @apply overflow-x-hidden;
   }
 
-  /* Smooth theme transition */
-  *,
-  *::before,
-  *::after {
+  /* Smooth theme transition - only after initial load */
+  html:not(.no-transitions) *,
+  html:not(.no-transitions) *::before,
+  html:not(.no-transitions) *::after {
     @apply transition-colors duration-200;
   }
 
