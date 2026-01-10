@@ -11,13 +11,14 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
 
   body {
     @apply font-mono text-charcoal bg-cream-100 antialiased;
     @apply dark:text-sand dark:bg-ink;
     @apply transition-colors duration-300;
+    @apply overflow-x-hidden;
   }
 
   /* Smooth theme transition */
@@ -128,4 +129,29 @@ pre {
 
 .dark .prose code {
   @apply bg-ink-lighter;
+}
+
+/* Prose overflow handling - prevent long URLs from causing horizontal scroll */
+.prose {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.prose a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.prose li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Ensure inline code doesn't overflow */
+.prose code:not(pre code) {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
