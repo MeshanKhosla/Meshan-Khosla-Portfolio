@@ -13,7 +13,7 @@ I'm back in 2026! I'm at Sconers in Bellevue, WA and I'm continuing to read Jim 
 
 ## Background
 
-Recall from the <a href="/blog/coffee-codex-transactions.md">last post</a> that we defined three types of entities:
+Recall from the <a href="/blog/coffee-codex-transactions">last post</a> that we defined three types of entities:
 
 - **Real Entities**: Cannot be undone (like sending an email)
 - **Stable Entities**: Survive system restarts (like data written to disk)
