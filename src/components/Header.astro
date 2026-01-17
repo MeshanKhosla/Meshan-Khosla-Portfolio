@@ -28,6 +28,7 @@ const isActive = (href: string) => {
       <!-- Logo / Name -->
       <a
         href="/"
+        data-astro-prefetch="hover"
         class="font-serif text-xl font-semibold text-charcoal dark:text-sand
                hover:text-accent dark:hover:text-accent-light transition-colors"
       >
@@ -41,6 +42,7 @@ const isActive = (href: string) => {
             <li>
               <a
                 href={link.href}
+                data-astro-prefetch="hover"
                 class:list={[
                   'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                   isActive(link.href)
@@ -79,6 +81,7 @@ const isActive = (href: string) => {
           <li>
             <a
               href={link.href}
+              data-astro-prefetch="hover"
               class:list={[
                 'block px-3 py-2 rounded-md text-sm font-medium transition-colors',
                 isActive(link.href)

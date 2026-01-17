@@ -31,7 +31,7 @@ const isActive = (href: string) => {
 <header class="lg:hidden fixed top-0 left-0 right-0 z-50 h-14 px-4 flex items-center justify-between
                bg-cream-100/95 dark:bg-ink/95 backdrop-blur-sm
                border-b border-cream-300 dark:border-ink-lighter">
-  <a href="/" class="font-serif text-lg font-semibold">MK</a>
+  <a href="/" data-astro-prefetch="hover" class="font-serif text-lg font-semibold">MK</a>
   <div class="flex items-center gap-2">
     <ThemeToggle />
     <button
@@ -60,7 +60,7 @@ const isActive = (href: string) => {
   <div class="flex flex-col h-full p-4">
     <!-- Logo & Toggle -->
     <div class="flex items-center justify-between mb-8">
-      <a href="/" class="font-serif text-xl font-semibold text-charcoal dark:text-sand">
+      <a href="/" data-astro-prefetch="hover" class="font-serif text-xl font-semibold text-charcoal dark:text-sand">
         Meshan<span class="text-accent dark:text-accent-light">.</span>
       </a>
       <button

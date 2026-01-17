@@ -84,6 +84,7 @@ const recentPosts = (await getCollection('blog'))
           <h2 class="font-serif text-xl font-semibold">Recent Posts</h2>
           <a
             href="/blog"
+            data-astro-prefetch="hover"
             class="text-sm text-accent dark:text-accent-light hover:underline underline-offset-2"
           >
             View all →
@@ -94,6 +95,7 @@ const recentPosts = (await getCollection('blog'))
           {recentPosts.map((post) => (
             <a
               href={`/blog/${post.slug}`}
+              data-astro-prefetch="hover"
               class="group block p-4 -mx-4 rounded-lg hover:bg-cream-200/50 dark:hover:bg-ink-lighter/50 transition-colors"
             >
               <div class="flex items-start justify-between gap-4">

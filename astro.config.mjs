@@ -11,4 +11,11 @@ export default defineConfig({
       wrap: true,
     },
   },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
+  experimental: {
+    clientPrerender: true,
+  },
 });
