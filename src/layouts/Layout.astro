@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import Sidebar from '../components/Sidebar.astro';
 import '../styles/global.css';
 
@@ -85,8 +84,6 @@ const currentPath = Astro.url.pathname;
       });
     </script>
 
-    <!-- View Transitions -->
-    <ClientRouter />
   </head>
   <body class="min-h-screen">
     <Sidebar currentPath={currentPath} transition:persist />
@@ -129,37 +126,3 @@ const currentPath = Astro.url.pathname;
     transition: none;
   }
 </style>
-
-<script>
-  // Preserve state during view transitions
-  document.addEventListener('astro:before-swap', (event) => {
-    const theme = localStorage.getItem('theme');
-    // Default to dark mode if no preference saved
-    const isDark = theme === 'dark' || !theme;
-    
-    if (isDark) {
-      event.newDocument.documentElement.classList.add('dark');
-    } else {
-      event.newDocument.documentElement.classList.remove('dark');
-    }
-    
-    // Preserve sidebar collapsed state on html element
-    const sidebarCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
-    if (sidebarCollapsed) {
-      event.newDocument.documentElement.classList.add('sidebar-collapsed');
-      event.newDocument.documentElement.classList.add('sidebar-no-transition');
-    }
-    
-    // Disable transitions during swap to prevent flash
-    event.newDocument.documentElement.classList.add('no-transitions');
-  });
-  
-  // Remove no-transition classes after swap
-  document.addEventListener('astro:after-swap', () => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.documentElement.classList.remove('sidebar-no-transition', 'no-transitions');
-      });
-    });
-  });
-</script>

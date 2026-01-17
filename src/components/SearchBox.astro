@@ -181,7 +181,4 @@ const { posts } = Astro.props;
 
   // Run on load
   initSearchBoxes();
-
-  // Re-run after Astro page transitions
-  document.addEventListener('astro:after-swap', initSearchBoxes);
 </script>
