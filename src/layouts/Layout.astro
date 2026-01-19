@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar.astro';
+import PostHog from '../components/posthog.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -84,6 +85,7 @@ const currentPath = Astro.url.pathname;
       });
     </script>
 
+    <PostHog />
   </head>
   <body class="min-h-screen">
     <Sidebar currentPath={currentPath} transition:persist />
