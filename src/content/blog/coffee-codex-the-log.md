@@ -13,7 +13,7 @@ I'm trying matcha for the first time in this series.
 
 ![Coffee](/coffee-codex/the-log/coffee.jpg)
 
-I'm interested in this because I covered how the backend of Convex works in a <a href="/blog/coffee-codex-convex-backend.md">previous post</a> and they heavily utilize a transaction log in order to maintain serializability. I'm curious how typical a solution like theirs is.
+I'm interested in this because I covered how the backend of Convex works in a <a href="/blog/coffee-codex-convex-backend">previous post</a> and they heavily utilize a transaction log in order to maintain serializability. I'm curious how typical a solution like theirs is.
 
 ## What is a Log
 A log at its core is a very simple data structure, it's append-only and totally-ordered. It looks like this:

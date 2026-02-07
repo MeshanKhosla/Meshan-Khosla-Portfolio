@@ -12,7 +12,7 @@ I'm at Toasted in Bellevue, WA and I'm learning about Logical Time (specifically
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-causality-and-happens-before.md">last post</a>, I learned about how systems struggle with physical time and the strategies (i.e. NTP) they use to guarantee ordering using their clocks. Today, I'll learn about logical time which solves some of the key problems with physical time.
+In the <a href="/blog/coffee-codex-causality-and-happens-before">last post</a>, I learned about how systems struggle with physical time and the strategies (i.e. NTP) they use to guarantee ordering using their clocks. Today, I'll learn about logical time which solves some of the key problems with physical time.
 
 ## Context
 

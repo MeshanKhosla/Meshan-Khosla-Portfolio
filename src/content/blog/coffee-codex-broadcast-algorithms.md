@@ -12,7 +12,7 @@ I'm at Capital One Cafe (which serves Verve coffee) in Bellevue, WA and I'm lear
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-broadcast.md">last post</a>, I learned about broadcast ordering, specifically the definitions of FIFO, Causal, Total Order, and FIFO Total Order as they relate to broadcast algorithms. Even though the idea of FIFO is very common in computer science, specifically with queues, it's still useful to spell out how that concept relates to broadcast messaging. In this post, I'll learn the algorithms behind how these different orderings work!
+In the <a href="/blog/coffee-codex-broadcast">last post</a>, I learned about broadcast ordering, specifically the definitions of FIFO, Causal, Total Order, and FIFO Total Order as they relate to broadcast algorithms. Even though the idea of FIFO is very common in computer science, specifically with queues, it's still useful to spell out how that concept relates to broadcast messaging. In this post, I'll learn the algorithms behind how these different orderings work!
 
 ## Reliability
 
@@ -48,7 +48,7 @@ Another protocol for reliable broadcasts is when each node sends a message to `k
 
 ### FIFO Broadcast Algorithm
 
-With FIFO broadcast, two messages broadcasted by a node is guaranteed to be delivered in that same order. See the <a href="/blog/coffee-codex-broadcast.md">previous post</a> for more information about this.
+With FIFO broadcast, two messages broadcasted by a node is guaranteed to be delivered in that same order. See the <a href="/blog/coffee-codex-broadcast">previous post</a> for more information about this.
 
 The implementation for FIFO Broadcast revolves around a sequence number. The sender sends the message with a sequence number and the receiver delivers the message that corresponds to the **expected** sequence number, which is one greater than the last one it received.
 

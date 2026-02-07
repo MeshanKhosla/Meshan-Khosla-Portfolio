@@ -12,7 +12,7 @@ I'm at Woods in Bellevue, WA and I'm learning about broadcast ordering in distri
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-logical-time-vector.md">last post</a>, I learned about Vector clocks, which are a type of logical clock that address some issues with Lamport clocks. In this post, I'll learn about Broadcast ordering.
+In the <a href="/blog/coffee-codex-logical-time-vector">last post</a>, I learned about Vector clocks, which are a type of logical clock that address some issues with Lamport clocks. In this post, I'll learn about Broadcast ordering.
 
 ## Broadcast Ordering
 

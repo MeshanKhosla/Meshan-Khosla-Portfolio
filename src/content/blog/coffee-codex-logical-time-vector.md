@@ -12,7 +12,7 @@ I'm at Dote in Bellevue, WA and I'm continuing my exploration of logical clocks 
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-logical-time-lamport.md">last post</a>, I learned about Lamport clocks, which are a type of logical clock used for causality relationships. Today, we'll learn about some of the shortcomings of Lamport clocks and how Vector clocks solve some of these problems.
+In the <a href="/blog/coffee-codex-logical-time-lamport">last post</a>, I learned about Lamport clocks, which are a type of logical clock used for causality relationships. Today, we'll learn about some of the shortcomings of Lamport clocks and how Vector clocks solve some of these problems.
 
 ## Limitations with Lamport Clocks
 
