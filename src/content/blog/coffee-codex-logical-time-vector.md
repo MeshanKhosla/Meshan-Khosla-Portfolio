@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/logical-time-vector/cover.png"
 ## Introduction
 I'm at Dote in Bellevue, WA and I'm continuing my exploration of logical clocks with Vector clocks.
 
-![Coffee](/coffee-codex/logical-time-vector/coffee.jpg)
+![Coffee](/coffee-codex/logical-time-vector/coffee.webp)
 
 ## Recap
 

@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/p-2pc-2/cover.png"
 ## Introduction
 I'm at North of Main Cafe in Bellevue, WA and today I'm doing part 2 of implementing formal methods for 2PC. In the  <a href='/blog/coffee-codex-p-2pc'>previous post</a>, I wrote about what 2PC is and coordinator state machine.
 
-![Coffee](/coffee-codex/p-2pc-2/coffee.jpg)
+![Coffee](/coffee-codex/p-2pc-2/coffee.webp)
 
 ## Recap
 As a quick recap, the goal of 2PC is to coordinate an atomic transaction by going through two phases.

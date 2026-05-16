@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/lambda/cover.png"
 ## Introduction
 I'm at Cafe Hagen in Bellevue, WA and I'm learning about AWS Lambda. I spent the past week watching videos about Lambda and reading the Firecracker paper.
 
-![Coffee](/coffee-codex/lambda/coffee.png)
+![Coffee](/coffee-codex/lambda/coffee.webp)
 
 ## What is Lambda
 AWS Lambda is a service from AWS that allows you to run code whenever you want, however many times you want. It's as simple as calling a function locally, but it runs on the cloud so you can easily use it in your application to do things like API responses, file processing, cron jobs, and really anything else that requires computation power. An example of writing a lambda function in Typescript using the Node runtime looks like this:

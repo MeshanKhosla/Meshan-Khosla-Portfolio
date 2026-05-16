@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/p-2pc/cover.png"
 I'm at Toasted in Bellevue, WA and I'm learning about the [P programming language](https://p-org.github.io/P/) by going through the examples on their site.
 In the <a href='/blog/coffee-codex-p'>last post</a>, I learned about the P language and modeled the client-server example. Since that example was pretty simple, today I'm going to look at model Two Phase Commit (2PC)!
 
-![Coffee](/coffee-codex/p-2pc/coffee.jpg)
+![Coffee](/coffee-codex/p-2pc/coffee.webp)
 
 ## Two Phase Commit
 First let's do a quick overview of how two phase commit works. The purpose of 2PC is to provide atomicity in a transaction. This means if a coordinator needs to write a key to a key-value store that is distributed on many nodes, there's only 2 options:

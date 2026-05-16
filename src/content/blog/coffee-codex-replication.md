@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/replication/cover.png"
 ## Introduction
 I'm at Dote Cafe in Bellevue, WA and I'm learning more about replication in distributed systems through the <a href='https://www.youtube.com/watch?v=mBUCF1WGI_I&t=12s' target='_blank'>DDIA lecture series.</a>
 
-![Coffee](/coffee-codex/replication/coffee.png)
+![Coffee](/coffee-codex/replication/coffee.webp)
 
 ## What I know
 I'm familiar with the basic idea of replication in distributed systems. At a basic level, you should aim to have copies of your data in the event that your data gets lost. This can be done on an individual disk with the RAID series, and it can be done at a higher level such as having multiple database copies. Oftentimes, these replicas serve a specific purpose, such as read replicas, which are distributed across the world for faster reads for users. However, once you introduce these replicas, it makes the distributed systems much more complex, since the server that's being written to has to figure out how to ensure that the read replicas are up to date. I remember strategies such as write-through and write-back but I'm sure we'll cover it in this video.   

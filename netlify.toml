@@ -43,3 +43,13 @@
   for = "/*.woff"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/coffee-codex/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/redis-union-find-blog/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

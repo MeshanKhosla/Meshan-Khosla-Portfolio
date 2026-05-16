@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/formal/cover.png"
 ## Introduction
 I'm at Woods Coffee in Bellevue, WA and I'm reading [this](https://dl.acm.org/doi/pdf/10.1145/3712057) paper about how AWS uses (semi-)formal methods in their systems. It'll also go into an overview of the [P programming language](https://p-org.github.io/P/).
 
-![Coffee](/coffee-codex/formal/coffee.png)
+![Coffee](/coffee-codex/formal/coffee.webp)
 
 ## What are formal methods
 When designing a system like AWS Lambda, S3, and others, the complexity and need for reliability are immense and it's really hard to guarantee correctness. Formal methods are mathematical techniques used to specify, develop, and verify systems with a high degree of assurance. Instead of relying solely on testing or intuition, formal methods allow engineers to prove that certain behaviors are either guaranteed or impossible. These methods help catch subtle design flaws early, long before they manifest as bugs in production. In large-scale distributed systems, where the cost of failure is high, formal methods provide a rigorous foundation for building trustworthy infrastructure.

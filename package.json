@@ -9,13 +9,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.2",
     "@fontsource/fraunces": "^5.2.9",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@tailwindcss/typography": "^0.5.19",
-    "astro": "^5.16.8",
+    "astro": "^6.3.3",
+    "autoprefixer": "^10.5.0",
     "fuse.js": "^7.1.0",
+    "postcss": "^8.5.14",
     "tailwindcss": "^3.4.19"
+  },
+  "overrides": {
+    "rollup": "^4.59.0",
+    "yaml": "^2.8.3",
+    "anymatch": {
+      "picomatch": "^2.3.2"
+    },
+    "micromatch": {
+      "picomatch": "^2.3.2"
+    },
+    "readdirp": {
+      "picomatch": "^2.3.2"
+    }
   }
 }

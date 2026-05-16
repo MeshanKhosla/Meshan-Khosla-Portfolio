@@ -1,19 +1,7 @@
 ---
-interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  pubDate: string;
-}
-
-interface Props {
-  posts: Post[];
-}
-
-const { posts } = Astro.props;
 ---
 
-<div class="search-box relative" data-posts={JSON.stringify(posts)}>
+<div class="search-box relative">
   <div class="relative">
     <svg
       class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-muted dark:text-sand-muted pointer-events-none"
@@ -64,7 +52,6 @@ const { posts } = Astro.props;
     private clearBtn: HTMLElement;
     private statusEl: HTMLElement;
     private resultsCount: HTMLElement;
-    private posts: Array<{slug: string; title: string; description: string; pubDate: string}>;
     private debounceTimer: number | null = null;
 
     constructor(container: HTMLElement) {
@@ -73,9 +60,6 @@ const { posts } = Astro.props;
       this.clearBtn = container.querySelector('.search-clear') as HTMLElement;
       this.statusEl = container.querySelector('.search-status') as HTMLElement;
       this.resultsCount = container.querySelector('.results-count') as HTMLElement;
-      
-      const postsData = container.getAttribute('data-posts');
-      this.posts = postsData ? JSON.parse(postsData) : [];
       
       this.init();
     }

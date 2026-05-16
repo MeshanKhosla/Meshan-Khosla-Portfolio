@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/transactions/cover.png"
 
 I'm at North of Main in Bellevue, WA and I'm reading Jim Gray's paper on [transactions](https://jimgray.azurewebsites.net/papers/A%20Transaction%20Model%20RJ%202895.pdf). I've learned about transactions before, but I started to read this paper and thought it did an excellent job at defining it. This post will largely be definitions, and then next time we'll discuss crash recovery and other fun stuff.
 
-![Coffee](/coffee-codex/transactions/coffee.jpg)
+![Coffee](/coffee-codex/transactions/coffee.webp)
 
 ## Definitions
 

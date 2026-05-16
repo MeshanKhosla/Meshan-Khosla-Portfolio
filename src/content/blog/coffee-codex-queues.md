@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/queues/cover.png"
 ## Introduction
 I'm at Toasted in Bellevue, WA and I'm learning about queues. Specifically, I'm reading [this](https://brooker.co.za/blog/2025/03/25/two-queues.html) post by Marc Brooker who's a distinguished engineer at AWS. I saw this post on Twitter and it looked interesting so I'll do Broadcast Algorithms II next time.
 
-![Coffee](/coffee-codex/queues/coffee.jpg)
+![Coffee](/coffee-codex/queues/coffee.webp)
 
 ## Queues
 Queues are fun, they're often one of the first data structures we learn in school and tend to be synonymous with FIFO. These work great for simple programs where the queue can be implemented with an array and is fully representable in memory. However, as with most things, scaling queues is harder. In distributed systems, we often turn to services like AWS Simple Queue Service (SQS) to handle queueing. In college, I even implemented an [Office Hours Queue](https://github.com/Berkeley-CS61B/simple-office-hours-queue) which we used to hold office hours.

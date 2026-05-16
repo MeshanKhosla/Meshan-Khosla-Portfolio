@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/twitch/cover.png"
 ## Introduction
 I'm at Woods Cafe in Bellevue, WA and I'm learning about streaming technology by reverse engineering Twitch. I can't know how the backend of Twitch works, so I'm going to focus on the Client requests/responses to understand how a streaming platform works.
 
-![Coffee](/coffee-codex/twitch/coffee.jpg)
+![Coffee](/coffee-codex/twitch/coffee.webp)
 
 ## Websocket connections
 The first thing I looked for was websocket connections. Intuitively it makes sense for twitch to operate a lot of their requests through websockets, so let's take a look.

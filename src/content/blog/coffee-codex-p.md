@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/p/cover.png"
 I'm at Royal Bakehouse in Bellevue, WA and I'm learning about the [P programming language](https://p-org.github.io/P/) by going through the examples on their site.
 In the <a href='/blog/coffee-codex-formal'>last post</a> I learned about general formal methods that AWS used and why P was a good choice for them. Today I'll dive a bit deeper and see the exact syntax and semantics that P uses.
 
-![Coffee](/coffee-codex/p/coffee.png)
+![Coffee](/coffee-codex/p/coffee.webp)
 
 ## Semantics
 P is a language based on state machines and each machine can asynchronously send messages to other machines. Each bachine also has an unbounded FIFO buffer associated with it to keep track of the messages received. The machine then dequeues events from the input buffer and executes handlers based on the event. Sends to machines are reliable and directed as opposed to broadcast. The events are dequeued in causal order, I talked more about causal order <a href='/blog/coffee-codex-causality-and-happens-before'>here</a>.

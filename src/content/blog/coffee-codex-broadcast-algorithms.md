@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/broadcast-algorithms/cover.png"
 ## Introduction
 I'm at Capital One Cafe (which serves Verve coffee) in Bellevue, WA and I'm learning about broadcast ordering in distributed systems.
 
-![Coffee](/coffee-codex/broadcast-algorithms/coffee.png)
+![Coffee](/coffee-codex/broadcast-algorithms/coffee.webp)
 
 ## Recap
 

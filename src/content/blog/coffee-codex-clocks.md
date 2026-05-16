@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/physical-clocks/coffee-codex-physical-clocks-hero.png"
 ## Introduction
 I'm at Woods Coffee in Bellevue, WA and I'm learning about clocks in distributed systems.
 
-![Coffee](/coffee-codex/physical-clocks/physical-clock-coffee.jpeg)
+![Coffee](/coffee-codex/physical-clocks/physical-clock-coffee.webp)
 
 ## Time
 In our everyday lives we treat time as monotonic, meaning it is always increasing. We create routines, schedule events, and (most importantly) perceive causality with time. There are small exceptions such as leap seconds but our every day lives can operate under the assumption that time is always increasing which is very convenient.

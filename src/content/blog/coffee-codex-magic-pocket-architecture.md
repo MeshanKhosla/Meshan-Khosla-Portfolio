@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/magic-pocket-2/cover.png"
 
 I'm at Dote in Bellevue, WA. In a <a href="/blog/coffee-codex-magic-pocket">previous post</a>, I started learning about Dropbox's Magic Pocket (MP) technology. I started covering the data model of Dropbox Magic Pocket and how files get converted into blocks, buckets, and volumes.
 
-![Coffee](/coffee-codex/magic-pocket-2/coffee.png)
+![Coffee](/coffee-codex/magic-pocket-2/coffee.webp)
 
 ## Intra-zone architecture
 As mentioned in the last post, MP is is a multi-zone system, so data is stored across multiple zones. However the magic that happens within each zone is even more fascinating. 

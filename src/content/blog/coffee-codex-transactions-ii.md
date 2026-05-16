@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/transactions-ii/cover.png"
 
 I'm back in 2026! I'm at Sconers in Bellevue, WA and I'm continuing to read Jim Gray's paper on [transactions](https://jimgray.azurewebsites.net/papers/A%20Transaction%20Model%20RJ%202895.pdf). Last time we discussed the fundamental definitions of transactions, reliability, and the different types of entities (Real, Stable, and Volatile). Now we'll explore how crash recovery works and how the system guarantees reliability even when things go wrong.
 
-![Coffee](/coffee-codex/transactions-ii/coffee.jpg)
+![Coffee](/coffee-codex/transactions-ii/coffee.webp)
 
 ## Background
 

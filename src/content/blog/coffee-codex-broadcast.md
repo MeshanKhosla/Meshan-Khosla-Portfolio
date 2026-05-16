@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/broadcast/cover.png"
 ## Introduction
 I'm at Woods in Bellevue, WA and I'm learning about broadcast ordering in distributed systems
 
-![Coffee](/coffee-codex/broadcast/coffee.png)
+![Coffee](/coffee-codex/broadcast/coffee.webp)
 
 ## Recap
 

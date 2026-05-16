@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/causality/cover.png"
 ## Introduction
 I'm at Bellden Cafe in Bellevue, WA and I'm learning about ordering using time in distributed systems.
 
-![Coffee](/coffee-codex/causality/coffee.jpeg)
+![Coffee](/coffee-codex/causality/coffee.webp)
 
 ## Recap
 

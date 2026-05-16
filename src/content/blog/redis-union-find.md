@@ -36,22 +36,22 @@ Now, let's `union("Alice", "Bob")`. This means Alice and Bob are now connected, 
 
 The way we represent this in Weighted Quick Union is by setting the **larger root** as the parent of the **smaller root**. In this case, Alice and Bob both have a size of 1, so we can arbitrarily make Alice the parent.
 
-<video controls src="/redis-union-find-blog/four-to-three-sets.mp4" title="union('Alice', 'Bob')"></video>
+<video controls preload="metadata" src="/redis-union-find-blog/four-to-three-sets.mp4" title="union('Alice', 'Bob')"></video>
 
 
 Now let's `union("Charlie", "Dave")`
 
-<video controls src="/redis-union-find-blog/three-to-two-sets.mp4" title="union('Charlie', 'Dave')"></video>
+<video controls preload="metadata" src="/redis-union-find-blog/three-to-two-sets.mp4" title="union('Charlie', 'Dave')"></video>
 
 And finally `union("Bob", "Charlie")`
 
 Here we can arbitrarily make Alice the parent since both sets have a size of 2.
 
-<video controls src="/redis-union-find-blog/two-to-one-set.mp4" title="union('Bob', 'Charlie')"></video>
+<video controls preload="metadata" src="/redis-union-find-blog/two-to-one-set.mp4" title="union('Bob', 'Charlie')"></video>
 
 To demonstrate WQU, let's also `union("Bob", "Eve")`. Eve becomes Alice's child since Alice is the root and has a weight of 4, which is greater than Eve's 1. Note that we could have union'd Eve with any other node, since they all belong to the same set.
 
-<video controls src="/redis-union-find-blog/add-eve.mp4" title="union('Bob', 'Eve')"></video>
+<video controls preload="metadata" src="/redis-union-find-blog/add-eve.mp4" title="union('Bob', 'Eve')"></video>
 
 Now we're left with 1 set and if we follow WQU, our `connect` and `areConnected` will run in logarithmic time with respect to the number of nodes!
 

@@ -11,7 +11,7 @@ I'm at Nana's Green Tea in Bellevue, WA and today I'm learning about the fundame
 
 I'm trying matcha for the first time in this series.
 
-![Coffee](/coffee-codex/the-log/coffee.jpg)
+![Coffee](/coffee-codex/the-log/coffee.webp)
 
 I'm interested in this because I covered how the backend of Convex works in a <a href="/blog/coffee-codex-convex-backend">previous post</a> and they heavily utilize a transaction log in order to maintain serializability. I'm curious how typical a solution like theirs is.
 

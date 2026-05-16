@@ -11,7 +11,7 @@ I'm at Farines Bakery in Bellevue, WA, and today I'm reading [this blog post](ht
 
 The internals of Postgres are pretty foreign to me, so I'm interested in learning about how this differs from other databases.
 
-![Coffee](/coffee-codex/tenancy-postgres/coffee.jpg)
+![Coffee](/coffee-codex/tenancy-postgres/coffee.webp)
 
 ## Multi-tenancy
 My understanding of multi-tenancy is pretty simple: multiple users can use the same compute instance, but Simeon defines it much better in terms of databases:

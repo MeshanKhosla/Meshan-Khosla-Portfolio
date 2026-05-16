@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/aws-outage/cover.png"
 
 I'm at T'Latte in Bellevue, WA and today I'm reading about the AWS outage that happened in us-east-1 (and some other regions) on October 19th and 20th, 2025. I work at AWS and was lucky enough to be on-call during this time. I'm not on the DynamoDB or EC2 teams, but my service was also down during this time in us-east-1. To my knowledge, there were two incidents: the first one happened on Sunday night (PST) and the second happened Monday morning, but I'm not sure if the first one was related. I probably won't read all of the post, but rather just understand one part. 
 
-![Coffee](/coffee-codex/aws-outage/coffee.jpg)
+![Coffee](/coffee-codex/aws-outage/coffee.webp)
 
 ## DynamoDB Outage
 

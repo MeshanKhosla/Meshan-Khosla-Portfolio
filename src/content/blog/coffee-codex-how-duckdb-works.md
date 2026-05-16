@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/how-duckdb-works/cover.png"
 
 I'm at Choo Tea in Bellevue, WA and today I'm learning about DuckDB. I'm working on a BI app for the [Convex x Tanstack Start hackathon](https://www.convex.dev/hackathons/tanstack) and decided to use DuckDB as my analytics engine. It's been working well, but I'd like to learn a bit more about it since I don't really know how it works. I just give it data and execute SQL on it. So I'm going to read [this post](https://endjin.com/blog/2025/04/duckdb-in-depth-how-it-works-what-makes-it-fast).
 
-![Coffee](/coffee-codex/how-duckdb-works/coffee.jpg)
+![Coffee](/coffee-codex/how-duckdb-works/coffee.webp)
 
 ## Columnar Storage
 

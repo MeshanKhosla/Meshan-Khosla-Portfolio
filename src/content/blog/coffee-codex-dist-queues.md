@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/dist-queues/cover.png"
 ## Introduction
 I'm at Capital One Cafe in Bellevue Washington and I'm reading [this](https://www.dbos.dev/blog/durable-queues) post by DBOS on how they solved distributed queues after 15 years.
 
-![Coffee](/coffee-codex/dist-queues/coffee.jpg)
+![Coffee](/coffee-codex/dist-queues/coffee.webp)
 
 Looking at the author, Jeremy Edberg, it definitely looks like he knows what he's talking about. He's the CEO of DBOS, ex-Principal engineer at Amazon, Architect at Netflix/Reddit, and most importantly, UC Berkeley alum (go bears). I also learned that DBOS is pronounced Dee-boss and not DB OS.
 

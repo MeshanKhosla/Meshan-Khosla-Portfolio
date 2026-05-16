@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/lambda-workers/cover.png"
 ## Introduction
 I'm at Capital One Cafe in Bellevue, WA and I'm continuing to learn how Lambda works. In the <a href='/blog/coffee-codex-lambda'>last post</a>, I wrote about the Lambda frontend and how a request actually gets routed to a server.
 
-![Coffee](/coffee-codex/lambda-workers/coffee.png)
+![Coffee](/coffee-codex/lambda-workers/coffee.webp)
 
 Let me recap the last few sentences:
 

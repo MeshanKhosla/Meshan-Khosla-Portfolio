@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/crdt/cover.png"
 ## Introduction
 I'm at Bellden Cafe in Bellevue, WA, and today I'm learning about CRDTs (Conflict-free Replicated Data Type) in distributed systems. I really only know that they are data types used when dealing with collaborative, possibly offline systems such as Google Docs so I'm looking forward to reading more about how they work.
 
-![Coffee](/coffee-codex/crdt/coffee.jpg)
+![Coffee](/coffee-codex/crdt/coffee.webp)
 
 ## Primitive types
 Imagine an app that lets multiple users increment a counter on a website. The primitive approach to this is to have a counter variable stored on the server. On a request, the server will increment that counter.

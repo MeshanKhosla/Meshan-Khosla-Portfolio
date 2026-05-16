@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/more-transactions/cover.png"
 
 For the last 2 posts, I read the transactions paper by Jim Gray. Today, I'm continuing to learn about transactions by reading [this blog post](https://planetscale.com/blog/database-transactions) by Ben Dicken from Planetscale.
 
-![Coffee](/coffee-codex/more-transactions/coffee.jpg)
+![Coffee](/coffee-codex/more-transactions/coffee.webp)
 
 The gist of a transaction is it's a set made against the database that happens as one unit, so something like
 

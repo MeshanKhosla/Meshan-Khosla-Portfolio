@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/magic-pocket/cover.png"
 ## Introduction
 I'm at Toasted in Bellevue, WA and I'm learning about how Dropbox built Pocket Watch to verify exabytes of data from this [Dropbox post](https://dropbox.tech/infrastructure/inside-the-magic-pocket)
 
-![Coffee](/coffee-codex/magic-pocket/coffee.jpg)
+![Coffee](/coffee-codex/magic-pocket/coffee.webp)
 
 ## Introduction
 I've been learning how S3 works recently and it's fascinating how they manage millions of hard drives with incredible durability. Part of learning about S3 got me interestested in other storage solutions. I've also been looking into convex.dev and learned that the co-founder was a part of building Dropbox's solution. Dropbox operates their own infrastructure and does not rely on S3 anymore so it'll be interesting to see how the architectures differ.

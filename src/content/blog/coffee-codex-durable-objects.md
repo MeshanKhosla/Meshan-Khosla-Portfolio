@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/durable-objects/cover.png"
 
 I'm at North of Main Cafe in Bellevue, WA, and today I'm learning about Durable Objects from Cloudflare. I've never used Durable Objects and had only heard of them briefly, but they seem like cool technology.
 
-![Coffee](/coffee-codex/durable-objects/coffee.png)
+![Coffee](/coffee-codex/durable-objects/coffee.webp)
 
 ## The interface
 I think it'll be good to start with a code example for how Durable Objects are used.

@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/clock-synchronization/cover.png"
 ## Introduction
 I'm at Semicolon Cafe in Bellevue, WA and I'm learning about synchronizing clocks in distributed systems.
 
-![Coffee](/coffee-codex/clock-synchronization/coffee.jpeg)
+![Coffee](/coffee-codex/clock-synchronization/coffee.webp)
 
 ## Recap
 

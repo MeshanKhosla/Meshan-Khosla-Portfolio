@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/dns/cover.png"
 
 I'm at Belle Pastry in Bellevue, WA and today I'm learning about DNS resolvers. I think I know the basics of DNS in that it takes a url and recursively asks name servers if they know the IP address associated with that name, but I want to dive deeper. I also want to implement something in code without AI so I figured the first step in doing that is to learn deeply how a DNS resolver works.
 
-![Coffee](/coffee-codex/dns/coffee.jpg)
+![Coffee](/coffee-codex/dns/coffee.webp)
 
 ## How DNS works
 

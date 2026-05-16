@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/convex-backend/cover.png"
 ## Introduction
 I'm at Cafe Aloe in Bellevue, WA, and today I'm learning about how the backend of [convex.dev](https://www.convex.dev/) works. In the <a href='/blog/coffee-codex-convex'>last post</a>, I looked into the Convex client and built a demo app to understand the WebSocket messages. I'm going to learn about the backend by reading through [this post](https://stack.convex.dev/how-convex-works)
 
-![Coffee](/coffee-codex/convex-backend/coffee.jpg)
+![Coffee](/coffee-codex/convex-backend/coffee.webp)
 
 I did come to a realization yesterday, which is that Convex is not a pub-sub system. I was trying to implement something similar to Convex in TypeScript and Bun and my initial thought was to just use Bun's pub/sub behavior on its WebSocket implementation. This isn't too difficult, but that's not what Convex is. While the end goal is somewhat similar, Convex is a *database*, which happens to also be reactive.
 

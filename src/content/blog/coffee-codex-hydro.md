@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/hydro/cover.png"
 
 I'm at T'Latte in Bellevue, WA and today I'm learning about hydro.run.
 
-![Coffee](/coffee-codex/hydro/coffee.jpg)
+![Coffee](/coffee-codex/hydro/coffee.webp)
 
 I learned about [P](https://p-org.github.io/P/whatisP/#p-language) in a previous blog post, and it looks like there's a new way to develop Distributed Systems that came out of Berkeley (go bears) called [Hydro](https://hydro.run/)!
 

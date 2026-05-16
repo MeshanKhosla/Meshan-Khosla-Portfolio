@@ -9,7 +9,7 @@ heroImage: "/coffee-codex/2pc-coffee-shops/cover.png"
 
 I'm at Toasted in Bellevue, WA and I'm reading [this](https://www.enterpriseintegrationpatterns.com/docs/IEEE_Software_Design_2PC.pdf) post about Coffee shops and two phase commit. I thought this was fitting since this is Coffee Codex and I've talked about 2PC <a href="/blog/coffee-codex-p-2pc">before</a>.
 
-![Coffee](/coffee-codex/2pc-coffee-shops/coffee.png)
+![Coffee](/coffee-codex/2pc-coffee-shops/coffee.webp)
 
 ## Coffee shop flow
 

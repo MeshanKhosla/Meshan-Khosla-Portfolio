@@ -8,7 +8,7 @@ heroImage: "/coffee-codex/logical-time-lamport/cover.png"
 ## Introduction
 I'm at Toasted in Bellevue, WA and I'm learning about Logical Time (specifically Lamport Clocks) in distributed systems.
 
-![Coffee](/coffee-codex/logical-time-lamport/coffee.jpg)
+![Coffee](/coffee-codex/logical-time-lamport/coffee.webp)
 
 ## Recap
 

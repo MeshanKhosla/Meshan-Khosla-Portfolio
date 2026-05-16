@@ -13,7 +13,7 @@ Specifically Marc says something like this:
 
 He's saying that, with quorum-based replication, you can still have consistency and high availability for almost all clients, even if the strict CAP definition would rule that out.
 
-![Coffee](/coffee-codex/cap/coffee.jpg)
+![Coffee](/coffee-codex/cap/coffee.webp)
 
 ## The CAP Theorem
 
