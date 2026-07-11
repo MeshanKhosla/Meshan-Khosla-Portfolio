@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const companyLanes = [
+  {
+    company: 'AWS',
+    accent: 'blue',
+    items: [
+      {
+        title: 'Highcharts GenAI Evaluation Framework',
+        slug: 'aws-highcharts-genai-evaluation-framework',
+        description: 'Built an offline LLM-as-judge evaluation framework for AI-generated Highcharts configs, covering both reference-based and reference-free browser evaluation.',
+      },
+      {
+        title: 'Sheet Tooltip',
+        slug: 'aws-sheet-tooltip',
+        description: 'Improved the QuickSight sheet experience with tooltip behavior for readers and authors.',
+      },
+      {
+        title: 'Reader Customization',
+        slug: 'aws-reader-customization',
+        description: 'Shipped customization work for the QuickSight reader experience.',
+      },
+      {
+        title: 'CI/CD',
+        slug: 'aws-ci-cd',
+        description: 'Worked on delivery infrastructure to make development and release workflows more reliable.',
+      },
+      {
+        title: 'LayerMap',
+        slug: 'aws-layermap',
+        description: 'Built map visualization work for layered geospatial analysis in QuickSight.',
+      },
+    ],
+  },
+  {
+    company: 'Upstash',
+    accent: 'green',
+    items: [
+      {
+        title: 'Distributed Lock SDK',
+        slug: 'upstash-distributed-lock-sdk',
+        description: 'Built a best-effort distributed lock and debounce SDK on Upstash Redis for coordinating expensive work across serverless clients.',
+      },
+      {
+        title: 'Batching support in QStash',
+        slug: 'upstash-qstash-batching',
+        description: 'Added QStash batching support so developers could publish many messages to one or more destinations in a single request.',
+      },
+      {
+        title: 'QStash Python SDK',
+        slug: 'upstash-qstash-python-sdk',
+        description: 'Shipped Python SDK support for core QStash workflows including publishing, scheduling, logs, DLQ access, and signature verification.',
+      },
+      {
+        title: 'Refactored QStash docs',
+        slug: 'upstash-qstash-docs',
+        description: 'Refactored QStash documentation to make serverless messaging, scheduling, SDK usage, and API examples easier to navigate.',
+      },
+    ],
+  },
+  {
+    company: 'UC Berkeley CS61B',
+    accent: 'gold',
+    items: [
+      {
+        title: 'Simple Office Hours Queue',
+        slug: 'cs61b-simple-office-hours-queue',
+        description: 'Built course infrastructure for managing office hours queues and student support workflows.',
+      },
+    ],
+  },
+];
+
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+---
+
+<Layout
+  title="Things I've Shipped"
+  description="Professional shipped work by Meshan Khosla across AWS, Upstash, and UC Berkeley."
+>
+  <div class="p-6 lg:p-12">
+    <header class="max-w-4xl mb-4">
+      <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Things I've Shipped For Companies</h1>
+      <p class="text-charcoal-muted dark:text-sand-muted text-balance">
+        For things I've done on my own, see <a href="/projects" class="link">meshan.dev/projects</a>
+      </p>
+    </header>
+
+    <div class="career-lanes" aria-label="Professional shipped work by company">
+      {companyLanes.map((lane) => (
+        <section id={slugify(lane.company)} class={`company-lane company-lane-${lane.accent}`} aria-labelledby={`${lane.accent}-lane`}>
+          <div class="company-heading">
+            <h2 id={`${lane.accent}-lane`}>{lane.company}</h2>
+          </div>
+
+          <div class="lane-work">
+            {lane.items.map((item) => (
+              <article class="shipped-item">
+                <a class="ship-card" href={`/shipped/${item.slug}`} aria-label={`View ${item.title}`}>
+                  <div class="ship-placeholder" aria-hidden="true">
+                    <span>Cover image</span>
+                  </div>
+                  <div class="ship-card-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .career-lanes {
+    --aws: #2f6f9f;
+    --upstash: #197a52;
+    --berkeley: #b87918;
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .company-lane {
+    --lane-accent: var(--aws);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(232 224 208);
+  }
+
+  .company-lane-green {
+    --lane-accent: var(--upstash);
+  }
+
+  .company-lane-gold {
+    --lane-accent: var(--berkeley);
+  }
+
+  :global(.dark) .company-lane {
+    border-color: rgb(37 36 34);
+  }
+
+  .company-heading {
+    position: relative;
+    padding: 0.25rem 0 0;
+  }
+
+  .company-heading h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .lane-work {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .shipped-item {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ship-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 10rem;
+    overflow: hidden;
+    border: 1px solid rgb(232 224 208);
+    border-radius: 0.5rem;
+    background: rgb(253 252 250);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  :global(.dark) .ship-card {
+    border-color: rgb(37 36 34);
+    background: rgb(26 25 24);
+  }
+
+  .ship-card:hover {
+    border-color: color-mix(in srgb, var(--lane-accent) 55%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .ship-placeholder {
+    width: 100%;
+    min-height: 10rem;
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(135deg, rgba(47, 111, 159, 0.2) 25%, transparent 25%) 0 0 / 18px 18px,
+      linear-gradient(135deg, transparent 75%, rgba(47, 111, 159, 0.16) 75%) 0 0 / 18px 18px,
+      rgb(245 240 232);
+  }
+
+  :global(.dark) .ship-placeholder {
+    background:
+      linear-gradient(135deg, rgba(59, 126, 161, 0.24) 25%, transparent 25%) 0 0 / 18px 18px,
+      linear-gradient(135deg, transparent 75%, rgba(59, 126, 161, 0.18) 75%) 0 0 / 18px 18px,
+      rgb(37 36 34);
+  }
+
+  .ship-placeholder span {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(74 74 74);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  :global(.dark) .ship-placeholder span {
+    color: rgb(184 180 172);
+  }
+
+  .ship-card-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .ship-card h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.15;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ship-card p {
+    color: rgb(74 74 74);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0;
+  }
+
+  :global(.dark) .ship-card p {
+    color: rgb(184 180 172);
+  }
+
+  @media (min-width: 1100px) {
+    .company-lane {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      column-gap: 2rem;
+      align-items: start;
+      padding-bottom: 2rem;
+    }
+
+    .company-heading {
+      padding: 0.25rem 0 0;
+    }
+
+    .company-heading h2 {
+      font-size: 2rem;
+    }
+
+    .lane-work {
+      padding: 0;
+      gap: 1rem;
+    }
+
+    .ship-card {
+      grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+      min-height: 11rem;
+    }
+
+    .shipped-item:nth-child(even) .ship-card {
+      grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
+    }
+
+    .shipped-item:nth-child(even) .ship-placeholder {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .shipped-item:nth-child(even) .ship-card-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ship-card {
+      transition: none;
+    }
+
+    .ship-card:hover {
+      transform: none;
+    }
+  }
+</style>

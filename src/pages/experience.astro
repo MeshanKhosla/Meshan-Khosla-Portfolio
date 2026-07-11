@@ -20,26 +20,31 @@ const experience = [
     title: 'Software Development Engineer',
     subtitle: 'Amazon Web Services - Quicksight · August 2024 - Present',
     description: 'Working on the Quicksight team, a data visualization tool. Working all over the stack.',
+    shippedHref: '/shipped#aws',
   },
   {
     title: 'Software Engineer',
     subtitle: 'Upstash · December 2023 - May 2024',
     description: 'I worked on the core team on QStash, a serverless distributed messaging service. I also created the distributed lock SDK and improved QStash documentation.',
+    shippedHref: '/shipped#upstash',
   },
   {
     title: 'Undergraduate Student Instructor (20 Hour TA)',
     subtitle: 'UC Berkeley Data Structures - CS61B · Dec 2022 - May 2024',
     description: 'I lead the Infrastructure team with the development of SOHQ, an open source office hours queue. I also taught weekly discussions, labs, and office hours covering concepts such as Linked Lists, Asymptotics, OOP, Graph algorithms, Trees, Sorting, Git, Tries, Hashing and more.',
+    shippedHref: '/shipped#uc-berkeley-cs61b',
   },
   {
     title: 'Software Development Engineer Intern',
     subtitle: 'Amazon Web Services - Quicksight · May 2023 - Aug 2023',
     description: 'At AWS Quicksight, I created a data visualization map type that integrates customer uploaded data and custom polygons on a world map using Mapbox, React, and Typescript.',
+    shippedHref: '/shipped#aws',
   },
   {
     title: 'Software Development Engineer Intern',
     subtitle: 'Amazon Web Services - EC2 · May 2022 - Aug 2022',
     description: 'As an SDE intern at AWS, I developed a refund automation feature using Lambda and Step Functions. The refund API was written in Java and allowed AWS to issue refunds for canceled EC2 Savings Plans. I also used CDK to chain lambdas in a step function.',
+    shippedHref: '/shipped#aws',
   },
   {
     title: 'Undergraduate Student Instructor (8 Hour TA)',
@@ -97,6 +102,7 @@ const skills = [
             title={item.title}
             subtitle={item.subtitle}
             description={item.description}
+            shippedHref={item.shippedHref}
           />
         ))}
       </div>
