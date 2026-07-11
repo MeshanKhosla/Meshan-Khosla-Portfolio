@@ -127,8 +127,12 @@ pre {
   @apply bg-ink-light border-ink-lighter;
 }
 
-.dark .prose code {
+.dark .prose code:not(pre code) {
   @apply bg-ink-lighter;
+}
+
+.dark .prose pre code {
+  background-color: transparent !important;
 }
 
 /* Prose overflow handling - prevent long URLs from causing horizontal scroll */
