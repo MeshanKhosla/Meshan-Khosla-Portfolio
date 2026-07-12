@@ -3,11 +3,16 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import GridCard from '../../components/GridCard.astro';
 import SearchBox from '../../components/SearchBox.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getBlogImageSources } from '../../utils/blog-image';
 
 // Get all blog posts sorted by date
 const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const pageSize = 9;
+const posts = allPosts.slice(0, pageSize);
+const totalPages = Math.ceil(allPosts.length / pageSize);
 
 // Format date helper
 const formatDate = (date: Date) => {
@@ -35,18 +40,26 @@ const formatDate = (date: Date) => {
       <SearchBox />
     </div>
 
-    <!-- Posts Grid - All posts rendered, filtered by search -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {allPosts.map((post) => (
+    <!-- Posts Grid -->
+    <div data-posts-grid class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      {posts.map((post) => (
         <GridCard
           title={post.data.title}
           description={post.data.description}
-          url={`/blog/${post.id}`}
-          image={post.data.heroImage}
+          url={`/blog/${post.id}/`}
+          image={getBlogImageSources(post.data.heroImage).src}
+          imageSrcset={getBlogImageSources(post.data.heroImage).srcset}
+          imageSizes="(min-width: 1024px) calc((100vw - 17rem) / 3), (min-width: 768px) 50vw, 100vw"
           meta={formatDate(post.data.pubDate)}
           slug={post.id}
         />
       ))}
+    </div>
+
+    <div data-search-results class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" aria-live="polite"></div>
+
+    <div data-pagination>
+      <Pagination currentPage={1} totalPages={totalPages} baseUrl="/blog/" />
     </div>
   </div>
 </Layout>

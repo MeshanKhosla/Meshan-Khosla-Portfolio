@@ -83,7 +83,7 @@ const recentPosts = (await getCollection('blog'))
         <div class="flex items-center justify-between mb-6">
           <h2 class="font-serif text-xl font-semibold">Recent Posts</h2>
           <a
-            href="/blog"
+            href="/blog/"
             class="text-sm text-accent dark:text-accent-light hover:underline underline-offset-2"
           >
             View all →
@@ -93,7 +93,7 @@ const recentPosts = (await getCollection('blog'))
         <div class="flex-1 space-y-1">
           {recentPosts.map((post) => (
             <a
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.id}/`}
               class="group block p-4 -mx-4 rounded-lg hover:bg-cream-200/50 dark:hover:bg-ink-lighter/50 transition-colors"
             >
               <div class="flex items-start justify-between gap-4">

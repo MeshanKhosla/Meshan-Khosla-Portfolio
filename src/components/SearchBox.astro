@@ -46,6 +46,14 @@
 </div>
 
 <script>
+  interface SearchPost {
+    slug: string;
+    title: string;
+    description: string;
+    pubDate: string;
+    image: { src: string; srcset: string } | null;
+  }
+
   class SearchBoxComponent {
     private container: HTMLElement;
     private input: HTMLInputElement;
@@ -53,6 +61,7 @@
     private statusEl: HTMLElement;
     private resultsCount: HTMLElement;
     private debounceTimer: number | null = null;
+    private searchIndex: Promise<SearchPost[]> | null = null;
 
     constructor(container: HTMLElement) {
       this.container = container;
@@ -75,7 +84,7 @@
         clearTimeout(this.debounceTimer);
       }
 
-      this.debounceTimer = window.setTimeout(() => {
+      this.debounceTimer = window.setTimeout(async () => {
         const query = this.input.value.trim().toLowerCase();
         
         // Show/hide clear button
@@ -85,51 +94,111 @@
           this.clearBtn?.classList.add('hidden');
         }
 
-        // Get all grid cards
-        const cards = document.querySelectorAll('[data-search-card]');
+        const postsGrid = document.querySelector('[data-posts-grid]') as HTMLElement | null;
+        const searchResults = document.querySelector('[data-search-results]') as HTMLElement | null;
         const pagination = document.querySelector('[data-pagination]');
         
         if (query.length === 0) {
-          // Show all cards
-          cards.forEach(card => {
-            (card as HTMLElement).style.display = '';
-          });
-          // Show pagination
+          postsGrid?.classList.remove('hidden');
+          searchResults?.classList.add('hidden');
+          searchResults?.classList.remove('grid');
+          searchResults?.replaceChildren();
           if (pagination) (pagination as HTMLElement).style.display = '';
           this.statusEl?.classList.add('hidden');
           return;
         }
 
-        // Hide pagination when filtering
+        postsGrid?.classList.add('hidden');
+        searchResults?.classList.remove('hidden');
+        searchResults?.classList.add('grid');
         if (pagination) (pagination as HTMLElement).style.display = 'none';
-
-        // Filter cards
-        let visibleCount = 0;
-        cards.forEach(card => {
-          const cardEl = card as HTMLElement;
-          const title = cardEl.getAttribute('data-title')?.toLowerCase() || '';
-          const description = cardEl.getAttribute('data-description')?.toLowerCase() || '';
-          const slug = cardEl.getAttribute('data-slug') || '';
-          
-          const matchesTitle = title.includes(query);
-          const matchesDesc = description.includes(query);
-          
-          if (matchesTitle || matchesDesc) {
-            cardEl.style.display = '';
-            visibleCount++;
-          } else {
-            cardEl.style.display = 'none';
-          }
-        });
-
-        // Update status
         this.statusEl?.classList.remove('hidden');
-        if (visibleCount === 0) {
-          this.resultsCount.textContent = `No posts found for "${this.input.value}"`;
-        } else {
-          this.resultsCount.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'post' : 'posts'}`;
+        this.resultsCount.textContent = 'Searching all posts…';
+
+        try {
+          this.searchIndex ||= fetch('/blog/search-index.json').then((response) => {
+            if (!response.ok) throw new Error(`Search index request failed: ${response.status}`);
+            return response.json() as Promise<SearchPost[]>;
+          });
+
+          const posts = await this.searchIndex;
+          if (query !== this.input.value.trim().toLowerCase()) return;
+
+          const matches = posts.filter((post) =>
+            post.title.toLowerCase().includes(query) ||
+            post.description.toLowerCase().includes(query) ||
+            post.slug.toLowerCase().includes(query)
+          );
+
+          if (searchResults) this.renderResults(searchResults, matches);
+
+          if (matches.length === 0) {
+            this.resultsCount.textContent = `No posts found for "${this.input.value}"`;
+          } else {
+            this.resultsCount.textContent = `Showing ${matches.length} ${matches.length === 1 ? 'post' : 'posts'}`;
+          }
+        } catch {
+          this.searchIndex = null;
+          this.resultsCount.textContent = 'Search is temporarily unavailable. Please try again.';
         }
       }, 100);
+    }
+
+    renderResults(container: HTMLElement, posts: SearchPost[]) {
+      const fragment = document.createDocumentFragment();
+
+      posts.forEach((post) => {
+        const article = document.createElement('article');
+        article.className = 'group relative';
+
+        const link = document.createElement('a');
+        link.href = `/blog/${post.slug}/`;
+        link.className = 'block h-full';
+
+        const card = document.createElement('div');
+        card.className = 'card card-hover h-full flex flex-col overflow-hidden';
+
+        if (post.image) {
+          const imageWrap = document.createElement('div');
+          imageWrap.className = '-mx-6 -mt-6 mb-4 overflow-hidden bg-cream-200 dark:bg-ink-lighter';
+          const ratio = document.createElement('div');
+          ratio.className = 'aspect-[16/10] overflow-hidden';
+          const image = document.createElement('img');
+          image.src = post.image.src;
+          image.srcset = post.image.srcset;
+          image.sizes = '(min-width: 1024px) calc((100vw - 17rem) / 3), (min-width: 768px) 50vw, 100vw';
+          image.alt = post.title;
+          image.width = 800;
+          image.height = 500;
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          image.className = 'w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105';
+          ratio.append(image);
+          imageWrap.append(ratio);
+          card.append(imageWrap);
+        }
+
+        const copy = document.createElement('div');
+        copy.className = 'flex-1 flex flex-col';
+        const meta = document.createElement('p');
+        meta.className = 'text-xs text-charcoal-muted dark:text-sand-muted mb-2';
+        meta.textContent = new Date(post.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric', month: 'short', day: 'numeric',
+        });
+        const heading = document.createElement('h3');
+        heading.className = 'font-serif text-lg font-semibold text-charcoal dark:text-sand group-hover:text-accent dark:group-hover:text-accent-light transition-colors line-clamp-2 mb-2';
+        heading.textContent = post.title;
+        const description = document.createElement('p');
+        description.className = 'text-sm text-charcoal-muted dark:text-sand-muted line-clamp-3 flex-1';
+        description.textContent = post.description;
+        copy.append(meta, heading, description);
+        card.append(copy);
+        link.append(card);
+        article.append(link);
+        fragment.append(article);
+      });
+
+      container.replaceChildren(fragment);
     }
 
     handleKeydown(e: KeyboardEvent) {
@@ -144,11 +213,12 @@
       this.clearBtn?.classList.add('hidden');
       this.statusEl?.classList.add('hidden');
       
-      // Show all cards
-      const cards = document.querySelectorAll('[data-search-card]');
-      cards.forEach(card => {
-        (card as HTMLElement).style.display = '';
-      });
+      const postsGrid = document.querySelector('[data-posts-grid]') as HTMLElement | null;
+      const searchResults = document.querySelector('[data-search-results]') as HTMLElement | null;
+      postsGrid?.classList.remove('hidden');
+      searchResults?.classList.add('hidden');
+      searchResults?.classList.remove('grid');
+      searchResults?.replaceChildren();
       
       // Show pagination
       const pagination = document.querySelector('[data-pagination]');

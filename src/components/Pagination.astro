@@ -7,8 +7,9 @@ interface Props {
 
 const { currentPage, totalPages, baseUrl } = Astro.props;
 
-const prevUrl = currentPage > 1 ? `${baseUrl}${currentPage === 2 ? '' : `/${currentPage - 1}`}` : null;
-const nextUrl = currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : null;
+const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+const prevUrl = currentPage > 1 ? (currentPage === 2 ? normalizedBaseUrl : `${normalizedBaseUrl}${currentPage - 1}/`) : null;
+const nextUrl = currentPage < totalPages ? `${normalizedBaseUrl}${currentPage + 1}/` : null;
 
 // Generate page numbers to show
 const getPageNumbers = () => {
@@ -77,7 +78,7 @@ const pageNumbers = getPageNumbers();
           <span class="px-2 py-1 text-charcoal-muted dark:text-sand-muted">...</span>
         ) : (
           <a
-            href={page === 1 ? baseUrl : `${baseUrl}/${page}`}
+            href={page === 1 ? normalizedBaseUrl : `${normalizedBaseUrl}${page}/`}
             class:list={[
               'px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
               page === currentPage

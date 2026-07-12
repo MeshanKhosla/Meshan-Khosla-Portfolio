@@ -25,6 +25,7 @@ const lazyMarkdownMedia = () => {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://meshan.dev',
+  trailingSlash: 'always',
   integrations: [sitemap()],
   markdown: {
     rehypePlugins: [lazyMarkdownMedia],
@@ -34,7 +35,7 @@ export default defineConfig({
     },
   },
   prefetch: {
-    prefetchAll: false,
+    prefetchAll: true,
     defaultStrategy: 'hover',
   },
 });

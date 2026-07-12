@@ -5,7 +5,7 @@ export async function getStaticPaths() {
   const entries = await getCollection('shipped');
   return entries.map((entry) => ({
     params: { slug: entry.data.legacySlug },
-    props: { target: `/shipped/${entry.id}` },
+    props: { target: `/shipped/${entry.id}/` },
   }));
 }
 

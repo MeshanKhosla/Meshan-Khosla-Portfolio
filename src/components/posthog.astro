@@ -43,9 +43,17 @@
     posthog.init('phc_PDrenDh9gKCIu8aW4wRTjWNVUMdVxhRaSZlYw2xF6Hb', { api_host: 'https://us.i.posthog.com', defaults: '2025-05-24' });
   };
 
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(loadPostHog, { timeout: 3000 });
+  const schedulePostHog = () => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadPostHog, { timeout: 5000 });
+    } else {
+      window.setTimeout(loadPostHog, 5000);
+    }
+  };
+
+  if (document.readyState === 'complete') {
+    schedulePostHog();
   } else {
-    window.setTimeout(loadPostHog, 1500);
+    window.addEventListener('load', schedulePostHog, { once: true });
   }
 </script>

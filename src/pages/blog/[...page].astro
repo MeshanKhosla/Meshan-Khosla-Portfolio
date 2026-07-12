@@ -5,13 +5,14 @@ import Layout from '../../layouts/Layout.astro';
 import GridCard from '../../components/GridCard.astro';
 import SearchBox from '../../components/SearchBox.astro';
 import Pagination from '../../components/Pagination.astro';
+import { getBlogImageSources } from '../../utils/blog-image';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   
-  return paginate(allPosts, { pageSize: 9 }); // 3x3 grid
+  return paginate(allPosts, { pageSize: 9 }).filter(({ params }) => params.page !== undefined); // Page 1 is /blog/
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -43,22 +44,26 @@ const formatDate = (date: Date) => {
     </div>
 
     <!-- Posts Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    <div data-posts-grid class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
       {page.data.map((post) => (
         <GridCard
           title={post.data.title}
           description={post.data.description}
-          url={`/blog/${post.id}`}
-          image={post.data.heroImage}
+          url={`/blog/${post.id}/`}
+          image={getBlogImageSources(post.data.heroImage).src}
+          imageSrcset={getBlogImageSources(post.data.heroImage).srcset}
+          imageSizes="(min-width: 1024px) calc((100vw - 17rem) / 3), (min-width: 768px) 50vw, 100vw"
           meta={formatDate(post.data.pubDate)}
           slug={post.id}
         />
       ))}
     </div>
 
+    <div data-search-results class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" aria-live="polite"></div>
+
     <!-- Pagination -->
     <div data-pagination>
-      <Pagination currentPage={page.currentPage} totalPages={page.lastPage} baseUrl="/blog" />
+      <Pagination currentPage={page.currentPage} totalPages={page.lastPage} baseUrl="/blog/" />
     </div>
   </div>
 </Layout>

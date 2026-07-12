@@ -7,9 +7,21 @@ interface Props {
   meta?: string;
   isExternal?: boolean;
   slug?: string;
+  imageSrcset?: string;
+  imageSizes?: string;
 }
 
-const { title, description, url, image, meta, isExternal = false, slug = '' } = Astro.props;
+const {
+  title,
+  description,
+  url,
+  image,
+  meta,
+  isExternal = false,
+  slug = '',
+  imageSrcset,
+  imageSizes,
+} = Astro.props;
 ---
 
 <article 
@@ -31,7 +43,11 @@ const { title, description, url, image, meta, isExternal = false, slug = '' } = 
           <div class="aspect-[16/10] overflow-hidden">
             <img
               src={image}
+              srcset={imageSrcset}
+              sizes={imageSizes}
               alt={title}
+              width="800"
+              height="500"
               class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               decoding="async"

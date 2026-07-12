@@ -113,7 +113,7 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
     <header class="max-w-4xl mb-4">
       <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Shipped</h1>
       <p class="text-charcoal-muted dark:text-sand-muted text-balance">
-        For things I've done on my own, see <a href="/projects" class="link">meshan.dev/projects</a>.
+        For things I've done on my own, see <a href="/projects/" class="link">meshan.dev/projects</a>.
       </p>
     </header>
 
@@ -132,7 +132,7 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
           <div class="lane-work">
             {lane.items.map((item) => (
               <article class="shipped-item">
-                <a class="ship-card" href={`/shipped/${lane.route}/${item.path}`} aria-label={`View ${item.title}`}>
+                <a class="ship-card" href={`/shipped/${lane.route}/${item.path}/`} aria-label={`View ${item.title}`}>
                   <ShippedVisual kind={item.visual} />
                   <div class="ship-card-copy">
                     <h3>{item.title}</h3>
