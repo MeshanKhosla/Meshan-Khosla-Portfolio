@@ -3,9 +3,11 @@ interface Props {
   title: string;
   subtitle: string;
   description: string;
+  shippedHref?: string;
+  shippedLabel?: string;
 }
 
-const { title, subtitle, description } = Astro.props;
+const { title, subtitle, description, shippedHref, shippedLabel = 'View shipped work' } = Astro.props;
 ---
 
 <div class="relative pl-8 pb-8 border-l-2 border-cream-300 dark:border-ink-lighter last:pb-0">
@@ -24,5 +26,10 @@ const { title, subtitle, description } = Astro.props;
     <p class="text-charcoal-muted dark:text-sand-muted pt-2">
       {description}
     </p>
+    {shippedHref && (
+      <a href={shippedHref} class="link inline-flex pt-2 text-sm font-medium">
+        {shippedLabel}
+      </a>
+    )}
   </div>
 </div>

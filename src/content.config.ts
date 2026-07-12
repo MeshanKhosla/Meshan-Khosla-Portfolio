@@ -13,4 +13,18 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const shipped = defineCollection({
+  loader: glob({ base: './src/content/shipped', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    title: z.string(),
+    company: z.string(),
+    companySlug: z.string(),
+    visual: z.enum(['chart', 'tooltip', 'controls', 'pipeline', 'map', 'lock', 'batch', 'python', 'docs', 'queue']),
+    summary: z.string(),
+    order: z.number(),
+    legacySlug: z.string(),
+    links: z.array(z.object({ label: z.string(), href: z.string().url() })).default([]),
+  }),
+});
+
+export const collections = { blog, shipped };

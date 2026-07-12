@@ -1,0 +1,372 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ShippedVisual from '../components/ShippedVisual.astro';
+import { getCollection } from 'astro:content';
+
+const shippedEntries = await getCollection('shipped');
+const shippedById = new Map(shippedEntries.map((entry) => [entry.id, entry.data]));
+const summary = (id: string) => shippedById.get(id)?.summary ?? '';
+
+const companyLanes = [
+  {
+    company: 'AWS',
+    route: 'aws',
+    accent: 'blue',
+    note: '...and, of course, a lot of on-call :)',
+    items: [
+      {
+        title: 'Highcharts GenAI Evaluation Framework',
+        slug: 'aws-highcharts-genai-evaluation-framework',
+        path: 'highcharts-genai-evaluation-framework',
+        visual: 'chart',
+        description: summary('aws/highcharts-genai-evaluation-framework'),
+      },
+      {
+        title: 'Sheet Tooltip',
+        slug: 'aws-sheet-tooltip',
+        path: 'sheet-tooltip',
+        visual: 'tooltip',
+        description: summary('aws/sheet-tooltip'),
+      },
+      {
+        title: 'Reader Customization',
+        slug: 'aws-reader-customization',
+        path: 'reader-customization',
+        visual: 'controls',
+        description: summary('aws/reader-customization'),
+      },
+      {
+        title: 'CI/CD',
+        slug: 'aws-ci-cd',
+        path: 'ci-cd',
+        visual: 'pipeline',
+        description: summary('aws/ci-cd'),
+      },
+      {
+        title: 'LayerMap',
+        slug: 'aws-layermap',
+        path: 'layermap',
+        visual: 'map',
+        description: summary('aws/layermap'),
+      },
+    ],
+  },
+  {
+    company: 'Upstash',
+    route: 'upstash',
+    accent: 'green',
+    items: [
+      {
+        title: 'Distributed Lock SDK',
+        slug: 'upstash-distributed-lock-sdk',
+        path: 'distributed-lock-sdk',
+        visual: 'lock',
+        description: summary('upstash/distributed-lock-sdk'),
+      },
+      {
+        title: 'Batching support in QStash',
+        slug: 'upstash-qstash-batching',
+        path: 'qstash-batching',
+        visual: 'batch',
+        description: summary('upstash/qstash-batching'),
+      },
+      {
+        title: 'QStash Python SDK',
+        slug: 'upstash-qstash-python-sdk',
+        path: 'qstash-python-sdk',
+        visual: 'python',
+        description: summary('upstash/qstash-python-sdk'),
+      },
+      {
+        title: 'Refactored QStash docs',
+        slug: 'upstash-qstash-docs',
+        path: 'qstash-docs',
+        visual: 'docs',
+        description: summary('upstash/qstash-docs'),
+      },
+    ],
+  },
+  {
+    company: 'UC Berkeley CS61B',
+    route: 'uc-berkeley-cs61b',
+    accent: 'gold',
+    items: [
+      {
+        title: 'Simple Office Hours Queue',
+        slug: 'cs61b-simple-office-hours-queue',
+        path: 'simple-office-hours-queue',
+        visual: 'queue',
+        description: summary('uc-berkeley-cs61b/simple-office-hours-queue'),
+      },
+    ],
+  },
+];
+
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+---
+
+<Layout
+  title="Shipped"
+  description="Professional shipped work by Meshan Khosla across AWS, Upstash, and UC Berkeley."
+>
+  <div class="p-6 lg:p-12">
+    <header class="max-w-4xl mb-4">
+      <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Shipped</h1>
+      <p class="text-charcoal-muted dark:text-sand-muted text-balance">
+        For things I've done on my own, see <a href="/projects" class="link">meshan.dev/projects</a>.
+      </p>
+    </header>
+
+    <div class="career-lanes" aria-label="Professional shipped work by company">
+      {companyLanes.map((lane) => (
+        <section id={slugify(lane.company)} class={`company-lane company-lane-${lane.accent}`} aria-labelledby={`${lane.accent}-lane`}>
+          <div class="company-heading">
+            <div class="company-title-row">
+              <h2 id={`${lane.accent}-lane`}>{lane.company}</h2>
+              <a class="company-anchor" href={`#${slugify(lane.company)}`} aria-label={`Link to ${lane.company}`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 0 0 7.07.07l2-2a5 5 0 0 0-7.07-7.07l-1.15 1.15M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 12 20l1.15-1.15" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="lane-work">
+            {lane.items.map((item) => (
+              <article class="shipped-item">
+                <a class="ship-card" href={`/shipped/${lane.route}/${item.path}`} aria-label={`View ${item.title}`}>
+                  <ShippedVisual kind={item.visual} />
+                  <div class="ship-card-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </a>
+              </article>
+            ))}
+            {lane.note && <p class="lane-note">{lane.note}</p>}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function positionHashTarget() {
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    if (!target || window.innerWidth >= 1024) return;
+
+    requestAnimationFrame(() => {
+      const headerOffset = 72;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    });
+  }
+
+  window.addEventListener('hashchange', positionHashTarget);
+  positionHashTarget();
+</script>
+
+<style>
+  .career-lanes {
+    --aws: #2f6f9f;
+    --upstash: #197a52;
+    --berkeley: #b87918;
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .lane-note {
+    margin: 0.25rem 0 0;
+    color: rgb(98 96 91);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  :global(.dark) .lane-note { color: rgb(153 149 141); }
+
+  .company-lane {
+    --lane-accent: var(--aws);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(232 224 208);
+    scroll-margin-top: 5.25rem;
+  }
+
+  .company-lane-green {
+    --lane-accent: var(--upstash);
+  }
+
+  .company-lane-gold {
+    --lane-accent: var(--berkeley);
+  }
+
+  :global(.dark) .company-lane {
+    border-color: rgb(37 36 34);
+  }
+
+  .company-heading {
+    position: relative;
+    padding: 0.25rem 0 0;
+  }
+
+  .company-heading h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .company-title-row { display: flex; align-items: center; gap: 0.45rem; }
+
+  .company-anchor {
+    display: grid;
+    width: 1.5rem;
+    height: 1.5rem;
+    place-items: center;
+    color: var(--lane-accent);
+    opacity: 0;
+    transform: translateX(-0.25rem);
+    transition: opacity 160ms ease, transform 160ms ease, background-color 160ms ease;
+  }
+
+  .company-anchor svg { width: 0.9rem; height: 0.9rem; }
+  .company-heading:hover .company-anchor, .company-anchor:focus-visible { opacity: 1; transform: translateX(0); }
+  .company-anchor:hover { background: color-mix(in srgb, var(--lane-accent) 12%, transparent); }
+
+  .lane-work {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .shipped-item {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ship-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 10rem;
+    overflow: hidden;
+    border: 1px solid rgb(232 224 208);
+    border-radius: 0.5rem;
+    background: rgb(253 252 250);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  :global(.dark) .ship-card {
+    border-color: rgb(37 36 34);
+    background: rgb(26 25 24);
+  }
+
+  .ship-card:hover {
+    border-color: color-mix(in srgb, var(--lane-accent) 55%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .ship-card-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .ship-card h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.15;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ship-card p {
+    color: rgb(74 74 74);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0;
+  }
+
+  :global(.dark) .ship-card p {
+    color: rgb(184 180 172);
+  }
+
+  @media (min-width: 681px) and (max-width: 1099px) {
+    .ship-card {
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+      min-height: 11rem;
+    }
+
+    .shipped-item:nth-child(even) .ship-card {
+      grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+    }
+
+    .shipped-item:nth-child(even) :global(.shipped-visual) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .shipped-item:nth-child(even) .ship-card-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .company-lane {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      column-gap: 2rem;
+      align-items: start;
+      padding-bottom: 2rem;
+    }
+
+    .company-heading {
+      padding: 0.25rem 0 0;
+    }
+
+    .company-heading h2 {
+      font-size: 2rem;
+    }
+
+    .lane-work {
+      padding: 0;
+      gap: 1rem;
+    }
+
+    .ship-card {
+      grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+      min-height: 11rem;
+    }
+
+    .shipped-item:nth-child(even) .ship-card {
+      grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
+    }
+
+    .shipped-item:nth-child(even) :global(.shipped-visual) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .shipped-item:nth-child(even) .ship-card-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ship-card {
+      transition: none;
+    }
+
+    .ship-card:hover {
+      transform: none;
+    }
+  }
+</style>

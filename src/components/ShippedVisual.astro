@@ -1,0 +1,282 @@
+---
+interface Props {
+  kind: 'chart' | 'tooltip' | 'controls' | 'pipeline' | 'map' | 'lock' | 'batch' | 'python' | 'docs' | 'queue';
+  size?: 'card' | 'cover';
+}
+
+const { kind, size = 'card' } = Astro.props;
+---
+
+<div class:list={['shipped-visual', `shipped-visual-${kind}`, `shipped-visual-${size}`]} aria-hidden="true">
+  <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {kind === 'chart' && (
+      <g class="diagram chart-diagram">
+        <path class="panel" d="M24 42h70l14 14v48H24z" />
+        <path class="soft-line" d="M39 61h39M39 74h27M39 87h34" />
+        <path class="route" d="M111 76h45" />
+        <path class="route-arrow" d="m149 69 8 7-8 7" />
+        <rect class="surface" x="164" y="27" width="132" height="116" rx="4" />
+        <path class="grid-line" d="M180 44v82h98M180 65h98M180 86h98M180 107h98" />
+        <rect class="accent-fill" x="192" y="91" width="15" height="35" rx="1" />
+        <rect class="accent-fill muted" x="220" y="68" width="15" height="58" rx="1" />
+        <rect class="accent-fill" x="248" y="51" width="15" height="75" rx="1" />
+        <path class="signal-line" d="m190 83 30-24 28 12 31-31" />
+        <circle class="verdict-ring" cx="281" cy="39" r="12" />
+        <path class="check" d="m275 39 4 4 8-10" />
+      </g>
+    )}
+
+    {kind === 'tooltip' && (
+      <g class="diagram tooltip-diagram">
+        <path class="grid-line" d="M25 150h270M39 133 78 112l43 12 50-46 48 24 59-53" />
+        <circle class="node" cx="78" cy="112" r="4" />
+        <circle class="node" cx="121" cy="124" r="4" />
+        <circle class="node" cx="171" cy="78" r="4" />
+        <circle class="accent-fill" cx="219" cy="102" r="7" />
+        <path class="route" d="M199 89c8 1 13 6 20 13" />
+        <rect class="surface raised" x="98" y="25" width="101" height="78" rx="4" />
+        <path class="grid-line" d="M109 40h78M109 55h78M109 70h78M109 85h78M129 40v45M158 40v45" />
+        <rect class="accent-wash" x="129" y="55" width="29" height="15" />
+        <circle class="signal-node" cx="219" cy="102" r="13" />
+        <path class="cursor" d="m219 102 12 43 8-17 17-8z" />
+      </g>
+    )}
+
+    {kind === 'controls' && (
+      <g class="diagram controls-diagram">
+        <rect class="surface" x="32" y="29" width="256" height="122" rx="4" />
+        <rect class="accent-wash" x="44" y="41" width="61" height="98" />
+        <path class="grid-line" d="M44 65h232M44 90h232M44 115h232M105 41v98M170 41v98M232 41v98" />
+        <path class="accent-line" d="M53 52h42M53 77h30M53 102h37M53 127h26" />
+        <path class="route" d="M133 20h76" />
+        <path class="route-arrow" d="m140 13-8 7 8 7M202 13l8 7-8 7" />
+        <path class="node" d="M185 52h31M185 77h21M185 102h27M185 127h18" />
+        <path class="eye" d="M241 102c8-10 20-10 28 0-8 10-20 10-28 0Z" />
+        <path class="eye" d="m241 114 28-24" />
+      </g>
+    )}
+
+    {kind === 'pipeline' && (
+      <g class="diagram pipeline-diagram">
+        <circle class="globe" cx="160" cy="90" r="65" />
+        <path class="grid-line" d="M95 90h130M160 25c-31 32-31 98 0 130M160 25c31 32 31 98 0 130M108 51c31 17 73 17 104 0M108 129c31-17 73-17 104 0" />
+        <path class="deploy-route" d="M104 76c26-45 57-21 69 7 12 27 34 28 48-2" />
+        <circle class="route-point" cx="104" cy="76" r="7" />
+        <circle class="route-point" cx="139" cy="56" r="7" />
+        <circle class="route-point" cx="173" cy="83" r="7" />
+        <circle class="route-point" cx="202" cy="98" r="7" />
+        <circle class="route-point" cx="221" cy="81" r="7" />
+        <path class="check" d="m100 76 3 3 6-7M135 56l3 3 6-7M169 83l3 3 6-7M198 98l3 3 6-7M217 81l3 3 6-7" />
+      </g>
+    )}
+
+    {kind === 'map' && (
+      <g class="diagram map-diagram">
+        <path class="map-fold" d="m28 42 82-20 101 24 81-20v112l-81 20-101-24-82 20z" />
+        <path class="grid-line" d="m110 22v112M211 46v112M28 83l82-20 101 24 81-20M28 121l82-20 101 24 81-20" />
+        <path class="territory territory-one" d="m58 72 38-15 21 18-9 39-46-8z" />
+        <path class="territory territory-two" d="m131 58 31-12 10 17 23-3 5 31-18 6-10 16-38-18 8-18z" />
+        <path class="territory territory-three" d="m217 80 18-14 18 8 11-7 17 17-9 14 5 20-21 12-17-9-17 4-9-20z" />
+        <path class="polygon-nodes" d="m131 58 31-12 10 17 23-3 5 31-18 6-10 16-38-18 8-18z" />
+        <circle class="signal-node" cx="131" cy="61" r="4" />
+        <circle class="signal-node" cx="162" cy="46" r="4" />
+        <circle class="signal-node" cx="172" cy="63" r="4" />
+        <circle class="signal-node" cx="195" cy="60" r="4" />
+        <circle class="signal-node" cx="200" cy="91" r="4" />
+        <circle class="signal-node" cx="182" cy="97" r="4" />
+        <circle class="signal-node" cx="172" cy="113" r="4" />
+        <circle class="signal-node" cx="134" cy="95" r="4" />
+        <circle class="signal-node" cx="142" cy="77" r="4" />
+      </g>
+    )}
+
+    {kind === 'lock' && (
+      <g class="diagram lock-diagram">
+        <path class="request-line" d="M35 92h67M35 134h67M218 113h67" />
+        <circle class="request-node" cx="35" cy="92" r="11" />
+        <circle class="request-node" cx="35" cy="134" r="11" />
+        <circle class="signal-node" cx="285" cy="113" r="11" />
+        <path class="lock-shackle" d="M121 74V57c0-24 17-39 39-39s39 15 39 39v17" />
+        <rect class="lock-body" x="103" y="68" width="114" height="90" rx="10" />
+        <circle class="keyhole" cx="160" cy="105" r="13" />
+        <path class="keyhole" d="M160 115v19" />
+      </g>
+    )}
+
+    {kind === 'batch' && (
+      <g class="diagram batch-diagram">
+        <path class="message" d="M24 40h56v38H24zM24 89h56v38H24zM24 138h56v22H24z" />
+        <path class="message-fold" d="m25 41 27 19 27-19M25 90l27 18 27-18" />
+        <path class="route" d="M88 58c28 0 24 31 46 32M88 108c28 0 24-18 46-18M88 149c30 0 22-41 46-53" />
+        <rect class="bundle" x="133" y="56" width="70" height="69" rx="6" />
+        <path class="bundle-line" d="M146 73h44M146 89h44M146 105h44" />
+        <path class="route" d="M204 90h29" />
+        <path class="route-arrow" d="m226 83 8 7-8 7" />
+        <circle class="destination" cx="269" cy="44" r="17" />
+        <circle class="destination" cx="282" cy="90" r="17" />
+        <circle class="destination" cx="269" cy="136" r="17" />
+        <path class="route" d="M234 90c13 0 12-46 18-46M234 90h31M234 90c13 0 12 46 18 46" />
+      </g>
+    )}
+
+    {kind === 'python' && (
+      <g class="diagram python-diagram">
+        <g transform="translate(104 33) scale(1.02)">
+          <path class="python-blue" d="M54.9188.0009C50.3351.0222 45.9578.4131 42.1063 1.0947 30.7601 3.0992 28.7 7.2948 28.7 15.0322v10.2187h26.8125v3.4063H18.6375c-7.7925 0-14.6158 4.6837-16.75 13.5937-2.4618 10.213-2.571 16.586 0 27.25 1.9059 7.9379 6.4575 13.5938 14.25 13.5938h9.2188v-12.25c0-8.8499 7.6571-16.6563 16.75-16.6563h26.7812c7.455 0 13.4063-6.1382 13.4063-13.625V15.0322c0-7.2663-6.13-12.7248-13.4063-13.9375C64.2815.3279 59.5024-.0204 54.9188.0009ZM40.4188 8.2197c2.7695 0 5.0312 2.2986 5.0312 5.125 0 2.8163-2.2617 5.0937-5.0312 5.0937-2.7795 0-5.0313-2.2774-5.0313-5.0937 0-2.8264 2.2518-5.125 5.0313-5.125Z" />
+          <path class="python-gold" d="M85.6375 28.6572v11.9062c0 9.2308-7.8259 17-16.75 17H42.1063c-7.3359 0-13.4063 6.2785-13.4063 13.625v25.5313c0 7.2663 6.3186 11.5403 13.4063 13.625 8.4873 2.4956 16.6262 2.9466 26.7812 0 6.7502-1.9544 13.4063-5.8876 13.4063-13.625V86.5009H55.5125v-3.4062h40.1876c7.7924 0 10.6962-5.4354 13.4062-13.5938 2.7993-8.3989 2.6802-16.4758 0-27.25-1.9258-7.7574-5.6039-13.5937-13.4062-13.5937ZM70.575 93.3134c2.7795 0 5.0313 2.2774 5.0313 5.0938 0 2.8263-2.2518 5.125-5.0313 5.125-2.7695 0-5.0312-2.2987-5.0312-5.125 0-2.8164 2.2617-5.0938 5.0312-5.0938Z" />
+        </g>
+        <path class="sdk-bracket" d="M49 55H34v70h15M271 55h15v70h-15" />
+        <path class="route" d="M43 90h25M252 90h25" />
+      </g>
+    )}
+
+    {kind === 'docs' && (
+      <g class="diagram docs-diagram">
+        <path class="book" d="M43 35h100c13 0 17 7 17 17v95c-4-8-12-12-24-12H43zM277 35H177c-13 0-17 7-17 17v95c4-8 12-12 24-12h93z" />
+        <path class="spine" d="M160 52v95" />
+        <path class="accent-line" d="M60 54h55M60 70h67M60 86h43M193 54h55" />
+        <path class="soft-line" d="M193 70h59M193 86h45M193 102h63M60 111h61M60 127h47" />
+        <circle class="nav-node" cx="207" cy="118" r="6" />
+        <circle class="nav-node" cx="237" cy="118" r="6" />
+        <circle class="nav-node" cx="267" cy="118" r="6" />
+        <path class="route" d="M213 118h18M243 118h18" />
+      </g>
+    )}
+
+    {kind === 'queue' && (
+      <g class="diagram queue-diagram">
+        <path class="queue-line" d="M41 136h188c25 0 26-24 26-39" />
+        <circle class="student-head" cx="53" cy="91" r="12" />
+        <path class="student-body" d="M28 135c2-21 12-33 25-33s23 12 25 33z" />
+        <circle class="student-head" cx="107" cy="101" r="12" />
+        <path class="student-body" d="M82 135c2-18 12-28 25-28s23 10 25 28z" />
+        <circle class="student-head" cx="161" cy="106" r="12" />
+        <path class="student-body" d="M136 135c2-15 12-24 25-24s23 9 25 24z" />
+        <circle class="mentor-head" cx="263" cy="61" r="14" />
+        <path class="mentor-body" d="M236 114c2-26 12-40 27-40s25 14 27 40z" />
+        <path class="mentor-arm" d="m247 89-22-15-11-13" />
+        <circle class="mentor-hand" cx="213" cy="60" r="4" />
+        <rect class="desk" x="220" y="110" width="77" height="31" rx="3" />
+        <path class="board" d="M183 26h70v47h-70z" />
+        <circle class="board-node" cx="217" cy="39" r="4" />
+        <circle class="board-node" cx="201" cy="59" r="4" />
+        <circle class="board-node" cx="233" cy="59" r="4" />
+        <path class="board-line" d="m217 43-16 12M217 43l16 12" />
+        <path class="live-wave" d="M73 73c9-9 18-9 27 0M68 65c12-13 25-13 37 0" />
+        <circle class="signal-node" cx="86" cy="80" r="3" />
+      </g>
+    )}
+  </svg>
+</div>
+
+<style>
+  .shipped-visual {
+    --visual-paper: #edf2f3;
+    --visual-ink: #172126;
+    --visual-soft: #9cb0b9;
+    --visual-signal: #59b983;
+    position: relative;
+    display: grid;
+    min-height: 100%;
+    overflow: hidden;
+    place-items: center;
+    background: var(--visual-paper);
+  }
+
+  .shipped-visual-lock,
+  .shipped-visual-batch,
+  .shipped-visual-python,
+  .shipped-visual-docs { --visual-paper: #edf3ef; }
+  .shipped-visual-queue { --visual-paper: #f5efe2; }
+
+  :global(.dark) .shipped-visual {
+    --visual-paper: #1c2225;
+    --visual-ink: #e8e7e2;
+    --visual-soft: #71838a;
+    --visual-signal: #63c18c;
+  }
+
+  :global(.dark) .shipped-visual-lock,
+  :global(.dark) .shipped-visual-batch,
+  :global(.dark) .shipped-visual-python,
+  :global(.dark) .shipped-visual-docs { --visual-paper: #1b2420; }
+  :global(.dark) .shipped-visual-queue { --visual-paper: #29241c; }
+
+  svg {
+    display: block;
+    width: min(88%, 22rem);
+    height: auto;
+    max-height: 86%;
+    overflow: visible;
+  }
+
+  .shipped-visual-cover svg { width: min(88%, 30rem); }
+
+  .panel,
+  .surface,
+  .globe,
+  .map-fold,
+  .request-node,
+  .destination,
+  .book,
+  .board,
+  .desk {
+    fill: color-mix(in srgb, var(--visual-paper) 82%, var(--visual-ink));
+    stroke: var(--visual-ink);
+    stroke-width: 2;
+  }
+
+  .raised { filter: drop-shadow(7px 7px 0 color-mix(in srgb, var(--lane-accent) 16%, transparent)); }
+  .route, .request-line, .queue-line { stroke: var(--lane-accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .route-arrow { stroke: var(--lane-accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .grid-line, .soft-line { stroke: var(--visual-soft); stroke-width: 1.5; stroke-linecap: round; opacity: 0.68; }
+  .accent-line { stroke: var(--lane-accent); stroke-width: 4; stroke-linecap: round; }
+  .accent-fill { fill: var(--lane-accent); }
+  .accent-fill.muted { opacity: 0.55; }
+  .accent-wash { fill: color-mix(in srgb, var(--lane-accent) 24%, transparent); }
+  .node, .eye, .cursor { fill: var(--visual-paper); stroke: var(--visual-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .signal-line { fill: none; stroke: var(--visual-signal); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .signal-node { fill: var(--visual-signal); stroke: var(--visual-paper); stroke-width: 2; }
+  .verdict-ring { fill: var(--visual-paper); stroke: var(--visual-signal); stroke-width: 3; }
+
+  .deploy-route { fill: none; stroke: var(--lane-accent); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 5 7; }
+  .route-point { fill: var(--visual-paper); stroke: var(--lane-accent); stroke-width: 3; }
+  .check { fill: none; stroke: var(--visual-signal); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  .territory { stroke: var(--visual-paper); stroke-width: 2; }
+  .territory-one { fill: color-mix(in srgb, var(--lane-accent) 42%, var(--visual-paper)); }
+  .territory-two { fill: var(--lane-accent); }
+  .territory-three { fill: color-mix(in srgb, var(--visual-signal) 68%, var(--visual-paper)); }
+  .polygon-nodes { fill: none; stroke: var(--visual-ink); stroke-width: 2; stroke-dasharray: 4 4; }
+
+  .lock-shackle { fill: none; stroke: var(--lane-accent); stroke-width: 13; stroke-linecap: round; }
+  .lock-body { fill: var(--lane-accent); }
+  .keyhole { fill: var(--visual-paper); stroke: var(--visual-paper); stroke-width: 8; stroke-linecap: round; }
+  .large-check { stroke: var(--visual-paper); stroke-width: 8; opacity: 0.36; }
+
+  .message, .bundle { stroke: var(--visual-ink); stroke-width: 2; stroke-linejoin: round; }
+  .message { fill: color-mix(in srgb, var(--lane-accent) 14%, var(--visual-paper)); }
+  .message-fold, .bundle-line { fill: none; stroke: var(--visual-soft); stroke-width: 1.5; }
+  .bundle { fill: color-mix(in srgb, var(--lane-accent) 30%, var(--visual-paper)); }
+  .python-blue { fill: #4b8bbe; }
+  .python-gold { fill: #ffd43b; }
+  .sdk-bracket { fill: none; stroke: var(--visual-ink); stroke-width: 5; stroke-linecap: square; }
+
+  .book { stroke-linejoin: round; }
+  .spine { stroke: var(--visual-ink); stroke-width: 2; }
+  .nav-node { fill: var(--lane-accent); }
+
+  .student-head, .mentor-head { fill: var(--visual-paper); stroke: var(--visual-ink); stroke-width: 2; }
+  .student-body { fill: color-mix(in srgb, var(--lane-accent) 35%, var(--visual-paper)); stroke: var(--visual-ink); stroke-width: 2; }
+  .mentor-body { fill: var(--lane-accent); stroke: var(--visual-ink); stroke-width: 2; }
+  .mentor-arm { fill: none; stroke: var(--lane-accent); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+  .mentor-hand { fill: var(--lane-accent); }
+  .board-node { fill: var(--visual-signal); }
+  .board-line { stroke: var(--visual-signal); stroke-width: 2; }
+  .live-wave { fill: none; stroke: var(--lane-accent); stroke-width: 2.5; stroke-linecap: round; }
+
+  @media (max-width: 680px) {
+    svg { width: min(82%, 18rem); max-height: 82%; }
+    .shipped-visual-cover svg { width: min(90%, 25rem); max-height: 88%; }
+  }
+</style>

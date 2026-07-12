@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('shipped');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.legacySlug },
+    props: { target: `/shipped/${entry.id}` },
+  }));
+}
+
+const { target } = Astro.props;
+return Astro.rewrite(target);
