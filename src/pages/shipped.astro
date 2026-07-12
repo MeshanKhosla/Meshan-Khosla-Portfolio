@@ -1,72 +1,102 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ShippedVisual from '../components/ShippedVisual.astro';
+import { getCollection } from 'astro:content';
+
+const shippedEntries = await getCollection('shipped');
+const shippedById = new Map(shippedEntries.map((entry) => [entry.id, entry.data]));
+const summary = (id: string) => shippedById.get(id)?.summary ?? '';
 
 const companyLanes = [
   {
     company: 'AWS',
+    route: 'aws',
     accent: 'blue',
+    note: '...and, of course, a lot of on-call :)',
     items: [
       {
         title: 'Highcharts GenAI Evaluation Framework',
         slug: 'aws-highcharts-genai-evaluation-framework',
-        description: 'Built an offline LLM-as-judge evaluation framework for AI-generated Highcharts configs, covering both reference-based and reference-free browser evaluation.',
+        path: 'highcharts-genai-evaluation-framework',
+        visual: 'chart',
+        description: summary('aws/highcharts-genai-evaluation-framework'),
       },
       {
         title: 'Sheet Tooltip',
         slug: 'aws-sheet-tooltip',
-        description: 'Improved the QuickSight sheet experience with tooltip behavior for readers and authors.',
+        path: 'sheet-tooltip',
+        visual: 'tooltip',
+        description: summary('aws/sheet-tooltip'),
       },
       {
         title: 'Reader Customization',
         slug: 'aws-reader-customization',
-        description: 'Shipped customization work for the QuickSight reader experience.',
+        path: 'reader-customization',
+        visual: 'controls',
+        description: summary('aws/reader-customization'),
       },
       {
         title: 'CI/CD',
         slug: 'aws-ci-cd',
-        description: 'Worked on delivery infrastructure to make development and release workflows more reliable.',
+        path: 'ci-cd',
+        visual: 'pipeline',
+        description: summary('aws/ci-cd'),
       },
       {
         title: 'LayerMap',
         slug: 'aws-layermap',
-        description: 'Built map visualization work for layered geospatial analysis in QuickSight.',
+        path: 'layermap',
+        visual: 'map',
+        description: summary('aws/layermap'),
       },
     ],
   },
   {
     company: 'Upstash',
+    route: 'upstash',
     accent: 'green',
     items: [
       {
         title: 'Distributed Lock SDK',
         slug: 'upstash-distributed-lock-sdk',
-        description: 'Built a best-effort distributed lock and debounce SDK on Upstash Redis for coordinating expensive work across serverless clients.',
+        path: 'distributed-lock-sdk',
+        visual: 'lock',
+        description: summary('upstash/distributed-lock-sdk'),
       },
       {
         title: 'Batching support in QStash',
         slug: 'upstash-qstash-batching',
-        description: 'Added QStash batching support so developers could publish many messages to one or more destinations in a single request.',
+        path: 'qstash-batching',
+        visual: 'batch',
+        description: summary('upstash/qstash-batching'),
       },
       {
         title: 'QStash Python SDK',
         slug: 'upstash-qstash-python-sdk',
-        description: 'Shipped Python SDK support for core QStash workflows including publishing, scheduling, logs, DLQ access, and signature verification.',
+        path: 'qstash-python-sdk',
+        visual: 'python',
+        description: summary('upstash/qstash-python-sdk'),
       },
       {
         title: 'Refactored QStash docs',
         slug: 'upstash-qstash-docs',
-        description: 'Refactored QStash documentation to make serverless messaging, scheduling, SDK usage, and API examples easier to navigate.',
+        path: 'qstash-docs',
+        visual: 'docs',
+        description: summary('upstash/qstash-docs'),
       },
     ],
   },
   {
     company: 'UC Berkeley CS61B',
+    route: 'uc-berkeley-cs61b',
     accent: 'gold',
     items: [
       {
         title: 'Simple Office Hours Queue',
         slug: 'cs61b-simple-office-hours-queue',
-        description: 'Built course infrastructure for managing office hours queues and student support workflows.',
+        path: 'simple-office-hours-queue',
+        visual: 'queue',
+        description: summary('uc-berkeley-cs61b/simple-office-hours-queue'),
       },
     ],
   },
@@ -76,14 +106,14 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
 ---
 
 <Layout
-  title="Things I've Shipped"
+  title="Shipped"
   description="Professional shipped work by Meshan Khosla across AWS, Upstash, and UC Berkeley."
 >
   <div class="p-6 lg:p-12">
     <header class="max-w-4xl mb-4">
-      <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Things I've Shipped For Companies</h1>
+      <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Shipped</h1>
       <p class="text-charcoal-muted dark:text-sand-muted text-balance">
-        For things I've done on my own, see <a href="/projects" class="link">meshan.dev/projects</a>
+        For things I've done on my own, see <a href="/projects" class="link">meshan.dev/projects</a>.
       </p>
     </header>
 
@@ -91,16 +121,19 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
       {companyLanes.map((lane) => (
         <section id={slugify(lane.company)} class={`company-lane company-lane-${lane.accent}`} aria-labelledby={`${lane.accent}-lane`}>
           <div class="company-heading">
-            <h2 id={`${lane.accent}-lane`}>{lane.company}</h2>
+            <div class="company-title-row">
+              <h2 id={`${lane.accent}-lane`}>{lane.company}</h2>
+              <a class="company-anchor" href={`#${slugify(lane.company)}`} aria-label={`Link to ${lane.company}`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 0 0 7.07.07l2-2a5 5 0 0 0-7.07-7.07l-1.15 1.15M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 12 20l1.15-1.15" /></svg>
+              </a>
+            </div>
           </div>
 
           <div class="lane-work">
             {lane.items.map((item) => (
               <article class="shipped-item">
-                <a class="ship-card" href={`/shipped/${item.slug}`} aria-label={`View ${item.title}`}>
-                  <div class="ship-placeholder" aria-hidden="true">
-                    <span>Cover image</span>
-                  </div>
+                <a class="ship-card" href={`/shipped/${lane.route}/${item.path}`} aria-label={`View ${item.title}`}>
+                  <ShippedVisual kind={item.visual} />
                   <div class="ship-card-copy">
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
@@ -108,12 +141,29 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
                 </a>
               </article>
             ))}
+            {lane.note && <p class="lane-note">{lane.note}</p>}
           </div>
         </section>
       ))}
     </div>
   </div>
 </Layout>
+
+<script>
+  function positionHashTarget() {
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    if (!target || window.innerWidth >= 1024) return;
+
+    requestAnimationFrame(() => {
+      const headerOffset = 72;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    });
+  }
+
+  window.addEventListener('hashchange', positionHashTarget);
+  positionHashTarget();
+</script>
 
 <style>
   .career-lanes {
@@ -125,6 +175,15 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
     width: 100%;
   }
 
+  .lane-note {
+    margin: 0.25rem 0 0;
+    color: rgb(98 96 91);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  :global(.dark) .lane-note { color: rgb(153 149 141); }
+
   .company-lane {
     --lane-accent: var(--aws);
     display: grid;
@@ -132,6 +191,7 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
     gap: 0.85rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgb(232 224 208);
+    scroll-margin-top: 5.25rem;
   }
 
   .company-lane-green {
@@ -158,6 +218,23 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
     font-weight: 600;
     margin: 0;
   }
+
+  .company-title-row { display: flex; align-items: center; gap: 0.45rem; }
+
+  .company-anchor {
+    display: grid;
+    width: 1.5rem;
+    height: 1.5rem;
+    place-items: center;
+    color: var(--lane-accent);
+    opacity: 0;
+    transform: translateX(-0.25rem);
+    transition: opacity 160ms ease, transform 160ms ease, background-color 160ms ease;
+  }
+
+  .company-anchor svg { width: 0.9rem; height: 0.9rem; }
+  .company-heading:hover .company-anchor, .company-anchor:focus-visible { opacity: 1; transform: translateX(0); }
+  .company-anchor:hover { background: color-mix(in srgb, var(--lane-accent) 12%, transparent); }
 
   .lane-work {
     display: grid;
@@ -195,36 +272,6 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
     transform: translateY(-2px);
   }
 
-  .ship-placeholder {
-    width: 100%;
-    min-height: 10rem;
-    display: grid;
-    place-items: center;
-    background:
-      linear-gradient(135deg, rgba(47, 111, 159, 0.2) 25%, transparent 25%) 0 0 / 18px 18px,
-      linear-gradient(135deg, transparent 75%, rgba(47, 111, 159, 0.16) 75%) 0 0 / 18px 18px,
-      rgb(245 240 232);
-  }
-
-  :global(.dark) .ship-placeholder {
-    background:
-      linear-gradient(135deg, rgba(59, 126, 161, 0.24) 25%, transparent 25%) 0 0 / 18px 18px,
-      linear-gradient(135deg, transparent 75%, rgba(59, 126, 161, 0.18) 75%) 0 0 / 18px 18px,
-      rgb(37 36 34);
-  }
-
-  .ship-placeholder span {
-    font-family: "JetBrains Mono", monospace;
-    color: rgb(74 74 74);
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  :global(.dark) .ship-placeholder span {
-    color: rgb(184 180 172);
-  }
-
   .ship-card-copy {
     display: flex;
     flex-direction: column;
@@ -249,6 +296,27 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
 
   :global(.dark) .ship-card p {
     color: rgb(184 180 172);
+  }
+
+  @media (min-width: 681px) and (max-width: 1099px) {
+    .ship-card {
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+      min-height: 11rem;
+    }
+
+    .shipped-item:nth-child(even) .ship-card {
+      grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+    }
+
+    .shipped-item:nth-child(even) :global(.shipped-visual) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .shipped-item:nth-child(even) .ship-card-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
   }
 
   @media (min-width: 1100px) {
@@ -281,7 +349,7 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-
       grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
     }
 
-    .shipped-item:nth-child(even) .ship-placeholder {
+    .shipped-item:nth-child(even) :global(.shipped-visual) {
       grid-column: 2;
       grid-row: 1;
     }
