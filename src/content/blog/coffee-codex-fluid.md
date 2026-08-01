@@ -10,10 +10,10 @@ I'm at home for the first time in this series!
 
 ![Coffee](/coffee-codex/fluid/coffee.webp)
 
-In the <a href="/blog/coffee-codex-magic-pocket">last post</a>, I started learning about Dropbox's Magic Pocket technology. I'll continue exploring it next time, but I saw an interesting [challenge by @rauchg](https://x.com/rauchg/status/1926368626262581282) to figure out how Vercel's Fluid Compute works. I've looked into how Hive works before and I've found it's pretty similar to the Lambda architecture (slots in servers with a Firecracker microVM running on the host’s KVM capabilities) from previous posts:
+In the <a href="/blog/coffee-codex-magic-pocket/">last post</a>, I started learning about Dropbox's Magic Pocket technology. I'll continue exploring it next time, but I saw an interesting [challenge by @rauchg](https://x.com/rauchg/status/1926368626262581282) to figure out how Vercel's Fluid Compute works. I've looked into how Hive works before and I've found it's pretty similar to the Lambda architecture (slots in servers with a Firecracker microVM running on the host’s KVM capabilities) from previous posts:
 
-- <a href="/blog/coffee-codex-lambda">Lambda</a>
-- <a href="/blog/coffee-codex-lambda-workers">Lambda workers</a>
+- <a href="/blog/coffee-codex-lambda/">Lambda</a>
+- <a href="/blog/coffee-codex-lambda-workers/">Lambda workers</a>
 
 So let's learn about Fluid Compute!
 

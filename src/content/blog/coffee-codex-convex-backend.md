@@ -6,7 +6,7 @@ heroImage: "/coffee-codex/convex-backend/cover.png"
 ---
 
 ## Introduction
-I'm at Cafe Aloe in Bellevue, WA, and today I'm learning about how the backend of [convex.dev](https://www.convex.dev/) works. In the <a href='/blog/coffee-codex-convex'>last post</a>, I looked into the Convex client and built a demo app to understand the WebSocket messages. I'm going to learn about the backend by reading through [this post](https://stack.convex.dev/how-convex-works)
+I'm at Cafe Aloe in Bellevue, WA, and today I'm learning about how the backend of [convex.dev](https://www.convex.dev/) works. In the <a href='/blog/coffee-codex-convex/'>last post</a>, I looked into the Convex client and built a demo app to understand the WebSocket messages. I'm going to learn about the backend by reading through [this post](https://stack.convex.dev/how-convex-works)
 
 ![Coffee](/coffee-codex/convex-backend/coffee.webp)
 
@@ -34,7 +34,7 @@ We saw last time that Convex stores data in documents, similar to MongoDB, such 
 The data that Convex stores is in an append-only transaction log such as this, where the version is a monotonically increasing timestamp.
 ![Convex Xact log](/coffee-codex/convex-backend/xact-log.svg)
 
-As I learned in the posts about <a target='_blank' href='/blog/coffee-codex-clocks'>clocks</a>, physical clocks tend to skew and require NTP to synchronize so many distributed systems opt for logical clocks such as <a target='_blank' href='/blog/coffee-codex-logical-time-vector'>vector clocks</a>. Convex uses [hybrid logical clocks](https://cse.buffalo.edu/tech-reports/2014-04.pdf) which I'm not as familiar with but maybe I'll look into them in the future.
+As I learned in the posts about <a target='_blank' href='/blog/coffee-codex-clocks/'>clocks</a>, physical clocks tend to skew and require NTP to synchronize so many distributed systems opt for logical clocks such as <a target='_blank' href='/blog/coffee-codex-logical-time-vector/'>vector clocks</a>. Convex uses [hybrid logical clocks](https://cse.buffalo.edu/tech-reports/2014-04.pdf) which I'm not as familiar with but maybe I'll look into them in the future.
 
 Interestingly all tables are present in the transaction log and I believe each project has its own transaction log. This makes the transactional guarantees clear. Since all Convex functions are transactional, any update to the transaction log will be grouped into one transaction log entry, identifiable by a timestamp. The database can then jump from entry `i` to `i + 1` when it's ready to make an update, and it's clear what changes need to be applied.
 

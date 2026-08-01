@@ -6,7 +6,7 @@ heroImage: "/coffee-codex/convex/cover.png"
 ---
 
 ## Introduction
-I'm at North of Main Cafe in Bellevue, WA, and today I'm learning about how the client works in [convex.dev](https://www.convex.dev/). Convex has been getting pretty popular lately, so I wanted to create a demo app and attempt to reverse engineer it, similar to what I did with <a href='/blog/coffee-codex-twitch'>Twitch</a>. I'll focus on what I can see from the client side today, and then next time I'll dive into the server-side sync implementation and look into the code since it's open source.
+I'm at North of Main Cafe in Bellevue, WA, and today I'm learning about how the client works in [convex.dev](https://www.convex.dev/). Convex has been getting pretty popular lately, so I wanted to create a demo app and attempt to reverse engineer it, similar to what I did with <a href='/blog/coffee-codex-twitch/'>Twitch</a>. I'll focus on what I can see from the client side today, and then next time I'll dive into the server-side sync implementation and look into the code since it's open source.
 
 ![Coffee](/coffee-codex/convex/coffee.webp)
 

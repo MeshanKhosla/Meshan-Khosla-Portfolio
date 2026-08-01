@@ -6,7 +6,7 @@ heroImage: "/coffee-codex/magic-pocket-2/cover.png"
 ---
 ## Introduction
 
-I'm at Dote in Bellevue, WA. In a <a href="/blog/coffee-codex-magic-pocket">previous post</a>, I started learning about Dropbox's Magic Pocket (MP) technology. I started covering the data model of Dropbox Magic Pocket and how files get converted into blocks, buckets, and volumes.
+I'm at Dote in Bellevue, WA. In a <a href="/blog/coffee-codex-magic-pocket/">previous post</a>, I started learning about Dropbox's Magic Pocket (MP) technology. I started covering the data model of Dropbox Magic Pocket and how files get converted into blocks, buckets, and volumes.
 
 ![Coffee](/coffee-codex/magic-pocket-2/coffee.webp)
 

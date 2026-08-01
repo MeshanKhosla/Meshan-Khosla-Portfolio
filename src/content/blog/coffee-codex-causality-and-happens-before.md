@@ -12,7 +12,7 @@ I'm at Bellden Cafe in Bellevue, WA and I'm learning about ordering using time i
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-clock-synchronization">last post</a>, I learned about how clocks stay synchronized using the NTP protocol and how computers can step or skew the time based on their response from the NTP server. Today, I'll learn about causality as it relates to clocks and explore happens-before.
+In the <a href="/blog/coffee-codex-clock-synchronization/">last post</a>, I learned about how clocks stay synchronized using the NTP protocol and how computers can step or skew the time based on their response from the NTP server. Today, I'll learn about causality as it relates to clocks and explore happens-before.
 
 ## The Problem
 

@@ -12,7 +12,7 @@ I'm at Semicolon Cafe in Bellevue, WA and I'm learning about synchronizing clock
 
 ## Recap
 
-In the <a href="/blog/coffee-codex-clocks">last post</a>, I learned about the importance of clocks and specifically how physical clocks (quartz vs atomic) are used in computing. Today I'll learn how these clocks stay synchronized with each other since quartz clocks tend to drift.
+In the <a href="/blog/coffee-codex-clocks/">last post</a>, I learned about the importance of clocks and specifically how physical clocks (quartz vs atomic) are used in computing. Today I'll learn how these clocks stay synchronized with each other since quartz clocks tend to drift.
 
 ## Synchronization techniques
 

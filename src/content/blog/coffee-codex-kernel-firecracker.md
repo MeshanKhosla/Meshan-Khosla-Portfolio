@@ -7,7 +7,7 @@ heroImage: "/coffee-codex/kernel-firecracker/cover.png"
 
 ## Introduction
 
-I'm at Royal Bakehouse in Bellevue, WA and today I'm reading about how Kernel [made Firecracker faster](https://www.kernel.sh/blog/firecracker-faster). I've written about Firecracker in the <a href="/blog/coffee-codex-lambda-workers">past</a> and am a fan so this should be interesting.
+I'm at Royal Bakehouse in Bellevue, WA and today I'm reading about how Kernel [made Firecracker faster](https://www.kernel.sh/blog/firecracker-faster). I've written about Firecracker in the <a href="/blog/coffee-codex-lambda-workers/">past</a> and am a fan so this should be interesting.
 
 ![Coffee](/coffee-codex/kernel-firecracker/coffee.webp)
 

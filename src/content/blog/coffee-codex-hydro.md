@@ -18,7 +18,7 @@ I'm going to start understanding what Hydro is by starting out with the safety a
 - Non-determinism due to message delays 
 - Using mismatched serialization and deserialization formats across services 
 - Misusing node identifiers across logically independent clusters of machines 
-- Relying on non-deterministic clocks for batching events - I've written about this in a <a href="/blog/coffee-codex-clocks">previous post</a>
+- Relying on non-deterministic clocks for batching events - I've written about this in a <a href="/blog/coffee-codex-clocks/">previous post</a>
 
 Ok, now let's go to the introduction. It looks like Hydro is the framework you write a distributed system in, whereas P is a language you verify your programs in _before_ writing it. 
 
