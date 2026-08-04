@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   subtitle: string;
-  description: string;
+  description?: string;
   shippedHref?: string;
   shippedLabel?: string;
 }
@@ -23,9 +23,11 @@ const { title, subtitle, description, shippedHref, shippedLabel = 'View shipped 
     <p class="text-sm text-accent dark:text-accent-light font-medium">
       {subtitle}
     </p>
-    <p class="text-charcoal-muted dark:text-sand-muted pt-2">
-      {description}
-    </p>
+    {description && (
+      <p class="text-charcoal-muted dark:text-sand-muted pt-2">
+        {description}
+      </p>
+    )}
     {shippedHref && (
       <a href={shippedHref} class="link inline-flex pt-2 text-sm font-medium">
         {shippedLabel}
