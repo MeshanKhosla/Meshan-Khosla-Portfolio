@@ -120,6 +120,19 @@ pre {
   @apply border border-cream-300 dark:border-ink-lighter;
 }
 
+/* Preserve terminal-style alignment for plain-text command output. */
+.prose pre[data-language="text"] {
+  white-space: pre !important;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.prose pre[data-language="text"] code {
+  white-space: inherit;
+}
+
 /* Prose dark mode code override */
 .dark .prose pre {
   @apply bg-ink-light border-ink-lighter;
