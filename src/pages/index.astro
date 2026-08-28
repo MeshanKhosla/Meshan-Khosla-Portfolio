@@ -21,12 +21,10 @@ const recentPosts = (await getCollection('blog'))
             Meshan<br/>Khosla
           </h1>
           
-          <p class="text-lg text-charcoal-muted dark:text-sand-muted leading-relaxed mb-16 max-[430px]:text-base max-[350px]:text-[0.8rem]">
-            Software Engineer at AWS<span class="text-accent dark:text-accent-light">.</span>
-            <br />
-            UC Berkeley Computer Science graduate<span class="text-accent dark:text-accent-light">.</span>
-            <br />
-            I like writing about what I'm<br /><span>learning<span data-emdash-anchor class="relative inline-block"
+          <p class="mb-16 flex flex-col gap-1.5 text-lg leading-relaxed text-charcoal-muted dark:text-sand-muted max-[430px]:text-base max-[350px]:text-[0.8rem]">
+            <span>Software Engineer at AWS<span class="text-accent dark:text-accent-light">.</span></span>
+            <span>UC Berkeley Computer Science graduate<span class="text-accent dark:text-accent-light">.</span></span>
+            <span class="leading-[1.45]">I like writing about what I'm<br /><span>learning<span data-emdash-anchor class="relative inline-block"
               ><span>—</span
               ><span
                 aria-hidden="true"
@@ -40,7 +38,7 @@ const recentPosts = (await getCollection('blog'))
             >check out my <a
               href="/blog/"
               class="font-medium text-accent underline decoration-accent/50 underline-offset-4 transition-colors hover:text-accent-dark hover:decoration-accent dark:text-accent-light dark:decoration-accent-light/50 dark:hover:text-accent dark:hover:decoration-accent-light"
-            >coffee codex</a> series<span class="text-accent dark:text-accent-light">.</span></span>
+            >coffee codex</a> series<span class="text-accent dark:text-accent-light">.</span></span></span>
           </p>
 
           <!-- Social Links -->
