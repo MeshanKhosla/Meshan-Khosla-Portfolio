@@ -13,7 +13,7 @@ I'm at T'Latte in Bellevue, WA and I want to write about a project I've been wor
 
 ## Motivation
 
-A few months ago, I was talking to my girlfriend (Ofir) about her group's [research in Private Information Retrieval (PIR)](https://eprint.iacr.org/2026/684). At a high level, one application of PIR is to answer the question "How can a client hide their intent from a database?" The naive solution is to have the client download the entire database since, if you download the entire database, the database will not know which record you are querying for. There are many smarter solutions to make this more efficient and more performant, but that's the high-level idea.
+A few months ago, I was talking to my girlfriend, Ofir, about her group's [research in Private Information Retrieval (PIR)](https://eprint.iacr.org/2026/684). At a high level, one application of PIR is to answer the question "How can a client hide their intent from a database?" The naive solution is to have the client download the entire database since, if you download the entire database, the database will not know which record you are querying for. There are many smarter solutions to make this more efficient and more performant, but that's the high-level idea.
 
 I started thinking about local AI and how PIR can apply there. Starting at the naive solution... and then I got stuck. I don't know what the parallel for a naive solution will be. Send every possible prompt? Impossible. Send similar contextual prompts? Not enough privacy guarantees. So I tabled the idea for a while. And then I started to think about what people use local AI for.
 
