@@ -30,9 +30,18 @@ const formatDate = (date: Date) => {
     <!-- Header -->
     <header class="max-w-4xl mb-10">
       <h1 class="font-serif text-3xl lg:text-4xl font-semibold mb-4">Blog</h1>
-      <p class="text-charcoal-muted dark:text-sand-muted text-balance">
+      <p class="text-charcoal-muted dark:text-sand-muted text-balance mb-4">
         Things I'm learning about distributed systems, software engineering, and anything else. Less of a blog, more of a learning log.
       </p>
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 text-sm text-charcoal-muted dark:text-sand-muted hover:text-accent dark:hover:text-accent-light transition-colors"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM1.82 8.73v3.01c6.02 0 10.92 4.9 10.92 10.92h3.01c0-7.68-6.25-13.93-13.93-13.93zm0-5.18v3.01c9.97 0 18.09 8.12 18.09 18.1h3.01c0-11.63-9.47-21.11-21.1-21.11z" />
+        </svg>
+        RSS Feed
+      </a>
     </header>
 
     <!-- Search / Filter -->

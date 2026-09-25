@@ -30,6 +30,7 @@ const currentPath = Astro.url.pathname;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" type="application/rss+xml" title="Meshan Khosla | Blog" href={new URL('rss.xml', Astro.site || 'https://meshan.dev')} />
     
     <!-- Primary Meta Tags -->
     <title>{title === 'Meshan Khosla' ? title : `${title} | Meshan Khosla`}</title>
