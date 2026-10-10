@@ -31,7 +31,7 @@ export default defineConfig({
     rehypePlugins: [lazyMarkdownMedia],
     shikiConfig: {
       theme: 'github-dark',
-      wrap: true,
+      wrap: false,
     },
   },
   prefetch: {

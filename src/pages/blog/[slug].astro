@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getBlogImageSources } from '../../utils/blog-image';
+import CodeBlockControls from '../../components/CodeBlockControls.astro';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog');
@@ -49,8 +50,8 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
           srcset={heroImage!.srcset}
           sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
           alt={post.data.title}
-          width="1280"
-          height="720"
+          width={post.data.heroImageWidth ?? 1280}
+          height={post.data.heroImageHeight ?? 720}
           class="w-full h-auto rounded-lg mb-8"
           decoding="async"
           fetchpriority="high"
@@ -69,9 +70,10 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
     </header>
 
     <!-- Content -->
-    <div class="prose prose-lg dark:prose-invert max-w-none">
+    <div class="blog-content prose prose-lg dark:prose-invert max-w-none">
       <Content />
     </div>
+    <CodeBlockControls />
 
     <!-- Footer -->
     <footer class="mt-16 pt-8 border-t border-cream-300 dark:border-ink-lighter">
