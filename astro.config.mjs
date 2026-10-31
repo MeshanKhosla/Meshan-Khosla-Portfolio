@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { unified } from '@astrojs/markdown-remark';
 
 const lazyMarkdownMedia = () => {
   return (tree) => {
@@ -28,7 +29,7 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [sitemap()],
   markdown: {
-    rehypePlugins: [lazyMarkdownMedia],
+    processor: unified({ rehypePlugins: [lazyMarkdownMedia] }),
     shikiConfig: {
       theme: 'github-dark',
       wrap: false,
